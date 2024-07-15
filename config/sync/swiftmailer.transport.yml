@@ -11,5 +11,5 @@ smtp_credential_provider: swiftmailer
 smtp_credentials:
   swiftmailer:
     username: ventaonline@centrosturisticos.com
-    password: Kcfxwtemupllkitr
+    password: kcfxwtemupllkitr
 spool_directory: ''

@@ -776,8 +776,8 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
 $databases['default']['default'] = array (
-  'database' => 'drupaldb',
-  'username' => 'drupaluser',
+  'database' => 'cacttestdb',
+  'username' => 'cacttestuser',
   'password' => 'Emergya2022',
   'prefix' => '',
   'host' => 'localhost',
@@ -786,7 +786,7 @@ $databases['default']['default'] = array (
   'driver' => 'mysql',
 );
 $settings['config_sync_directory'] = '../config/sync';
-$env = 'pro';
+$env = 'pre';
 switch ($env) {
   case 'pro':
     $config['config_split.config_split.pre']['status'] = FALSE;

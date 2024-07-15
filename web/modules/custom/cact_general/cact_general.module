@@ -422,9 +422,13 @@ function cact_general_entity_presave(Drupal\Core\Entity\EntityInterface $entity)
 
   if ($entity instanceof \Drupal\commerce_order\Entity\OrderInterface && !$entity->get('payment_gateway')->isEmpty() &&
     $entity->get('field_reference_redsys')->isEmpty() && $entity->get('payment_gateway')->getString() == 'redsys') {
-    $field_reference = \Drupal::service('cact_general.order_utility')->getPaymentRefernceRedsys($entity);
-    if (isset($field_reference)) {
-      $entity->set('field_reference_redsys', $field_reference);
+    $payment_storage = \Drupal::entityTypeManager()->getStorage('commerce_payment');
+    $payments = $payment_storage->loadMultipleByOrder($entity);
+    if(count($payments) > 0 && reset($payments)->isCompleted()){
+      $field_reference = \Drupal::service('cact_general.order_utility')->getPaymentRefernceRedsys($entity);
+      if (isset($field_reference)) {
+        $entity->set('field_reference_redsys', $field_reference);
+      }
     }
   }
   else if($entity instanceof \Drupal\commerce_order\Entity\OrderInterface && !$entity->get('payment_gateway')->isEmpty() &&

@@ -21,4 +21,5 @@ settings:
   label: 'Cookies Documentation'
   label_display: '0'
   provider: cookies
+  show_cookies_settings_button: {  }
 visibility: {  }

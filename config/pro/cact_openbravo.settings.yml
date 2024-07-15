@@ -16,7 +16,6 @@ cact_openbravo:
   no_integration: 0
   payments_gateways:
     bank_transfer: Transferencia
-    gratis: Gratis
     paypal: Tarjeta
     redsys: Tarjeta
   mails: martacdt@centrosturisticos.com

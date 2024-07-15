@@ -6,6 +6,9 @@ dependencies:
     - system
   theme:
     - bartik
+third_party_settings:
+  block_class:
+    classes: null
 _core:
   default_config_hash: kigu8pTxXt1qGR2NJ5HHdC4G2G1wsDrIjLPKBT5wUBc
 id: bartik_content

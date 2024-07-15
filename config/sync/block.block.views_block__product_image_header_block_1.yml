@@ -1,6 +1,6 @@
 uuid: 11b656cf-848d-48cc-9ffe-2b221ab840f0
 langcode: es
-status: false
+status: true
 dependencies:
   config:
     - views.view.product_image_header

@@ -6,9 +6,6 @@ dependencies:
     - search
   theme:
     - bartik
-third_party_settings:
-  block_class:
-    classes: null
 _core:
   default_config_hash: jQ-C8l3dJPqYCGST1e-kSjR14PDP4wq-iFbp8dMFcRo
 id: bartik_search
