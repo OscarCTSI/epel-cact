@@ -1,0 +1,19 @@
+uuid: f0734904-4c84-46cc-8de6-6fa400ac1826
+langcode: es
+status: true
+dependencies: {  }
+id: pre
+label: Pre
+description: 'Configurations to use in PRE environment'
+weight: 0
+folder: ../config/pre/
+module:
+  cact_openbravo: 0
+  commerce_paypal: 0
+  commerce_sermepa: 0
+  google_analytics: 0
+theme: {  }
+blacklist: {  }
+graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true

@@ -1,0 +1,19 @@
+uuid: 169e2716-1be1-4306-a0a6-08d8a7615d4e
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product.field_important_information
+field_name: field_important_information
+entity_type: commerce_product
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

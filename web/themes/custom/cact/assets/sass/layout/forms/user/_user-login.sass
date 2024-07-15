@@ -1,0 +1,158 @@
+.user-login-form
+  background-color: transparent!important
+  border-radius: 0
+  margin: 0 auto
+  margin-bottom: calc-rem(50px)
+  max-width: 28.188rem
+
+  .js-form-item
+    position: relative
+
+    // Bar.
+    .bar
+      display: block
+      height: 2px
+      position: relative
+      transform: translate(-13px, 34px)
+      width: 100%
+
+      &::before,
+      &::after
+        background: $primary-color
+        bottom: 2px
+        content: ''
+        position: absolute
+        transition: .3s ease
+        width: 0
+
+      &::before
+        left: 49%
+
+      &::after
+        right: 49%
+
+    // Inputs.
+    input
+      &[type='password'],
+      &[type='search'],
+      &[type='email'],
+      &[type='text'],
+      &[type='tel']
+        background-color: $input-background-color
+        border: 1px solid $input-border-color
+        border-radius: 5px
+        color: $input-color
+        font-size: calc-rem($input-font-size)
+        //max-height: calc-rem(50px)
+        max-width: 100%
+        outline: none
+        padding: calc-rem(11px) calc-rem(21px)
+        width: 100%
+
+        &:hover,
+        &:focus
+          border-color: $input-hover-border-color
+
+        &:focus
+          background-color: $white
+
+    // Override styles for webkit.
+    input:-webkit-autofill
+      -webkit-box-shadow: 0 0 0 0 transparent inset
+      -webkit-text-fill-color: $white
+      font-family: $montserrat
+      font-size: calc-rem(14px)
+      transition: background-color 5000s ease-in-out 0s
+
+      &:hover,
+      &:focus
+        -webkit-box-shadow: 0 0 0 0 transparent inset
+        -webkit-text-fill-color: $white
+        font-size: calc-rem(14px)
+        outline: none
+        transition: background-color 5000s ease-in-out 0s
+
+    // Labels.
+    label
+      transform: translateY(-80%)
+      left: 5px
+      pointer-events: none
+      position: absolute
+      top: -10px
+      transition: .2s
+      color: $label-color
+      font-family:  $montserrat
+      font-size: calc-rem($label-font-size)
+      letter-spacing: .2px
+      line-height: 28px
+      text-transform: lowercase
+
+
+  // Input name.
+  .form-item-name
+    .wrapper-input
+      position: relative
+      +icomoon-text($ico-user, 20px, $white)
+
+      &::before
+        left: 2%
+        top: 0
+        transform: translateY(40%)
+
+      input
+        left: 0
+        padding-left: 2.5rem
+        position: absolute
+        top: 0
+
+  // Input password.
+  .js-form-type-password
+    margin-top: calc-rem(74px)
+
+    //label
+      display: flex
+      flex-direction: row
+
+    .wrapper-input
+      position: relative
+      +icomoon-text($ico-lock, 20px, $white)
+
+      &::before
+        left: 2%
+        transform: translateY(35%)
+
+      input
+        left: 0
+        padding-left: 2.5rem
+        position: absolute
+        top: 0
+
+      .icon-hidden
+        +icomoon-text($ico-hidden, 20px, $white, right, center, 20px, transparent, 0, before)
+        cursor: pointer
+        display: block
+        position: absolute
+        right: 0
+        width: 20px
+
+        &::before
+          right: -1%
+          transform: translate(-50%, 35%)
+
+        &.show
+          +icomoon-text($ico-visible, 20px, $white, right, center, 20px, transparent, 0, before)
+          position: absolute
+          right: 0
+          width: 20px
+
+          &::before
+            right: -1%
+            transform: translate(-50%, 35%)
+
+  // Button action.
+  #edit-actions
+    margin-top: calc-rem(71px)
+
+    input
+      margin-left: 0
+      width: 100%

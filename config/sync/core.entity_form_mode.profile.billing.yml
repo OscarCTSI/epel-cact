@@ -1,0 +1,15 @@
+uuid: 3a50268e-3024-4771-b977-7b0f7a91b3de
+langcode: es
+status: true
+dependencies:
+  module:
+    - profile
+  enforced:
+    module:
+      - commerce_order
+_core:
+  default_config_hash: yeGwCxbA5dBAS_3eBkfaVrbxkASEM357dkjPZShKiR4
+id: profile.billing
+label: 'Facturar '
+targetEntityType: profile
+cache: true

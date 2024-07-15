@@ -1,0 +1,18 @@
+uuid: c5df8ce1-c3dc-43b4-8864-6d2496f5c345
+langcode: es
+status: true
+dependencies:
+  module:
+    - commerce_promotion
+id: commerce_promotion.commerce_promotion.display_name
+field_name: display_name
+entity_type: commerce_promotion
+bundle: commerce_promotion
+label: 'Nombre a mostrar'
+description: 'Si se proporciona, se muestra en el pedido en lugar de "Descuento".'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

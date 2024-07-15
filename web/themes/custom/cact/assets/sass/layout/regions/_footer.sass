@@ -1,0 +1,77 @@
+.site-footer
+  .footer-wrapper
+    background-image: url('../images/Header-footer.png')
+    background-position: center
+    background-repeat: no-repeat
+    background-size: cover
+    display: none
+    min-height: calc-rem(352px)
+    padding: calc-rem(71px) calc-rem(109px)
+    position: relative
+    +breakpoint($large)
+      align-content: center
+      display: flex
+
+    &::before
+      background-color: $primary-color
+      content: ''
+      height: 100%
+      left: 0
+      mix-blend-mode: multiply
+      position: absolute
+      top: 0
+      width: 100%
+
+    .region
+      +breakpoint($below-s-small)
+        justify-content: center
+
+      +breakpoint($medium)
+        align-items: center
+        display: flex
+        flex-flow: row nowrap
+        justify-content: space-between
+        width: 100%
+
+      .block-content-type-image_text
+        .field--name-field-label
+          font-size: calc-rem(12px)
+          font-weight: 500
+          line-height: 1
+          margin-bottom: calc-rem(5px)
+
+  .footer-info-wrapper
+    background-color: $black
+    padding: calc-rem(32px) calc-rem(26px)
+    +breakpoint($medium)
+      padding: calc-rem(32px)
+
+    .footer-info
+      margin: 0 auto
+      max-width: calc-rem(1400px)
+
+      +breakpoint($large)
+        align-items: stretch
+        display: flex
+        flex-flow: row wrap
+
+      .wrapper-logo-copyright
+        display: flex
+        flex-direction: column
+        margin-bottom: calc-rem(46px)
+        +breakpoint($large)
+          margin-bottom: calc-rem(53px)
+
+        #block-copyright
+          +breakpoint($medium)
+            margin-top: auto
+
+      .wrapper-newsletter-social
+        +breakpoint($large)
+          display: none
+
+      .wrapper-main-menu-footer
+        flex-grow: 1
+
+      .wrapper-legal-menu-footer
+        width: 100%

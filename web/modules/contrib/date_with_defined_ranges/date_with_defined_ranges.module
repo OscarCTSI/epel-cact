@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains date_with_defined_ranges.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function date_with_defined_ranges_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the date_with_defined_ranges module.
+    case 'help.page.date_with_defined_ranges':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Date popup with a pre-defined list of custom ranges (like last month)') . '</p>';
+      return $output;
+
+    default:
+  }
+}

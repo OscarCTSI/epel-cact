@@ -1,0 +1,22 @@
+{
+    "name": "drupal/taxonomy_class",
+    "type": "drupal-module",
+    "description": "Adds classes specific to Taxonomy term.",
+    "keywords": ["Drupal", "Taxonomy Class"],
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://www.drupal.org/project/taxonomy_class",
+    "authors": [
+        {
+            "name": "Neslee Canil Pinto",
+            "homepage": "https://www.drupal.org/u/neslee-canil-pinto",
+            "role": "Maintainer"
+        }
+    ],
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/taxonomy_class",
+        "source": "https://git.drupalcode.org/project/taxonomy_class"
+    },
+    "require": {
+        "drupal/core": "^8 || ^9 || ^10"
+    }
+}

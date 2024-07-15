@@ -1,0 +1,7 @@
+cact_workflows.abandoned_cart:
+  path: '/admin/commerce/config/abandoned_carts'
+  defaults:
+    _form: 'Drupal\cact_workflows\Form\CactAbandonedCartSettingsForm'
+    _title: 'Configure Abandoned carts'
+  requirements:
+    _permission: 'admin'

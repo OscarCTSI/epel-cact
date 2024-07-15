@@ -1,0 +1,5 @@
+subscription:
+  confirm_combined_subject: 'Confirmation de [site:name]'
+  confirm_combined_body: 'Hemos recibido una solicitud para suscribirnos [simplenews-subscriber:mail] at [site:url]. Para confirmar, utilice el siguiente enlace.[simplenews-subscriber:combined-url]'
+  confirm_combined_body_unchanged: 'We have received a request to subscribe [simplenews-subscriber:mail] at [site:url]. No confirmation necessary because you are already subscribed.'
+  validate_body: 'Hemos recibido una solicitud para administrar sus suscripciones para [simplenews-subscriber:mail] at [site:url]. Para continuar, utilice el siguiente enlace. [simplenews-subscriber:manage-url]'

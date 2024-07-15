@@ -1,0 +1,8 @@
+{
+  "require": {
+    "commerceredsys/sermepa": {
+      "version" : "1.0.9",
+      "url": "https://github.com/CommerceRedsys/sermepa/archive/1.0.9.zip"
+    }
+  }
+}

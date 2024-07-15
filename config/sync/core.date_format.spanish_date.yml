@@ -1,0 +1,8 @@
+uuid: 97be12b1-cb5b-4f3b-9982-09352dc37f3a
+langcode: en
+status: true
+dependencies: {  }
+id: spanish_date
+label: 'Spanish date'
+locked: false
+pattern: d-m-Y

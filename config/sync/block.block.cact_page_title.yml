@@ -1,0 +1,30 @@
+uuid: b185befa-95bb-42e6-b8a9-774227cc1272
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - system
+  theme:
+    - cact
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: Doo-G9-9z01RREz_bR1d4UFqAwwmWdnKKNaonHOrkOQ
+id: cact_page_title
+theme: cact
+region: content
+weight: -8
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Karten und Gutscheine'
+  label_display: '0'
+  provider: core
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: '/product/*'

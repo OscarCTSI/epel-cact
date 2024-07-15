@@ -1,0 +1,24 @@
+uuid: 04b4f174-311d-472e-a3ee-179badbb96f2
+langcode: en
+status: true
+dependencies: {  }
+id: bank_transfer
+label: 'Bank transfer'
+weight: -8
+plugin: manual
+configuration:
+  display_label: 'Bank transfer'
+  mode: n/a
+  payment_method_types:
+    - credit_card
+  collect_billing_information: true
+  instructions:
+    value: ''
+    format: plain_text
+conditions:
+  -
+    plugin: order_customer_role
+    configuration:
+      roles:
+        - administrator
+conditionOperator: AND

@@ -1,0 +1,4 @@
+cact_openbravo.configuration:
+  title: Openbravo API
+  route_name: cact_openbravo.configuration
+  parent: system.admin_config_services

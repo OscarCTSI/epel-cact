@@ -1,0 +1,22 @@
+uuid: 0a0df909-753f-45d8-aaee-ff8c1e2c6b58
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: pattern_product_ticket
+label: 'Product ticket'
+type: 'canonical_entities:commerce_product'
+pattern: '[commerce_product:field_categories:entity:name]/[commerce_product:title]'
+selection_criteria:
+  f3649bce-c605-4625-9709-17c01b2589f6:
+    id: 'entity_bundle:commerce_product'
+    negate: false
+    uuid: f3649bce-c605-4625-9709-17c01b2589f6
+    context_mapping:
+      commerce_product: commerce_product
+    bundles:
+      ticket: ticket
+selection_logic: and
+weight: -5
+relationships: {  }

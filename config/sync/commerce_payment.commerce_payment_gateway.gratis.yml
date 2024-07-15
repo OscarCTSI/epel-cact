@@ -1,0 +1,19 @@
+uuid: 9d078a5f-add2-4b86-aa51-99845e426906
+langcode: en
+status: true
+dependencies: {  }
+id: gratis
+label: Gratis
+weight: null
+plugin: manual
+configuration:
+  display_label: Manual
+  mode: n/a
+  payment_method_types:
+    - credit_card
+  collect_billing_information: false
+  instructions:
+    value: ''
+    format: plain_text
+conditions: {  }
+conditionOperator: AND

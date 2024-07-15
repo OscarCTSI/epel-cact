@@ -1,0 +1,25 @@
+#superfish-main
+  li
+    a
+      color: $black
+      font-weight: 500
+      padding: 0
+
+      &::after
+        background-color: $white
+        content: ''
+        display: block
+        height: 5px
+        margin-top: calc-rem(4px)
+        transition: .2s
+        width: 100%
+
+    &.active-trail,
+    &:hover
+      a
+        &::after
+          background-color: $secondary-color
+          transition: .2s
+
+    &:not(:last-child)
+      margin-right: calc-rem(36px)

@@ -1,0 +1,8 @@
+cact_order_item_print.print_order:
+  path: 'commerce/order/{hash_code}/pdf/{group}'
+  defaults:
+    _controller: '\Drupal\cact_order_item_print\Controller\CactOrderItemPdfController::print_order'
+    _title: 'Print order item'
+    group: false
+  requirements:
+    _permission: 'access content'

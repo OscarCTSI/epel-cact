@@ -1,0 +1,38 @@
+global-css:
+  js:
+    js/cact.js: {}
+    js/footer.js: {}
+    js/menuResponsive.js: {}
+    js/resize.js: {}
+    js/menu-coordination.js: {}
+    js/label.js: {}
+    js/form-checkout.js: {}
+    js/tables.js: {}
+  css:
+    theme:
+      css/cact.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+
+# User login.
+user-login:
+  css:
+    theme:
+      css/user-login.css: {}
+
+# User register.
+user-register:
+  css:
+    theme:
+      css/user-register.css: {}
+
+# User password.
+user-password:
+  css:
+    theme:
+      css/user-password.css: {}
+
+# Control panel.
+  js:
+    js/collapse-menu.js: {}

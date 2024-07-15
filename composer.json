@@ -1,0 +1,217 @@
+{
+    "name": "drupal/recommended-project",
+    "description": "Project template for Drupal 9 projects with a relocated document root",
+    "type": "project",
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://www.drupal.org/project/drupal",
+    "support": {
+        "docs": "https://www.drupal.org/docs/user_guide/en/index.html",
+        "chat": "https://www.drupal.org/node/314178"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/emergya/da_vinci"
+        }
+    ],
+    "require": {
+        "chillerlan/php-qrcode": "^4.3",
+        "composer/installers": "^1.9",
+        "cweagans/composer-patches": "^1.7",
+        "drupal/admin_audit_trail": "^1.0",
+        "drupal/admin_toolbar": "^3.1",
+        "drupal/asset_injector": "^2.20",
+        "drupal/better_exposed_filters": "^6.0",
+        "drupal/block_class": "^2.0@beta",
+        "drupal/ckeditor_codemirror": "^2.4",
+        "drupal/commerce": "^2.30",
+        "drupal/commerce_checkout_order_fields": "^1.1",
+        "drupal/commerce_google_tag_manager": "^2.0@beta",
+        "drupal/commerce_paypal": "^1.0@RC",
+        "drupal/commerce_product_taxonomy_filter": "^1.0",
+        "drupal/commerce_sermepa": "^2.2",
+        "drupal/conditional_fields": "^4.0@alpha",
+        "drupal/config_split": "^1.9",
+        "drupal/cookies": "^1.0",
+        "drupal/core-composer-scaffold": "^10.3",
+        "drupal/core-project-message": "^10.3",
+        "drupal/csv_serialization": "^3.0",
+        "drupal/da_vinci": "^9.1@beta",
+        "drupal/date_filter": "^1.0",
+        "drupal/date_with_defined_ranges": "^1.0@alpha",
+        "drupal/dropdown_language": "^3.0",
+        "drupal/easy_breadcrumb": "2.0.7",
+        "drupal/easy_email": "^2.1@RC",
+        "drupal/entity_print": "^2.5",
+        "drupal/facebook_pixel": "^2.0@RC",
+        "drupal/field_group": "^3.2",
+        "drupal/field_token_value": "3.0.2",
+        "drupal/flood_control": "^2.3",
+        "drupal/google_analytics": "^4.0",
+        "drupal/google_tag": "1.7",
+        "drupal/image_widget_crop": "^2.3",
+        "drupal/inline_entity_form": "^1.0@RC",
+        "drupal/ivw_integration": "^2.5",
+        "drupal/jquery_ui": "1.7",
+        "drupal/jquery_ui_datepicker": "1.4",
+        "drupal/key": "^1.19",
+        "drupal/login_security": "^2.0",
+        "drupal/mailsystem": "^4.4",
+        "drupal/matomo": "^1.23",
+        "drupal/media_entity_instagram": "^3.0",
+        "drupal/media_entity_twitter": "^2.9",
+        "drupal/menu_item_role_access": "^2.0",
+        "drupal/name": "^1.0@RC",
+        "drupal/pathauto": "^1.10",
+        "drupal/pdf_serialization": "^2.1",
+        "drupal/phone_international": "^3.2",
+        "drupal/real_aes": "2.6",
+        "drupal/recaptcha": "^3.2",
+        "drupal/recaptcha_v3": "^1.9",
+        "drupal/replicate": "1.3",
+        "drupal/restrict_route_by_ip": "^2.0@beta",
+        "drupal/services": "^4.0@beta",
+        "drupal/simplenews": "^4.0",
+        "drupal/social_media_links": "^2.8",
+        "drupal/superfish": "^1.4",
+        "drupal/swiftmailer": "^2.2",
+        "drupal/symfony_mailer_lite": "^1.0",
+        "drupal/taxonomy_class": "^1.0",
+        "drupal/time_field": "^2.0",
+        "drupal/twig_tweak": "^3.1",
+        "drupal/upgrade_status": "^4.3",
+        "drupal/username_enumeration_prevention": "^1.3",
+        "drupal/views_autocomplete_filters": "^1.3",
+        "drupal/views_data_export": "^1.1",
+        "drush/drush": "^11",
+        "emergya/da_vinci": "^1.2",
+        "mpdf/mpdf": "^8.2",
+        "npm-asset/intl-tel-input": "^17.0",
+        "oomphinc/composer-installers-extender": "^2.0",
+        "palantirnet/drupal-rector": "^0.20.3",
+        "symfony/dom-crawler": "^6.4"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/installers": true,
+            "drupal/core-composer-scaffold": true,
+            "drupal/core-project-message": true,
+            "drupal/console-extend-plugin": true,
+            "cweagans/composer-patches": true,
+            "oomphinc/composer-installers-extender": false
+        }
+    },
+    "extra": {
+        "installer-types": [
+            "npm-asset",
+            "bower-asset"
+        ],
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "web/"
+            }
+        },
+        "patches": {
+            "emergya/da_vinci": {
+                "Fix fatal error with suggestions on revisions pages": "web/modules/patches/da-vinci-fix-fatal-error-with-file-suggesions-on-revisions-pages.patch"
+            },
+            "drupal/commerce_sermepa": {
+                "Two warnings from commerceredsys/sermepa": "https://www.drupal.org/files/issues/2021-10-07/commerce_serempa-fix_str_split_warnings-3238316-3.patch"
+            },
+            "drupal/core": {
+                "\"Links\" field not displaying on custom view modes": "https://www.drupal.org/files/issues/2021-06-02/2662898-50.patch",
+                "Wrong language handling in ImageFormatter when linking to entity\n":"https://www.drupal.org/files/issues/2019-04-02/drupal-fieldformatter_translated_parent_entity-2798977-33.patch"
+            },
+            "drupal/csv_serialization": {
+                "PHP 8.1 Deprecated function/INI directive auto_detect_line_endings": "https://www.drupal.org/files/issues/2022-03-16/3254327-php_8_1_auto_detect_line_endings.patch"
+            },
+            "drupal/commerce": {
+                "Trying to access array offset on value of type null in Drupal\\commerce_cart\\Form\\AddToCartForm": "https://www.drupal.org/files/issues/2022-04-11/3274438.patch",
+                "The changes made to the order on the onNotify method are not applied on the onReturn method": "https://www.drupal.org/files/issues/2021-11-04/commerce-order-lock-3043180-23.patch",
+                "Fix check leave or abandoned order status v2": "web/modules/patches/commerce_fix_check_leave_abandoned_order_v2.patch"
+            },
+            "drupal/social_media_links": {
+                "php 8.1 Deprecated function: htmlspecialchars(): Passing null to parameter": "https://www.drupal.org/files/issues/2022-03-09/htmlescapenull_2.patch"
+            },
+            "drupal/easy_email": {
+                "Fix attachment mail with pdf file": "web/modules/patches/easy_email_fix_pdf_mail.patch"
+            },
+            "drupal/google_analytics": {
+                "Deprecated function: Return GoogleAnalyticsJavaScriptSnippet::jsonSerialize() should either be compatible with JsonSerializable::jsonSerialize(): mixed, or the ": "https://www.drupal.org/files/issues/2022-06-03/google_analytics-jsonserialize-code-standard-fixes-3258588-20.patch"
+            },
+            "drupal/time_field" : {
+                "Deprecated function : trim() with PHP 8.1": "https://www.drupal.org/files/issues/2022-06-10/3269302-Deprecated_function_trim_coalescing.patch"
+            }
+        },
+        "installer-paths": {
+            "web/core": [
+                "type:drupal-core"
+            ],
+            "web/libraries/{$name}": [
+                "type:drupal-library",
+                "type:npm-asset",
+                "type:bower-asset"
+            ],
+            "web/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "web/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "web/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "drush/Commands/contrib/{$name}": [
+                "type:drupal-drush"
+            ],
+            "web/modules/custom/{$name}": [
+                "type:drupal-custom-module"
+            ],
+            "web/profiles/custom/{$name}": [
+                "type:drupal-custom-profile"
+            ],
+            "web/themes/custom/{$name}": [
+                "type:drupal-custom-theme"
+            ]
+        },
+        "drupal-core-project-message": {
+            "include-keys": [
+                "homepage",
+                "support"
+            ],
+            "post-create-project-cmd-message": [
+                "<bg=blue;fg=white>                                                         </>",
+                "<bg=blue;fg=white>  Congratulations, you’ve installed the Drupal codebase  </>",
+                "<bg=blue;fg=white>  from the drupal/recommended-project template!          </>",
+                "<bg=blue;fg=white>                                                         </>",
+                "",
+                "<bg=yellow;fg=black>Next steps</>:",
+                "  * Install the site: https://www.drupal.org/docs/8/install",
+                "  * Read the user guide: https://www.drupal.org/docs/user_guide/en/index.html",
+                "  * Get support: https://www.drupal.org/support",
+                "  * Get involved with the Drupal community:",
+                "      https://www.drupal.org/getting-involved",
+                "  * Remove the plugin that prints this message:",
+                "      composer remove drupal/core-project-message"
+            ]
+        }
+    },
+    "require-dev": {
+        "drupal/devel": "^4.1",
+        "rector/rector": "^1.1"
+    }
+}

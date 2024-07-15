@@ -1,0 +1,27 @@
+uuid: 71aee095-c6ee-44d1-9e25-f051390e5e0a
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+  theme:
+    - cact
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: Lr87YaPCUexV4tCe6QVWesc1m3luzgrye4aiJ3FYg6s
+id: cact_local_tasks
+theme: cact
+region: content
+weight: -7
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

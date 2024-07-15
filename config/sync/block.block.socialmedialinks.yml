@@ -1,0 +1,135 @@
+uuid: 0e09e5fe-0006-459c-aa29-0fab4c55a2c0
+langcode: es
+status: true
+dependencies:
+  module:
+    - block_class
+    - social_media_links
+  theme:
+    - cact
+third_party_settings:
+  block_class:
+    classes: null
+id: socialmedialinks
+theme: cact
+region: footer
+weight: 0
+provider: null
+plugin: social_media_links_block
+settings:
+  id: social_media_links_block
+  label: Síguenos
+  label_display: visible
+  provider: social_media_links
+  platforms:
+    slideshare:
+      value: ''
+      description: ''
+      weight: '-10'
+    drupal:
+      value: ''
+      description: ''
+      weight: '-9'
+    rss:
+      value: ''
+      description: ''
+      weight: '-8'
+    contact:
+      value: ''
+      description: ''
+      weight: '-7'
+    website:
+      value: ''
+      description: ''
+      weight: '-6'
+    flickr:
+      value: ''
+      description: ''
+      weight: '-5'
+    linkedin:
+      value: 'company/5339647?trk=tyah&trkInfo=clickedVertical%3Acompany%2CentityType%3AentityHistoryName%2CclickedEn'
+      description: ''
+      weight: '-4'
+    bitbucket:
+      value: ''
+      description: ''
+      weight: '-3'
+    tumblr:
+      value: ''
+      description: ''
+      weight: '-2'
+    xing:
+      value: ''
+      description: ''
+      weight: '-1'
+    gitlab:
+      value: ''
+      description: ''
+      weight: '0'
+    behance:
+      value: ''
+      description: ''
+      weight: '1'
+    twitter:
+      value: Cactlanzarote
+      description: ''
+      weight: '2'
+    facebook:
+      value: CACTLAnzarote
+      description: ''
+      weight: '3'
+    vkontakte:
+      value: ''
+      description: ''
+      weight: '4'
+    pinterest:
+      value: cactlanzarote
+      description: ''
+      weight: '5'
+    youtube_channel:
+      value: UCgTl_fSjIAxu93D2oWFGu-w
+      description: ''
+      weight: '6'
+    github:
+      value: ''
+      description: ''
+      weight: '7'
+    youtube:
+      value: ''
+      description: ''
+      weight: '8'
+    email:
+      value: info@centrosturisticos.com
+      description: ''
+      weight: '9'
+    whatsapp:
+      value: ''
+      description: ''
+      weight: '10'
+    googleplus:
+      value: ''
+      description: ''
+      weight: '11'
+    instagram:
+      value: cact_lanzarote
+      description: ''
+      weight: '12'
+    vimeo:
+      value: ''
+      description: ''
+      weight: '13'
+  appearance:
+    orientation: h
+    show_name: 0
+    suggestion: ''
+  link_attributes:
+    target: '<none>'
+    rel: '<none>'
+  iconset:
+    style: 'cactsocialicons:cact_social'
+    installed_iconsets:
+      cactsocialicons:
+        examples: ''
+      fontawesome:
+        examples: ''
+visibility: {  }

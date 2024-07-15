@@ -1,0 +1,24 @@
+uuid: 78be87de-28af-4109-b28d-818c63c9e80d
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - cookies
+  theme:
+    - cact
+third_party_settings:
+  block_class:
+    classes: null
+id: cact_cookiesui
+theme: cact
+region: footer_info
+weight: -7
+provider: null
+plugin: cookies_ui_block
+settings:
+  id: cookies_ui_block
+  label: 'Cookies UI'
+  label_display: '0'
+  provider: cookies
+visibility: {  }

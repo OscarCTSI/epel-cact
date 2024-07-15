@@ -1,0 +1,21 @@
+uuid: 470e07ad-76bf-4656-ac16-e55a77d36c51
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_item_type.ticket
+    - field.storage.commerce_order_item.field_ticket_date
+  module:
+    - datetime
+id: commerce_order_item.ticket.field_ticket_date
+field_name: field_ticket_date
+entity_type: commerce_order_item
+bundle: ticket
+label: 'Ticket date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

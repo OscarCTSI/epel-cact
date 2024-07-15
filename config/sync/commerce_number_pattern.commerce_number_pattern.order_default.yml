@@ -1,0 +1,18 @@
+uuid: 41834abd-f678-4574-9ea7-78e5a288a4fe
+langcode: es
+status: true
+dependencies:
+  enforced:
+    module:
+      - commerce_order
+_core:
+  default_config_hash: zyTJjisGAiNCmSVzU73UWGY2joBWA3QXvlcjDDIuWcs
+id: order_default
+label: Default
+targetEntityType: commerce_order
+plugin: yearly
+configuration:
+  pattern: '[pattern:year][pattern:number]'
+  initial_number: 1
+  padding: 8
+  per_store_sequence: true

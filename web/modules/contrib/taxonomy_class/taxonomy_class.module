@@ -1,0 +1,59 @@
+<?php
+
+/**
+ * @file
+ * Adding classes to taxonomy term.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function taxonomy_class_form_taxonomy_term_form_alter(&$form, FormStateInterface &$form_state, $form_id) {
+  // If the user don't have permission, skip that.
+  if (!\Drupal::currentUser()->hasPermission('administer taxonomy classes')) {
+    return;
+  }
+  $form['taxonomy_class_group'] = [
+    '#type' => 'details',
+    '#title' => t('Taxonomy Class settings'),
+    '#description' => t('Assign CSS classes to the taxonomy term.'),
+    '#group' => 'advanced',
+    '#open' => FALSE,
+    '#access' => TRUE,
+    '#attributes' => ['class' => ['taxonomy-class-form']],
+  ];
+  $form['taxonomy_class']['#group'] = 'taxonomy_class_group';
+}
+
+/**
+ * Implements hook_entity_base_field_info().
+ */
+function taxonomy_class_entity_base_field_info(EntityTypeInterface $entity_type) {
+  if ($entity_type->id() === 'taxonomy_term') {
+    $fields['taxonomy_class'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('CSS class(es)'))
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => 35,
+      ])
+      ->setDisplayConfigurable('form', TRUE);
+    return $fields;
+  }
+}
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function taxonomy_class_preprocess_taxonomy_term(&$variables) {
+  if (!empty($variables['elements']['#taxonomy_term'])) {
+    $entity = $variables['elements']['#taxonomy_term'];
+    $classes = $entity->get('taxonomy_class')->getValue();
+    if (!empty($classes)) {
+      $variables['attributes']['class'][] = $classes['0']['value'];
+    }
+  }
+}

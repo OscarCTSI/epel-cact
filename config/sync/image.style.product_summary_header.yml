@@ -1,0 +1,26 @@
+uuid: 24875391-ffee-450c-a2f3-bce568fceb3d
+langcode: en
+status: true
+dependencies:
+  config:
+    - crop.type.summary_header_3_1
+  module:
+    - crop
+name: product_summary_header
+label: 'Product summary header'
+effects:
+  4ad1b2ae-41ec-4f19-ab59-3da68b5ec1a1:
+    uuid: 4ad1b2ae-41ec-4f19-ab59-3da68b5ec1a1
+    id: crop_crop
+    weight: 1
+    data:
+      crop_type: summary_header_3_1
+      automatic_crop_provider: null
+  4a863eb8-d06c-4b05-8df7-c5e08bcc5086:
+    uuid: 4a863eb8-d06c-4b05-8df7-c5e08bcc5086
+    id: image_scale_and_crop
+    weight: 2
+    data:
+      width: 1440
+      height: 480
+      anchor: center-center

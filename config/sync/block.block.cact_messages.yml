@@ -1,0 +1,26 @@
+uuid: 83dc49ef-7dac-4ed2-8253-bd3dd9da5d20
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - system
+  theme:
+    - cact
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: GV75w81--utEEi2hgSEKw6BWg2Qfi3T_M0DjNLdoZNc
+id: cact_messages
+theme: cact
+region: highlighted
+weight: -11
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility: {  }

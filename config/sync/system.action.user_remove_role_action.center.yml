@@ -1,0 +1,14 @@
+uuid: d496226b-203e-49da-8890-1686a5a0063e
+langcode: es
+status: true
+dependencies:
+  config:
+    - user.role.center
+  module:
+    - user
+id: user_remove_role_action.center
+label: 'Elimina el rol Centro al(los) usuario(s) seleccionado(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: center

@@ -1,0 +1,25 @@
+uuid: 06f4beac-d270-4bf9-8b79-afeb589430d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - da_vinci
+id: da_vinci_user_account_menu
+theme: da_vinci
+region: secondary_menu
+weight: 0
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'User account menu'
+  provider: system
+  label_display: visible
+  level: 1
+  depth: 0
+  expand_all_items: true
+visibility: {  }

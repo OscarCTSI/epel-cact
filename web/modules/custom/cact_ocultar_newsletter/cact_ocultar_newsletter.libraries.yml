@@ -1,0 +1,5 @@
+cact_ocultar_newsletter.styles:
+  version: 1.x
+  css:
+    theme:
+      css/cact_ocultar_newsletter.css: {}

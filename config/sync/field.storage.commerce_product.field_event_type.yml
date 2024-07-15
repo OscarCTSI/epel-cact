@@ -1,0 +1,33 @@
+uuid: b53ca36c-8f62-420f-b52d-99beaee5e2a7
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - options
+id: commerce_product.field_event_type
+field_name: field_event_type
+entity_type: commerce_product
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '0'
+      label: 'Capacity without date'
+    -
+      value: '1'
+      label: 'Capacity with date'
+    -
+      value: '2'
+      label: 'Numbered with date'
+    -
+      value: '3'
+      label: 'Capacity with date and slot'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

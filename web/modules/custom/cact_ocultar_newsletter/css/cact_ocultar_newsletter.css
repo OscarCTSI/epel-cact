@@ -1,0 +1,9 @@
+/* Ocultar el div del checkbox de newsletter */
+.js-form-item-order-fieldscheckout-newsletter {
+    display: none !important;
+  }
+  /* Ocultar el input y el label del checkbox de newsletter */
+#edit-order-fieldscheckout-newsletter,
+label[for="edit-order-fieldscheckout-newsletter"] {
+  display: none !important;
+}

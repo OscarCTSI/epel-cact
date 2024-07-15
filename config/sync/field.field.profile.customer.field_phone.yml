@@ -1,0 +1,21 @@
+uuid: 4019df6c-883f-48d7-82ff-69ccb66ac34f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_phone
+    - profile.type.customer
+  module:
+    - phone_international
+id: profile.customer.field_phone
+field_name: field_phone
+entity_type: profile
+bundle: customer
+label: Telephone
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: phone_international

@@ -1,0 +1,20 @@
+_core:
+  default_config_hash: IhwTepsVwtbtbcT5GzQKhCXDCRvbk3MNkWqPiuiZ10s
+langcode: es
+theme: current
+defaults:
+  sender: symfony_mailer_lite
+  formatter: symfony_mailer_lite
+modules:
+  swiftmailer:
+    none:
+      sender: swiftmailer
+      formatter: swiftmailer
+  easy_email:
+    none:
+      sender: swiftmailer
+      formatter: swiftmailer
+  symfony_mailer_lite:
+    none:
+      sender: symfony_mailer_lite
+      formatter: symfony_mailer_lite

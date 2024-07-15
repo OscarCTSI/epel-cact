@@ -1,0 +1,30 @@
+uuid: 3712a668-533b-4a68-b283-459d343646a3
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - system
+  theme:
+    - cact
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: RoIGykWKGKxf4hNZ8BlwDm7o2QAST5Isp3lOS3aYFZw
+id: cact_breadcrumbs
+theme: cact
+region: breadcrumb
+weight: -12
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    pages: '<front>'

@@ -1,0 +1,25 @@
+uuid: 834f3f01-01ef-49ca-bca9-c2c93aefc142
+langcode: es
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - bartik
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: kigu8pTxXt1qGR2NJ5HHdC4G2G1wsDrIjLPKBT5wUBc
+id: bartik_content
+theme: bartik
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

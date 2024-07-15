@@ -1,0 +1,20 @@
+uuid: d1b2ccbf-4401-4d1f-aa5b-df9a690cab28
+langcode: es
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - user
+id: commerce_product.field_center_reference
+field_name: field_center_reference
+entity_type: commerce_product
+type: entity_reference
+settings:
+  target_type: user
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

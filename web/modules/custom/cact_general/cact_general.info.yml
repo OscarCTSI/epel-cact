@@ -1,0 +1,14 @@
+name: 'CACT general'
+type: module
+description: 'CACT general module.'
+core: 8.x
+core_version_requirement: ^8 || ^9 || ^10
+package: 'CACT'
+dependencies:
+  - commerce:commerce
+  - commerce:commerce_product
+  - commerce:commerce_order
+  - cact:cact_openbravo
+  - cact:cact_order_item_print
+
+project: 'cact'

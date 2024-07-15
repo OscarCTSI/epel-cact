@@ -1,0 +1,12 @@
+uuid: d787cebf-7743-4f4d-a6c1-6531fb7d3252
+langcode: en
+status: true
+dependencies: {  }
+label: 'Summary header 3:1'
+id: summary_header_3_1
+description: 'Products summary header'
+aspect_ratio: '3:1'
+soft_limit_width: 1440
+soft_limit_height: 480
+hard_limit_width: null
+hard_limit_height: null

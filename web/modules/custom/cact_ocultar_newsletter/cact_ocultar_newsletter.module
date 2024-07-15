@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * Implementa hook_form_alter().
+ */
+function cact_ocultar_newsletter_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // Verifica si es el formulario de checkout.
+  if ($form_id == 'commerce_checkout_flow_multistep_default') {
+    // Adjuntar la biblioteca de estilos.
+    $form['#attached']['library'][] = 'cact_ocultar_newsletter/cact_ocultar_newsletter.styles';
+  }
+}
+

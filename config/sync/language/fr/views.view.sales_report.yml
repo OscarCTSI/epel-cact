@@ -1,0 +1,77 @@
+display:
+  default:
+    display_title: Principal
+    display_options:
+      exposed_form:
+        options:
+          submit_button: Appliquer
+          reset_button_label: Réinitialiser
+          exposed_sorts_label: 'Trier par'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      fields:
+        created:
+          label: Date
+          separator: ', '
+        report_id:
+          separator: ','
+        amount:
+          label: 'Chiffre d''affaires total'
+          separator: ', '
+        amount_1:
+          separator: ', '
+  daily:
+    display_title: Quotidien
+    display_options:
+      menu:
+        title: Quotidien
+      fields:
+        created:
+          label: Date
+          separator: ', '
+        report_id:
+          separator: ','
+        amount:
+          label: 'Chiffre d''affaires total'
+          separator: ', '
+        amount_1:
+          separator: ', '
+  monthly:
+    display_title: Mensuellement
+    display_options:
+      menu:
+        title: Mensuellement
+      tab_options:
+        title: Ventes
+  weekly:
+    display_title: Hebdomadaire
+    display_options:
+      menu:
+        title: Hebdomadaire
+      fields:
+        created:
+          label: Date
+          separator: ', '
+        report_id:
+          separator: ','
+        amount:
+          label: 'Chiffre d''affaires total'
+          separator: ', '
+        amount_1:
+          separator: ', '
+  yearly:
+    display_title: Annuellement
+    display_options:
+      menu:
+        title: Annuellement
+      fields:
+        created:
+          label: Date
+          separator: ', '
+        report_id:
+          separator: ','
+        amount:
+          label: 'Chiffre d''affaires total'
+          separator: ', '
+        amount_1:
+          separator: ', '

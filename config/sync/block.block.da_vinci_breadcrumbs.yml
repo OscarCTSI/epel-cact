@@ -1,0 +1,26 @@
+uuid: aefe6cf1-98af-4a72-9470-5fea7f07e0b0
+langcode: es
+status: true
+dependencies:
+  module:
+    - block_class
+    - system
+  theme:
+    - da_vinci
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: RoIGykWKGKxf4hNZ8BlwDm7o2QAST5Isp3lOS3aYFZw
+id: da_vinci_breadcrumbs
+theme: da_vinci
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

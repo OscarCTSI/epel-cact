@@ -1,0 +1,11 @@
+name: 'CACT order item print'
+type: module
+description: 'CACT order item print.'
+core: 8.x
+core_version_requirement: ^8 || ^9 || ^10
+package: 'CACT'
+dependencies:
+  - commerce:commerce_order
+  - cact:cact_general
+
+project: 'cact'

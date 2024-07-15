@@ -1,0 +1,122 @@
+// HTML
+
+/// @ignore Font size.
+$default-font-size: $rem-base
+
+html
+  font-size: $default-font-size
+
+// --------------------------------------------------
+
+// BODY
+
+/// @ignore Body background color.
+$body-background-color: $white
+
+/// @ignore Default color.
+$default-color: $black
+
+/// @ignore Default font family.
+$default-font-family: $montserrat
+
+body
+  background-color: $body-background-color
+  color: $default-color
+  font-family: $default-font-family
+  font-size: calc-rem(16px)
+  font-weight: 400
+  line-height: 24px
+
+// --------------------------------------------------
+
+// HEADINGS
+
+/// @ignore Titles color.
+$title-color: $black
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+  color: $title-color
+  margin: 0
+
+h1,
+h2
+  font-family: $gotham
+  font-size: calc-rem(32px)
+  font-weight: 700
+  letter-spacing: .2px
+  line-height: 34px
+  margin: 1.5rem 0
+  +breakpoint($medium)
+    font-size: calc-rem(50px)
+    line-height: 55px
+
+//h2
+  font-family: $montserrat
+  font-size: calc-rem(36px)
+  letter-spacing: .2px
+  line-height: 40px
+
+h3
+  font-family: $montserrat
+  font-size: calc-rem(24px)
+  font-weight: 400
+  letter-spacing: .2px
+  line-height: 30px
+
+h4
+  font-family: $montserrat
+  font-size: calc-rem(20px)
+  letter-spacing: .2px
+  line-height: 30px
+
+// --------------------------------------------------
+
+// PARAGRAPHS
+
+p
+  font-weight: 500
+  margin: 0 0 1.2rem
+
+// ------------------------------------------------
+
+// LINKS
+
+/// @ignore Link color.
+$link-color: $primary-color
+
+/// @ignore Link hover color.
+$link-hover-color: $primary-color
+
+a
+  color: $link-color
+  display: inline-block
+  font-weight: 700
+  line-height: 1.14
+  text-decoration: none
+  transition: color .2s
+
+  &:hover
+    color: $link-hover-color
+    text-decoration: none
+
+// ------------------------------------------------
+
+// VARIOUS
+
+summary
+  outline: none
+
+strong
+  font-weight: 700
+
+//code,
+//kbd,
+//pre,
+//samp
+  font-size: calc-rem(13px)
+
+// ------------------------------------------------

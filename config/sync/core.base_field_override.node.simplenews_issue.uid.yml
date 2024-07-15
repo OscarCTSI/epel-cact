@@ -1,0 +1,20 @@
+uuid: 711315b6-9aff-4d3e-899f-3f9f812454e1
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.simplenews_issue
+id: node.simplenews_issue.uid
+field_name: uid
+entity_type: node
+bundle: simplenews_issue
+label: 'Escrito por'
+description: 'El nombre de usuario del autor del contenido.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: 'Drupal\node\Entity\Node::getDefaultEntityOwner'
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

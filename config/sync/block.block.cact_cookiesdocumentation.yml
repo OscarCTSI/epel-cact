@@ -1,0 +1,25 @@
+uuid: 774cce40-7e59-4280-b30c-60aebbcdad3e
+langcode: en
+status: false
+dependencies:
+  module:
+    - block_class
+    - cookies
+  theme:
+    - cact
+third_party_settings:
+  block_class:
+    classes: null
+id: cact_cookiesdocumentation
+theme: cact
+region: footer
+weight: -10
+provider: null
+plugin: cookies_docs_block
+settings:
+  id: cookies_docs_block
+  label: 'Cookies Documentation'
+  label_display: '0'
+  provider: cookies
+  show_cookies_settings_button: {  }
+visibility: {  }

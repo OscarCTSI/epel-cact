@@ -1,0 +1,19 @@
+uuid: e9fd966f-a7f4-4e7f-9fe5-a4c1df109e5f
+langcode: en
+status: true
+dependencies:
+  config:
+    - easy_email.easy_email_type.complete_order_es
+    - field.storage.easy_email.inbox_preview
+id: easy_email.complete_order_es.inbox_preview
+field_name: inbox_preview
+entity_type: easy_email
+bundle: complete_order_es
+label: 'Inbox Preview'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: null
+settings: {  }
+field_type: string_long

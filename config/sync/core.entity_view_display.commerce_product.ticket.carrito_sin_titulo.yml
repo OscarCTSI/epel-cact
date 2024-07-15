@@ -1,0 +1,168 @@
+uuid: 0e5bbb38-03bb-4eb7-8261-e7d16af12453
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.ticket
+    - core.entity_view_mode.commerce_product.carrito_sin_titulo
+    - field.field.commerce_product.ticket.body
+    - field.field.commerce_product.ticket.field_categories
+    - field.field.commerce_product.ticket.field_center_reference
+    - field.field.commerce_product.ticket.field_comments_to_add_to_cart
+    - field.field.commerce_product.ticket.field_date
+    - field.field.commerce_product.ticket.field_event_type
+    - field.field.commerce_product.ticket.field_expiration_date_cart
+    - field.field.commerce_product.ticket.field_general_recommendations
+    - field.field.commerce_product.ticket.field_image
+    - field.field.commerce_product.ticket.field_important_information
+    - field.field.commerce_product.ticket.field_phone
+    - field.field.commerce_product.ticket.field_place
+    - field.field.commerce_product.ticket.field_release
+    - field.field.commerce_product.ticket.field_required_name_tickets
+    - field.field.commerce_product.ticket.field_seat_map
+    - field.field.commerce_product.ticket.field_time
+    - field.field.commerce_product.ticket.field_title_copy
+    - field.field.commerce_product.ticket.field_title_header
+    - field.field.commerce_product.ticket.field_website
+    - field.field.commerce_product.ticket.field_weight
+    - image.style.product_cart
+  module:
+    - field_group
+    - layout_builder
+    - media
+third_party_settings:
+  field_group:
+    group_product_container_left:
+      children:
+        - group_product_container_left_hea
+        - group_product_container_left_bod
+      label: product-container-left
+      parent_name: ''
+      region: hidden
+      weight: 19
+      format_type: html_element
+      format_settings:
+        classes: product-container-left
+        show_empty_fields: false
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+    group_product_container_right:
+      children:
+        - variations
+        - field_comments_to_add_to_cart
+        - field_title_copy
+      label: product-container-right
+      parent_name: ''
+      region: hidden
+      weight: 18
+      format_type: html_element
+      format_settings:
+        classes: product-container-right
+        show_empty_fields: false
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+    group_product_container_left_hea:
+      children:
+        - field_date
+        - field_phone
+        - field_place
+        - field_time
+        - field_website
+      label: product-container-left-header
+      parent_name: group_product_container_left
+      region: hidden
+      weight: 22
+      format_type: html_element
+      format_settings:
+        classes: product-container-left-header
+        show_empty_fields: false
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+    group_product_container_left_bod:
+      children:
+        - body
+        - field_seat_map
+        - field_title_header
+      label: product-container-left-body
+      parent_name: group_product_container_left
+      region: hidden
+      weight: 23
+      format_type: html_element
+      format_settings:
+        classes: product-container-left-body
+        show_empty_fields: false
+        id: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: commerce_product.ticket.carrito_sin_titulo
+targetEntityType: commerce_product
+bundle: ticket
+mode: carrito_sin_titulo
+content:
+  field_image:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: content
+      image_style: product_cart
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  body: true
+  created: true
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  field_categories: true
+  field_center_reference: true
+  field_comments_to_add_to_cart: true
+  field_date: true
+  field_event_type: true
+  field_expiration_date_cart: true
+  field_general_recommendations: true
+  field_gratuitous: true
+  field_important_information: true
+  field_phone: true
+  field_place: true
+  field_release: true
+  field_required_name_tickets: true
+  field_seat_map: true
+  field_time: true
+  field_title_copy: true
+  field_title_header: true
+  field_website: true
+  field_weight: true
+  langcode: true
+  stores: true
+  title: true
+  uid: true
+  variations: true

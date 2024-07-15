@@ -1,0 +1,190 @@
+uuid: 3bc8e809-8cc7-449b-803a-efa5fdda0bfd
+langcode: en
+status: true
+dependencies:
+  config:
+    - easy_email.easy_email_type.complete_order
+    - field.field.easy_email.complete_order.attachment
+    - field.field.easy_email.complete_order.attachment_path
+    - field.field.easy_email.complete_order.bcc_address
+    - field.field.easy_email.complete_order.bcc_uid
+    - field.field.easy_email.complete_order.body_html
+    - field.field.easy_email.complete_order.body_plain
+    - field.field.easy_email.complete_order.cc_address
+    - field.field.easy_email.complete_order.cc_uid
+    - field.field.easy_email.complete_order.field_order
+    - field.field.easy_email.complete_order.from_address
+    - field.field.easy_email.complete_order.from_name
+    - field.field.easy_email.complete_order.inbox_preview
+    - field.field.easy_email.complete_order.key
+    - field.field.easy_email.complete_order.recipient_uid
+    - field.field.easy_email.complete_order.reply_to
+  module:
+    - file
+    - text
+id: easy_email.complete_order.default
+targetEntityType: easy_email
+bundle: complete_order
+mode: default
+content:
+  attachment:
+    type: file_generic
+    weight: 0
+    region: content
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+  attachment_path:
+    type: string_textfield
+    weight: -4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  bcc_address:
+    type: string_textfield
+    weight: -4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  bcc_uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  body_html:
+    type: text_textarea
+    weight: 0
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  body_plain:
+    type: string_textarea
+    weight: 0
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  cc_address:
+    type: string_textfield
+    weight: -4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  cc_uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  creator_uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_order:
+    type: entity_reference_autocomplete
+    weight: 26
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  from_address:
+    type: string_textfield
+    weight: -4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  from_name:
+    type: string_textfield
+    weight: -4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  inbox_preview:
+    type: string_textarea
+    weight: 0
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  key:
+    type: string_textfield
+    weight: -4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 2
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  recipient_address:
+    type: string_textfield
+    weight: -4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  recipient_uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  reply_to:
+    type: string_textfield
+    weight: -4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  subject:
+    type: string_textfield
+    weight: -4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

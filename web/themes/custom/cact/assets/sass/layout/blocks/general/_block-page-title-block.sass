@@ -1,0 +1,62 @@
+.block-page-title-block
+  margin-bottom: calc-rem(50px)
+  +breakpoint($large)
+    margin-bottom: calc-rem(22px)
+
+  h1
+    color: $black
+    font-family: $gotham
+    font-size: calc-rem(32px)
+    font-weight: 700
+    letter-spacing: .2px
+    line-height: 34px
+    +breakpoint($medium)
+      font-size: calc-rem(50px)
+      line-height: 55px
+
+    span
+      color: $black
+      font-family: $gotham
+      font-size: calc-rem(32px)
+      font-weight: 700
+      letter-spacing: .2px
+      line-height: 34px
+      +breakpoint($medium)
+        font-size: calc-rem(50px)
+        line-height: 55px
+
+    &.order-information,
+    &.review,
+    &.complete,
+    &.cart
+      font-family: $montserrat
+      font-size: calc-rem(32px)
+      letter-spacing: .2px
+      line-height: 34px
+      text-align: center
+      +breakpoint($medium)
+        align-content: center
+        display: flex
+        font-size: calc-rem(36px)
+        line-height: 40px
+        text-align: left
+
+    &.complete
+      &::before
+        background-image: url('../images/check-confirm.svg')
+        background-position: center
+        background-repeat: no-repeat
+        background-size: contain
+        content: ''
+        display: block
+        height: 40px
+        margin: 0 auto calc-rem(32px) auto
+        width: 40px
+        +breakpoint($medium)
+          margin: 0 calc-rem(26px) 0 0
+
+.path-frontpage
+  .block-page-title-block
+    margin-bottom: calc-rem(32px)
+    +breakpoint($large)
+      margin-bottom: calc-rem(40px)

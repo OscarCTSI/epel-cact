@@ -1,0 +1,542 @@
+<?php
+
+/**
+ * @file
+ * Contains cact_general.module.
+ */
+
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Render\BubbleableMetadata;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\views\ViewExecutable;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\cact_general\Form\EasyEmailTypeAlter;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\easy_email\Entity\EasyEmailType;
+use Drupal\Core\Render\Markup;
+
+
+/**
+* Implements hook_form_alter().
+*/
+function cact_general_form_alter(&$form, $form_state, $form_id) {
+
+  if($form_id == 'simplenews_subscriptions_block_simple_newsletter'){
+    $form['mail']['widget'][0]['value']['#attributes']['placeholder'] = $form['mail']['widget'][0]['value']['#title']->render();
+    unset($form['mail']['widget'][0]['value']['#title']);
+  }else if($form_id == 'commerce_checkout_flow_multistep_default' && isset($form['order_fields:checkout'])){
+    $form['order_fields:checkout']['#title'] = t('Order information');
+
+
+    // if have multiple payment options and value of addess in default value is null
+    // then default value is new because else throw error
+    if (isset($form['payment_information']['payment_method']) && count($form['payment_information']['payment_method']['#options']) > 1) {
+      $default_address = (isset($form['payment_information']['billing_information']['select_address']['#default_value'])) ? $form['payment_information']['billing_information']['select_address']['#default_value'] : null;
+      if ($default_address && is_null($form['payment_information']['billing_information']['select_address']['#options'][$default_address]) ){
+        $form['payment_information']['billing_information']['select_address']['#default_value'] = "_new";
+      }
+    }
+  }
+  if (isset($form['payment_information']['payment_method']['#options']['gratis']) ){
+    unset($form['payment_information']['payment_method']['#options']['gratis']);
+    $form['payment_information']['billing_information']['select_address']['#default_value'] = "_new";
+  }
+  if (!isset($form['payment_information']['payment_method'])) {
+    $form['payment_information']['billing_information']['select_address']['#default_value'] = "_new";
+  }
+}
+
+function cact_general_theme($existing, $type, $theme, $path) {
+  return [
+    'order_item_products_info_partial_mail' => [
+      'variables' => ['products_info' => NULL],
+    ],
+    'order_item_products_info_partial_complete' => [
+      'variables' => ['products_info' => NULL],
+    ],
+    'commerce_checkout_completion_message_free_purchase' => [
+      'variables' => [
+        'order_entity' => NULL,
+        'message' => NULL,
+        'payment_instructions' => NULL,
+      ],
+    ],
+    'order_item_products_info_partial_mail_prices' => [
+      'variables' => ['products_info' => NULL],
+    ],
+  ];
+}
+
+
+/**
+ * Implements hook_token_info().
+ */
+function cact_commerce_age_control_token_info() {
+  $info = [];
+  $info['types']['cact'] = ['name' => t('Cact tokens'), 'description' => t('Cact tokens')];
+  $info['tokens']['cact']['mail_header_image'] = [
+    'name' => 'Mail header image',
+    'description' => t('Mail header image.')
+  ];
+  $info['tokens']['cact']['mail_info_products'] = [
+    'name' => 'Mail info producs',
+    'description' => t('Mail info producs.')
+  ];
+  $info['tokens']['cact']['complete_order_info_mail'] = [
+    'name' => 'Complete order info for mail payments',
+    'description' => t('Info for mail payments.')
+  ];
+  $info['tokens']['cact']['attach_file_order'] = [
+    'name' => 'URL path to add attach pdf order',
+    'description' => t('Attach file order.')
+  ];
+  $info['tokens']['cact']['cact_order_number'] = [
+    'name' => 'Cact order id',
+    'description' => t('order id.')
+  ];
+  $info['tokens']['cact']['message_product_pay'] = [
+    'name' => 'Message product (pay)',
+    'description' => t('Message product (pay) message pour les produits payants.')
+  ];
+  $info['tokens']['cact']['message_product_free'] = [
+    'name' => 'Message product (free)',
+    'description' => t('Message product (pay) message pour les produits free.')
+  ];
+  $info['tokens']['cact']['mail_info_products_prices'] = [
+    'name' => 'Mail info producs prices o free',
+    'description' => t('Mail info producs prices o free.')
+  ];
+  return $info;
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function cact_general_tokens($type, $tokens, array $data, array $options, BubbleableMetadata $bubbleable_metadata) : array {
+  $replacements = [];
+
+  if ($type == 'cact') {
+    foreach ($tokens as $name => $original) {
+      switch ($name) {
+        case 'mail_header_image':
+          if (isset($data['easy_email'])) {
+            $entityTypeManager = Drupal::service('entity_type.manager');
+            $order = $entityTypeManager->getStorage('commerce_order')->load($data['easy_email']->get('field_order')->getString());
+            $header_image = "";
+
+            if ($order) {
+              $products_info = [];
+              foreach ($order->getItems() as $order_item):
+                $purchase_entity = $order_item->getPurchasedEntity();
+                $product = $purchase_entity->getProduct();
+
+                if ($header_image == "" && isset($product->get('field_image')[0])) {
+                  $header_image = $product->get('field_image')[0]->get('entity')->getValue()->field_media_image->entity->getFileUri();
+                  $header_image = str_replace("public://", "/sites/default/files/", $header_image);
+                  $header_image = str_replace(" ", "%20", $header_image);
+                }
+              endforeach;
+
+              // Load img from public directory changing path
+              $replacements[$original] = $header_image;
+            }
+          }
+          break;
+        case 'mail_info_products':
+          if (isset($data['easy_email'])) {
+            $entityTypeManager = Drupal::service('entity_type.manager');
+            $order = $entityTypeManager->getStorage('commerce_order')->load($data['easy_email']->get('field_order')->getString());
+
+            if ($order && !$order->getTotalPrice()->isZero()) {
+              $products_info = [];
+              foreach ($order->getItems() as $order_item):
+                $purchase_entity = $order_item->getPurchasedEntity();
+                $rounder_price = \Drupal::service('commerce_price.rounder')->round($order_item->getUnitPrice())->toArray();
+                $product = $purchase_entity->getProduct();
+                if (!isset($products_info[$product->id()])) {
+                  $products_info[$product->id()] = [
+                    'product_name' => $product->getTitle(),
+                    'date' => ((int)$product->get('field_event_type')->getString() != 0) ? date('d/m/Y H:i', strtotime($order_item->get('field_ticket_date')->getString())) : null,
+                    'total_amount' => 0,
+                    'currency_code' => $rounder_price['currency_code'],
+                    'reference_openbravo' => (!$order->get('field_reference_openbravo')->isEmpty())?$order->get('field_reference_openbravo')->getString():null,
+                    'path' => null,
+                  ];
+                }
+                $products_info[$product->id()]['total_amount'] += $order_item->getTotalPrice()->getNumber();
+                $locators_code = $order_item->get('field_locators_code')->getValue();
+                if (isset($products_info[$product->id()]['date']) && !empty($products_info[$product->id()]['date'])){
+                  $MailManager = Drupal::service('cact_general.mail_manager_decorator');
+                  $evento = array(
+                    'titulo' => $product->getTitle(),
+                    'descripcion' => '',
+                    'localizacion' => '',
+                    'fecha_inicio' => date('Y-m-d', strtotime($order_item->get('field_ticket_date')->getString())), // Fecha de inicio de evento en formato AAAA-MM-DD
+                    'hora_inicio'=> date('H:i', strtotime($order_item->get('field_ticket_date')->getString())), // Hora Inicio del evento
+                    'fecha_fin'=> date('Y-m-d', strtotime($order_item->get('field_ticket_date')->getString())), // Fecha de fin de evento en formato AAAA-MM-DD
+                    'hora_fin'=> date('H:i', strtotime($order_item->get('field_ticket_date')->getString())), // Hora final del evento
+                    'nombre'=>'cactlanzarote', // Nombre del sitio
+                    'url'=>'ventaonline.cactlanzarote.com' // Url de la página
+                  );
+                  $uri = $MailManager->getGCalendarUrl($evento);
+                  $products_info[$product->id()]['calendar'] = $uri;
+                }
+                foreach ($locators_code as $index => $locator_code):
+                  if(!$order->get('field_reference_openbravo')->isEmpty() && !isset($products_info[$product->id()]['path'])){
+                    $products_info[$product->id()]['path'] = \Drupal::service('cact_order_print.aes_order_item')->getStringPathOrderItemPdf($locator_code['value'], true, true);
+                  }
+                  $purchase_entity_attributes = $purchase_entity->getAttributeValues();
+                  if(is_array($purchase_entity_attributes)){
+                    $purchase_entity_attributes = reset($purchase_entity_attributes);
+                  }
+                  $products_info[$product->id()]['tickets'][] = [
+                    'name' => $purchase_entity_attributes->get('name')->getString(),
+                    'seat' => (!$order_item->get('field_location')->isEmpty()) ? $order_item->get('field_location')->getString() : null,
+                    'location' => $locator_code['value'],
+                    'price' => $rounder_price['number'] . ' ' . $rounder_price['currency_code'],
+                    'path' => \Drupal::service('cact_order_print.aes_order_item')->getStringPathOrderItemPdf($locator_code['value'])
+                  ];
+                endforeach;
+              endforeach;
+              $renderable = [
+                '#theme' => 'order_item_products_info_partial_mail',
+                '#products_info' => $products_info
+              ];
+              $rendered = \Drupal::service('renderer')->renderPlain($renderable);
+              $replacements[$original] = \Drupal\Core\Render\Markup::create($rendered);
+            }
+            else {
+              $replacements[$original] = '';
+            }
+          }
+          break;
+        case 'complete_order_info_mail':
+          $order = $data['commerce_order'];
+          if ($order->getState()->getString() == 'completed' || $order->getState()->getString() == 'pending'){
+              $replacements[$original] = \Drupal\Core\Render\Markup::create(t('We have sent you the confirmation and the tickets to your email.'));
+          }else{
+            $replacements[$original] = '';
+          }
+
+          break;
+        case 'attach_file_order':
+          /*if (isset($data['easy_email'])) {
+            $entityTypeManager = Drupal::service('entity_type.manager');
+            $order = $entityTypeManager->getStorage('commerce_order')->load($data['easy_email']->get('field_order')->getString());
+
+            if ($order) {
+              $replacements[$original] = '';
+              $count = 0;
+              foreach ($order->getItems() as $order_item):
+                $locators_code = $order_item->get('field_locators_code')->getValue();
+                foreach ($locators_code as $index => $locator_code):
+                  \Drupal::service('cact_general.order_utility')->create_pdf_order($locator_code['value']);
+
+                  if ($replacements[$original] == '')
+                    $replacements[$original] = 'sites/default/files/tmp/order_'.$locator_code['value'].'.pdf';
+                  else
+                    $replacements[$original] = $replacements[$original].',sites/default/files/tmp/order_'.$locator_code['value'].'.pdf';
+                endforeach;
+              endforeach;
+
+              //If the set of attached pdf paths exceeds the 500 character restriction for the dynamic email attachment field, the pdf attachment operation is cancelled.
+              if (strlen($replacements[$original]) > 1024) {
+                $replacements[$original] = null;
+              }
+            }
+          }*/
+          $replacements[$original] = null;
+          break;
+        case 'cact_order_number':
+
+          if (isset($data['easy_email'])) {
+            $entityTypeManager = Drupal::service('entity_type.manager');
+            $order = $entityTypeManager->getStorage('commerce_order')->load($data['easy_email']->get('field_order')->getString());
+            if (!$order->getTotalPrice()->isZero() && $order->getOrderNumber()) {
+              $replacements[$original] = $order->getOrderNumber();
+            }
+            else {
+              $replacements[$original] = $order->id();
+            }
+          }
+          else if (isset($data['commerce_order'])){
+            $order = $data['commerce_order'];
+            if (!$order->getTotalPrice()->isZero() && $order->getOrderNumber()) {
+              $replacements[$original] = $order->getOrderNumber();
+            }
+            else {
+              $replacements[$original] = $order->id();
+            }
+          }
+          break;
+        case 'message_product_pay':
+          $entityTypeManager = Drupal::service('entity_type.manager');
+          $order = $entityTypeManager->getStorage('commerce_order')->load($data['easy_email']->get('field_order')->getString());
+          $products_info = [];
+          $load_token = false;
+          foreach ($order->getItems() as $order_item):
+            $purchase_entity = $order_item->getPurchasedEntity();
+            $rounder_price = \Drupal::service('commerce_price.rounder')->round($order_item->getUnitPrice())->toArray();
+            $product = $purchase_entity->getProduct();
+            if(!$load_token && $product && $product->hasField('field_gratuitous') && $product->field_gratuitous->value != 1 && !$order_item->getTotalPrice()->isZero()){
+              $load_token = true;
+            }
+          endforeach;
+          if ($load_token){
+            $entityKeys = $data['easy_email']->bundle();
+            $entity = EasyEmailType::load($entityKeys);
+            $message_product_pay = $entity->getThirdPartySetting('cact_general', 'message_product_pay');
+            $replacements[$original] = Markup::create(check_markup(\Drupal::token()->replace($message_product_pay['value'], $data, $options), $message_product_pay['format']));
+
+          }
+          else {
+            $replacements[$original] = '';
+          }
+          break;
+        case 'message_product_free':
+          $entityTypeManager = Drupal::service('entity_type.manager');
+          $order = $entityTypeManager->getStorage('commerce_order')->load($data['easy_email']->get('field_order')->getString());
+          $products_info = [];
+          $load_token = false;
+          foreach ($order->getItems() as $order_item):
+            $purchase_entity = $order_item->getPurchasedEntity();
+            $rounder_price = \Drupal::service('commerce_price.rounder')->round($order_item->getUnitPrice())->toArray();
+            $product = $purchase_entity->getProduct();
+            if(!$load_token && $product && $product->hasField('field_gratuitous') && $product->field_gratuitous->value == 1 && $order_item->getTotalPrice()->isZero()){
+              $load_token = true;
+            }
+          endforeach;
+          if ($load_token){
+            $entityKeys = $data['easy_email']->bundle();
+            $entity = EasyEmailType::load($entityKeys);
+            $message_product_free = $entity->getThirdPartySetting('cact_general', 'message_product_free');
+            $replacements[$original] = Markup::create(check_markup(\Drupal::token()->replace($message_product_free['value'], $data, $options), $message_product_free['format']));
+          }
+          else {
+            $replacements[$original] = '';
+          }
+          break;
+        case 'mail_info_products_prices':
+          if (isset($data['easy_email'])) {
+            $entityTypeManager = Drupal::service('entity_type.manager');
+            $order = $entityTypeManager->getStorage('commerce_order')->load($data['easy_email']->get('field_order')->getString());
+            $products_info = [];
+            foreach ($order->getItems() as $order_item):
+              $purchase_entity = $order_item->getPurchasedEntity();
+              $rounder_price = \Drupal::service('commerce_price.rounder')->round($order_item->getUnitPrice())->toArray();
+              $product = $purchase_entity->getProduct();
+              if($product && $product->hasField('field_gratuitous') && $product->field_gratuitous->value == 1 && $order_item->getTotalPrice()->isZero()){
+                if (!isset($products_info[$product->id()])) {
+
+                  $products_info[$product->id()] = [
+                    'product_name' => $product->getTitle(),
+                    'date' => ((int)$product->get('field_event_type')->getString() != 0) ? date('d/m/Y H:i', strtotime($order_item->get('field_ticket_date')->getString())) : null,
+                    'total_amount' => 0,
+                    'currency_code' => $rounder_price['currency_code'],
+                    'reference_openbravo' => (!$order->get('field_reference_openbravo')->isEmpty())?$order->get('field_reference_openbravo')->getString():null,
+                    'path' => null,
+                  ];
+                }
+                $products_info[$product->id()]['total_amount'] += $order_item->getTotalPrice()->getNumber();
+                $products_info[$product->id()]['produc_free'] = false;
+                if(is_null($products_info[$product->id()]['date'])){
+                  $products_info[$product->id()]['produc_free'] = true;
+                  $products_info[$product->id()]['date'] = date('d/m/Y H:i', strtotime($order_item->get('field_ticket_date')->getString())) ;
+                }
+                $locators_code = $order_item->get('field_locators_code')->getValue();
+                if (isset($products_info[$product->id()]['date']) && !empty($products_info[$product->id()]['date'])){
+                  $MailManager = Drupal::service('cact_general.mail_manager_decorator');
+                  $evento = array(
+                    'titulo' => $product->getTitle(),
+                    'descripcion' => '',
+                    'localizacion' => '',
+                    'fecha_inicio' => date('Y-m-d', strtotime($order_item->get('field_ticket_date')->getString())), // Fecha de inicio de evento en formato AAAA-MM-DD
+                    'hora_inicio'=> date('H:i', strtotime($order_item->get('field_ticket_date')->getString())), // Hora Inicio del evento
+                    'fecha_fin'=> date('Y-m-d', strtotime($order_item->get('field_ticket_date')->getString())), // Fecha de fin de evento en formato AAAA-MM-DD
+                    'hora_fin'=> date('H:i', strtotime($order_item->get('field_ticket_date')->getString())), // Hora final del evento
+                    'nombre'=>'cactlanzarote', // Nombre del sitio
+                    'url'=>'ventaonline.cactlanzarote.com' // Url de la página
+                  );
+                  $uri = $MailManager->getGCalendarUrl($evento);
+                  $products_info[$product->id()]['calendar'] = $uri;
+                }
+                foreach ($locators_code as $index => $locator_code):
+                  if(!$order->get('field_reference_openbravo')->isEmpty() && !isset($products_info[$product->id()]['path'])){
+                    $products_info[$product->id()]['path'] = \Drupal::service('cact_order_print.aes_order_item')->getStringPathOrderItemPdf($locator_code['value'], true, true);
+                  }
+                  $purchase_entity_attributes = $purchase_entity->getAttributeValues();
+                  if(is_array($purchase_entity_attributes)){
+                    $purchase_entity_attributes = reset($purchase_entity_attributes);
+                  }
+                  $products_info[$product->id()]['tickets'][] = [
+                    'name' => $purchase_entity_attributes->get('name')->getString(),
+                    'seat' => (!$order_item->get('field_location')->isEmpty()) ? $order_item->get('field_location')->getString() : null,
+                    'location' => $locator_code['value'],
+                    'price' => $rounder_price['number'] . ' ' . $rounder_price['currency_code'],
+                    'path' => \Drupal::service('cact_order_print.aes_order_item')->getStringPathOrderItemPdf($locator_code['value'])
+                  ];
+
+                endforeach;
+              }
+            endforeach;
+            $renderable = [
+              '#theme' => 'order_item_products_info_partial_mail_prices',
+              '#products_info' => $products_info
+            ];
+         //   dump($products_info);
+            $rendered = \Drupal::service('renderer')->renderPlain($renderable);
+            $replacements[$original] = \Drupal\Core\Render\Markup::create($rendered);
+
+          }
+          else {
+            $replacements[$original] = '';
+          }
+         // exit;
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
+  return $replacements;
+}
+
+/**
+ * Implements template_preprocess_views_view_fields().
+ */
+function cact_general_preprocess_views_view_fields(&$variables) {
+  if(isset($variables['view']) && $variables['view']->id() == 'product_categories'){
+    $route = \Drupal::routeMatch();
+    if($route->getRawParameter('tid') && $variables['row']->_entity->id() == $route->getRawParameter('tid')){
+      $variables['fields']['name']->element_attributes->addClass('taxonomy-categories-active');
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_presave
+ */
+function cact_general_entity_presave(Drupal\Core\Entity\EntityInterface $entity)
+{
+
+  if ($entity instanceof \Drupal\commerce_order\Entity\OrderInterface && !$entity->get('payment_gateway')->isEmpty() &&
+    $entity->get('field_reference_redsys')->isEmpty() && $entity->get('payment_gateway')->getString() == 'redsys') {
+    $payment_storage = \Drupal::entityTypeManager()->getStorage('commerce_payment');
+    $payments = $payment_storage->loadMultipleByOrder($entity);
+    if(count($payments) > 0 && reset($payments)->isCompleted()){
+      $field_reference = \Drupal::service('cact_general.order_utility')->getPaymentRefernceRedsys($entity);
+      if (isset($field_reference)) {
+        $entity->set('field_reference_redsys', $field_reference);
+      }
+    }
+  }
+  else if($entity instanceof \Drupal\commerce_order\Entity\OrderInterface && !$entity->get('payment_gateway')->isEmpty() &&
+    $entity->get('field_reference_paypal')->isEmpty() && $entity->isPaid() && $entity->get('payment_gateway')->getString() == 'paypal'){
+    $payment_method = $entity->get('payment_method');
+    $ref = $payment_method->referencedEntities();
+    if(count($ref) > 0){
+      $ref = reset($ref);
+      if(!$ref->get('remote_id')->isEmpty('remote_id')){
+        $entity->set('field_reference_paypal', $ref->get('remote_id')->getValue()[0]['value']);
+      }
+    }
+  }
+  else if ($entity instanceof \Drupal\commerce_order\Entity\OrderInterface && $entity->get('payment_gateway')->isEmpty() && $entity->get('field_reference_redsys')->isEmpty() && $entity->get('checkout_step')->value == 'review') {
+    $request = \Drupal::request();
+    $field_reference = \Drupal::service('cact_general.order_utility')->getPaymentRefernceRedsysShoppingFree($entity);
+    if (isset($field_reference)) {
+      $entity->set('field_reference_redsys', $field_reference);
+    }
+  }
+
+  if ($entity instanceof \Drupal\commerce_order\Entity\OrderInterface and $entity->getState()->value == "draft") {
+    // update billing information with data order information if order is in draft state
+    if ($profile = $entity->getBillingProfile()) {
+      $profile->address->given_name = $entity->{'field_first_name'} ? $entity->{'field_first_name'}->value : t("undefined");
+      $profile->address->family_name = $entity->{'field_second_name'} ? $entity->{'field_second_name'}->value : t("undefined");
+      $profile->address->country_code = $entity->{'field_country'} ? $entity->{'field_country'}->value : t("undefined");
+      $profile->field_phone = $entity->{'field_phone'} ? $entity->{'field_phone'}->value : t("undefined");
+      $profile->save();
+      $entity->setBillingProfile($profile);
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_page_title().
+ */
+function cact_general_preprocess_page_title(&$variables) {
+
+  if (\Drupal::request()->attributes->has('step') && \Drupal::request()->attributes->get('step') == 'order_information') {
+    $variables['title'] = t('@title', ['@title' => t('Order')]);
+  }
+}
+
+function cact_general_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle, array $base_field_definitions) {
+  $fields = [];
+
+  if ($entity_type->id() == 'commerce_product_variation' && $bundle == 'ticket' && !empty($base_field_definitions['title'])) {
+    $field = $base_field_definitions['title'];
+    $field->setRequired(TRUE);
+    $field->setDisplayConfigurable('form', TRUE);
+    $fields['title'] = $field;
+  }
+
+  return $fields;
+}
+
+function cact_general_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
+  if ($view->id() == 'inventory' &&
+      in_array('center', \Drupal::currentUser()->getRoles()) &&
+      in_array($view->current_display, ['page_1', 'data_export_1', 'data_export_2'])) {
+
+    foreach ($query->where as &$condition_group):
+      $condition_group['conditions'][] = [
+            'field' => 'commerce_product_field_data_commerce_product_variation_field_data__commerce_product__field_center_reference.field_center_reference_target_id',
+            'value' => [\Drupal::currentUser()->id()],
+            'operator' => 'IN',
+          ];
+    endforeach;
+  }
+}
+
+
+/**
+ * Implements hook_commerce_checkout_pane_info_alter().
+ */
+function cact_general_commerce_checkout_pane_info_alter(&$definitions) {
+  if (isset($definitions['completion_message'])) {
+    $definitions['completion_message']['class'] = \Drupal\cact_general\Plugin\Commerce\CheckoutPane\CompletionMessage::class;
+    $definitions['completion_message']['provider'] = 'cact_general';
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for the general config form.
+ */
+function cact_general_form_easy_email_type_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Alter the general config form to include the by-region configuration.
+  \Drupal::classResolver(EasyEmailTypeAlter::class)->alterForm($form, $form_state, $form_id);
+}
+
+/**
+ * Implements hook_entity_base_field_info().
+ */
+function cact_general_entity_base_field_info(EntityTypeInterface $entity_type) {
+  if ($entity_type->id() === 'easy_email_type') {
+    $fields = [];
+    $fields['message_product_pay'] = BaseFieldDefinition::create('text_long')
+        ->setLabel(t('Message Product Pay'))
+        ->setDescription(t('Enter the message for paid products.'))
+        ->setDisplayConfigurable('view', TRUE);
+    $fields['message_product_free'] = BaseFieldDefinition::create('text_long')
+        ->setLabel(t('Message Product Free'))
+        ->setDescription(t('Enter the message for free products.'))
+        ->setDisplayConfigurable('view', TRUE);
+    return $fields;
+  }
+}
+
+
+

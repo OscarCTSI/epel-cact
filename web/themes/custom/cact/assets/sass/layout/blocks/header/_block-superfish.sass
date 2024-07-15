@@ -1,0 +1,38 @@
+.block-superfish
+  margin: 0
+  padding-top: 16px
+  +breakpoint($large)
+    margin: 0 8% 0 13%
+    padding-top: 0
+    width: auto
+
+  ul:not(.contextual-links)
+    display: flex
+    flex-direction: column
+    +breakpoint($large)
+      flex-direction: row
+
+#superfish-main--2 li.active-trail a::after, #superfish-main li:hover a::after 
+    background-color: #91bc5d
+    transition: .2s
+
+#superfish-main--2 li a::after 
+    background-color: #F8F8F8
+    content: ''
+    display: block
+    height: 5px
+    margin-top: 0.28571rem
+    transition: .2s
+    width: 105px
+
+#superfish-main--2
+  display: flex !important
+  +breakpoint($large)
+    display: none
+
+.block-superfishmain
+  .sf-accordion-toggle
+    display: none
+
+#superfish-main--2-accordion
+  display: none

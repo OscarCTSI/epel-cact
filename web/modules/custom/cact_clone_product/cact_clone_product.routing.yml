@@ -1,0 +1,11 @@
+cact_clone_product.clone_product:
+  path: '/commerce-clone-product/{product}'
+  defaults:
+    _controller: '\Drupal\cact_clone_product\Controller\CloneProductController::clone'
+    _title: 'Clone product'
+  options:
+    parameters:
+      product:
+        type: entity:commerce_product
+  requirements:
+    _permission: 'admin'

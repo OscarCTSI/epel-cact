@@ -1,0 +1,64 @@
+#block-entradashomeheader
+  display: none
+  +breakpoint($medium)
+    align-items: center
+    display: flex
+    margin-right: 12%
+
+  .field--name-body
+    background-color: $primary-color
+    border-radius: 4px
+    transition: .2s
+    height: fit-content
+
+    p
+      margin: 0
+
+      a
+        +icomoon-text($icon-tickets, 16px, $white)
+        color: $white
+        font-family: $gotham
+        font-size: calc-rem(16px)
+        font-weight: 400
+        line-height: 24px
+        padding: calc-rem(13px) calc-rem(31px) calc-rem(13px) calc-rem(55px)
+
+        &::before
+          left: 20%
+
+    &:hover
+      background-color: rgba($primary-color, .7)
+      transition: .2s
+
+.block-block-content8a43fcd8-8780-471e-a11a-f9bb8757de78
+  align-items: center
+  display: flex
+  margin: calc-rem(32px) auto calc-rem(32px) 26px
+  +breakpoint($large)
+    margin: 0
+    margin-right: 12%
+
+  .field--name-body
+    background-color: $primary-color
+    border-radius: 4px
+    transition: .2s
+    height: fit-content
+
+    p
+      margin: 0
+
+    a
+      +icomoon-text($icon-tickets, 16px, $white)
+      color: $white
+      font-family: $gotham
+      font-size: calc-rem(16px)
+      font-weight: 400
+      line-height: 24px
+      padding: calc-rem(13px) calc-rem(31px) calc-rem(13px) calc-rem(55px)
+
+      &::before
+        left: 20%
+
+    &:hover
+      background-color: rgba($primary-color, .7)
+      transition: .2s

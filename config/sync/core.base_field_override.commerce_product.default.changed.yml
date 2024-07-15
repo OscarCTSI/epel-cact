@@ -1,0 +1,18 @@
+uuid: a507a158-00b7-4dec-bd8c-460a9d129d35
+langcode: es
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.default
+id: commerce_product.default.changed
+field_name: changed
+entity_type: commerce_product
+bundle: default
+label: Modificado
+description: 'La fecha en la que el producto se modificó por última vez.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

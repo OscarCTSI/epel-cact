@@ -1,0 +1,24 @@
+uuid: 31c6a5b3-be36-4d46-82ab-c3cdb7c648a3
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_type.default
+    - field.storage.commerce_order.field_country
+  module:
+    - address
+id: commerce_order.default.field_country
+field_name: field_country
+entity_type: commerce_order
+bundle: default
+label: Country
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: ES
+default_value_callback: ''
+settings:
+  available_countries: {  }
+field_type: address_country

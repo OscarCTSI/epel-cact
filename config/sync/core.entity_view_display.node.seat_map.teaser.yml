@@ -1,0 +1,26 @@
+uuid: db4d6103-0cc4-4dbe-b2df-160098b024f6
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.seat_map.field_map
+    - node.type.seat_map
+  module:
+    - user
+id: node.seat_map.teaser
+targetEntityType: node
+bundle: seat_map
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  field_map: true
+  langcode: true

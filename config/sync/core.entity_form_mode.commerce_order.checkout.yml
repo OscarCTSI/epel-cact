@@ -1,0 +1,12 @@
+uuid: a1f28d82-fb1c-4e03-a6d1-8d168bfcf1ba
+langcode: es
+status: true
+dependencies:
+  module:
+    - commerce_order
+_core:
+  default_config_hash: hI6zHs0P9XxjpjIYYZxrfjMIf2F5sOACOkwiyD6zRp0
+id: commerce_order.checkout
+label: 'Realizar el pedido'
+targetEntityType: commerce_order
+cache: true

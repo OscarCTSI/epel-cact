@@ -1,0 +1,29 @@
+uuid: 2141c548-f0fa-4754-aff5-e99b01b7408a
+langcode: es
+status: true
+dependencies:
+  config:
+    - system.menu.legal
+  module:
+    - block_class
+    - system
+  theme:
+    - cact
+third_party_settings:
+  block_class:
+    classes: null
+id: legal
+theme: cact
+region: footer_info
+weight: -8
+provider: null
+plugin: 'system_menu_block:legal'
+settings:
+  id: 'system_menu_block:legal'
+  label: Legal
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

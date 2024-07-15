@@ -1,0 +1,29 @@
+uuid: f2f7258d-c39a-49d5-b9db-056afa8ee4bb
+langcode: es
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:8a43fcd8-8780-471e-a11a-f9bb8757de78'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - cact
+third_party_settings:
+  block_class:
+    classes: null
+id: entradashomeheader
+theme: cact
+region: header
+weight: -8
+provider: null
+plugin: 'block_content:8a43fcd8-8780-471e-a11a-f9bb8757de78'
+settings:
+  id: 'block_content:8a43fcd8-8780-471e-a11a-f9bb8757de78'
+  label: 'Entradas Home Header'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

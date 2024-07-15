@@ -1,0 +1,19 @@
+uuid: 613b3ddc-1664-4a6b-81b5-3b2036af093b
+langcode: en
+status: true
+dependencies:
+  module:
+    - address
+    - commerce_order
+id: commerce_order.field_country
+field_name: field_country
+entity_type: commerce_order
+type: address_country
+settings: {  }
+module: address
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

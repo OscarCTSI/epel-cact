@@ -1,0 +1,19 @@
+uuid: 0056c009-9754-4179-bae6-233c0c186f99
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.ticket
+    - field.storage.commerce_product.field_general_recommendations
+id: commerce_product.ticket.field_general_recommendations
+field_name: field_general_recommendations
+entity_type: commerce_product
+bundle: ticket
+label: 'General recommendations'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

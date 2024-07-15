@@ -1,0 +1,27 @@
+uuid: aa371998-0fca-4464-b8fc-80527e7b4800
+langcode: en
+status: true
+dependencies:
+  config:
+    - easy_email.easy_email_type.complete_order_es
+    - field.storage.easy_email.attachment
+  module:
+    - file
+id: easy_email.complete_order_es.attachment
+field_name: attachment
+entity_type: easy_email
+bundle: complete_order_es
+label: Attachments
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: null
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: attachments
+  file_extensions: 'txt pdf doc docx xls xlsx ppt pptx rtf png jpg jpeg gif'
+  max_filesize: ''
+  description_field: false
+field_type: file

@@ -1,0 +1,24 @@
+uuid: f3d2b24f-551f-4bd2-baa4-e3c74d002ea7
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_attribute.age
+    - commerce_product.commerce_product_variation_type.ticket
+    - field.storage.commerce_product_variation.attribute_age
+id: commerce_product_variation.ticket.attribute_age
+field_name: attribute_age
+entity_type: commerce_product_variation
+bundle: ticket
+label: Age
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:commerce_product_attribute_value'
+  handler_settings:
+    target_bundles:
+      - age
+field_type: entity_reference

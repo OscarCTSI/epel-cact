@@ -1,0 +1,29 @@
+uuid: 8a9e053b-59da-488e-b9f3-16a822ad9baa
+langcode: es
+status: true
+dependencies:
+  module:
+    - block_class
+    - system
+  theme:
+    - da_vinci
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: av67vlq8S5KbF8NySxB_Qwcenu6-uwhhJBulcsoQp84
+id: da_vinci_branding
+theme: da_vinci
+region: header
+weight: 0
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

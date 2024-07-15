@@ -1,0 +1,21 @@
+uuid: a9837996-88fe-4e49-b6bf-8ad0bafbe169
+langcode: en
+status: true
+dependencies:
+  config:
+    - easy_email.easy_email_type.complete_order_fr
+    - field.storage.easy_email.from_address
+id: easy_email.complete_order_fr.from_address
+field_name: from_address
+entity_type: easy_email
+bundle: complete_order_fr
+label: 'From Address'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: ''
+default_value_callback: null
+settings: {  }
+field_type: string

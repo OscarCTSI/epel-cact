@@ -1,0 +1,20 @@
+uuid: 27926efa-2cc2-45b9-ae8e-71438c92a59c
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.image
+id: media.image.name
+field_name: name
+entity_type: media
+bundle: image
+label: Name
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: ''
+default_value_callback: ''
+settings: {  }
+field_type: string

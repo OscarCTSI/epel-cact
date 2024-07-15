@@ -1,0 +1,17 @@
+uuid: 6cb2c3e5-f35e-46ac-aaa1-a22b74abbd3d
+langcode: es
+status: true
+dependencies:
+  module:
+    - user
+_core:
+  default_config_hash: qi9sqmiSS3SO0QfdSpLK3Ev3rka122y5gkCARZaFPSQ
+id: bat_api.unit_index.calendar-units
+service_plugin_id: 'unit_index:calendar-units'
+service_endpoint_id: bat_api
+formats:
+  json: json
+  hal_json: '0'
+  xml: '0'
+authentication:
+  cookie: cookie

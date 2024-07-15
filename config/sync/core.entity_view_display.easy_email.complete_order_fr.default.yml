@@ -1,0 +1,172 @@
+uuid: 9af2d6d1-c302-4e14-8de1-3e161776d24e
+langcode: en
+status: true
+dependencies:
+  config:
+    - easy_email.easy_email_type.complete_order_fr
+    - field.field.easy_email.complete_order_fr.attachment
+    - field.field.easy_email.complete_order_fr.attachment_path
+    - field.field.easy_email.complete_order_fr.bcc_address
+    - field.field.easy_email.complete_order_fr.bcc_uid
+    - field.field.easy_email.complete_order_fr.body_html
+    - field.field.easy_email.complete_order_fr.body_plain
+    - field.field.easy_email.complete_order_fr.cc_address
+    - field.field.easy_email.complete_order_fr.cc_uid
+    - field.field.easy_email.complete_order_fr.field_order
+    - field.field.easy_email.complete_order_fr.from_address
+    - field.field.easy_email.complete_order_fr.from_name
+    - field.field.easy_email.complete_order_fr.inbox_preview
+    - field.field.easy_email.complete_order_fr.key
+    - field.field.easy_email.complete_order_fr.recipient_uid
+    - field.field.easy_email.complete_order_fr.reply_to
+  module:
+    - file
+    - text
+    - user
+id: easy_email.complete_order_fr.default
+targetEntityType: easy_email
+bundle: complete_order_fr
+mode: default
+content:
+  attachment:
+    type: file_default
+    label: hidden
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  attachment_path:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -4
+    region: content
+  bcc_address:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -4
+    region: content
+  bcc_uid:
+    type: author
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  body_html:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  body_plain:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  cc_address:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -4
+    region: content
+  cc_uid:
+    type: author
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  creator_uid:
+    type: author
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_order:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  from_address:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -4
+    region: content
+  from_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -4
+    region: content
+  inbox_preview:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  key:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -4
+    region: content
+  recipient_address:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -4
+    region: content
+  recipient_uid:
+    type: author
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  reply_to:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -4
+    region: content
+  subject:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: -4
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  langcode: true

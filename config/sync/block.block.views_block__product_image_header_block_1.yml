@@ -1,0 +1,29 @@
+uuid: 11b656cf-848d-48cc-9ffe-2b221ab840f0
+langcode: es
+status: true
+dependencies:
+  config:
+    - views.view.product_image_header
+  module:
+    - block_class
+    - views
+  theme:
+    - cact
+third_party_settings:
+  block_class:
+    classes: null
+id: views_block__product_image_header_block_1
+theme: cact
+region: highlighted
+weight: -12
+provider: null
+plugin: 'views_block:product_image_header-block_1'
+settings:
+  id: 'views_block:product_image_header-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  context_mapping: {  }
+  views_label: ''
+  items_per_page: none
+visibility: {  }

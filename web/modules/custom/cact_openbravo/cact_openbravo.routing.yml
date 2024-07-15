@@ -1,0 +1,16 @@
+cact_openbravo.configuration:
+  path: '/admin/config/services/cact_openbravo/config'
+  defaults:
+    _form: '\Drupal\cact_openbravo\Form\CactOpenbravoConfigurationForm'
+    _title: 'Openbravo API Configuration'
+  requirements:
+    _permission: 'admin'
+  options:
+    _admin_route: TRUE
+cact_openbravo.cact_webservices_endpoint:
+  path: '/cact-webservices-json/stocks/{product_id}/{datefrom}/{dateto}/{detailed}'
+  defaults:
+    _controller: 'Drupal\cact_openbravo\Controller\CactWebservicesEndpointController::getStocksEndpoint'
+    _title: 'Stocks JSON'
+  requirements:
+    _permission: 'access content'    

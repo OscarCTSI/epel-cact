@@ -1,0 +1,52 @@
+uuid: 80f5f7b2-67ca-45ef-b80c-b53565b00601
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.ticket
+    - core.entity_view_mode.commerce_product_variation.cesta_compra_sin_titulo
+    - field.field.commerce_product_variation.ticket.attribute_age
+    - field.field.commerce_product_variation.ticket.field_max_item_for_sale
+  module:
+    - cact_general
+    - layout_builder
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: commerce_product_variation.ticket.cesta_compra_sin_titulo
+targetEntityType: commerce_product_variation
+bundle: ticket
+mode: cesta_compra_sin_titulo
+content:
+  commerce_variation_cart_form:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  product_id:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: carrito_sin_titulo
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  title:
+    type: cact_general_tipoentradacarrito
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  attribute_age: true
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  field_max_item_for_sale: true
+  langcode: true
+  list_price: true
+  price: true
+  sku: true

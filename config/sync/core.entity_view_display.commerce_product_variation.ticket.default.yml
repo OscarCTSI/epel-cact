@@ -1,0 +1,30 @@
+uuid: f621c626-bce3-4283-9a37-fbdbec5aeec7
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.ticket
+    - field.field.commerce_product_variation.ticket.attribute_age
+    - field.field.commerce_product_variation.ticket.field_max_item_for_sale
+id: commerce_product_variation.ticket.default
+targetEntityType: commerce_product_variation
+bundle: ticket
+mode: default
+content:
+  commerce_variation_cart_form:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  attribute_age: true
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  field_max_item_for_sale: true
+  langcode: true
+  list_price: true
+  price: true
+  product_id: true
+  sku: true
+  title: true

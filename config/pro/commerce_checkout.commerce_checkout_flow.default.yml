@@ -1,0 +1,68 @@
+uuid: c357e6d5-8abd-46d4-86c5-ccf1521f6e0a
+langcode: es
+status: true
+dependencies:
+  module:
+    - cact_workflows
+    - commerce_checkout_order_fields
+    - commerce_payment
+    - commerce_paypal
+    - commerce_promotion
+_core:
+  default_config_hash: 5BYvSDemm8xYwB9rMGFuEuGK6FxVheqtXEUxnpKO2N4
+label: Default
+id: default
+plugin: multistep_default
+configuration:
+  display_checkout_progress: true
+  display_checkout_progress_breadcrumb_links: false
+  panes:
+    contact_information:
+      step: order_information
+      weight: 0
+      double_entry: true
+    'order_fields:checkout':
+      step: order_information
+      weight: 1
+      wrapper_element: fieldset
+      display_label: 'Order information'
+    payment_information:
+      step: order_information
+      weight: 2
+    review:
+      step: _disabled
+      weight: 8
+    payment_process:
+      step: payment
+      weight: 3
+      capture: true
+    paypal_checkout_payment_process:
+      step: payment
+      weight: 4
+      capture: true
+    completion_message:
+      step: complete
+      weight: 5
+      message:
+        value: "<p>[current-date:long]</p>\r\n\r\n<p>Tu número de pedido es [commerce_order:order_number].</p>\r\n\r\n<p>[cact:complete_order_info_mail]</p>\r\n\r\n<p class=\"contact-data\">&nbsp;</p>\r\n\r\n<h4>Datos de contacto</h4>\r\n\r\n<p class=\"address\" translate=\"no\"><span class=\"given-name\">[commerce_order:field_first_name]</span> <span class=\"family-name\">[commerce_order:field_second_name]</span><br />\r\n<span class=\"country\">[commerce_order:field_country:value]</span><br />\r\n<span class=\"phone\">[commerce_order:field_phone]</span></p>\r\n\r\n<p>&nbsp;</p>\r\n"
+        format: full_html
+    complete_order_summary:
+      step: complete
+      weight: 6
+      view: ''
+    order_summary:
+      step: _sidebar
+      weight: 7
+      view: null
+    coupon_redemption:
+      step: _disabled
+      weight: 9
+      allow_multiple: false
+    login:
+      step: _disabled
+      weight: 10
+      allow_guest_checkout: true
+      allow_registration: false
+    completion_register:
+      step: _disabled
+      weight: 11

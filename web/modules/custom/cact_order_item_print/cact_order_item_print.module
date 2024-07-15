@@ -1,0 +1,103 @@
+<?php
+/**
+ * @file
+ * Contains cact_order_item_print.module.
+ */
+
+use Drupal\Core\Link;
+use Drupal\Core\Render\Markup;
+
+
+/**
+ * Implements hook_theme
+ */
+function cact_order_item_print_theme($existing, $type, $theme, $path) {
+  return [
+    'order_item_pdf' => [
+      'variables' => [
+        'css'  => NULL,
+        'logo' => NULL,
+        'code' => NULL,
+        'qr_code' => NULL,
+        'product_name' => NULL,
+        'date' => NULL,
+        'place' => NULL,
+        'seat' => NULL,
+        'rate' => NULL,
+        'price' => NULL,
+        'client' => NULL,
+        'general_recommendations' => NULL,
+        'important_information' => NULL,
+        'name' => NULL,
+        'group' => NULL,
+        'product_info' => NULL,
+        'comments' => NULL
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_inline_entity_form_table_fields_alter().
+ */
+function cact_order_item_print_inline_entity_form_table_fields_alter(&$fields, $context) {
+  if ($context['entity_type'] == 'commerce_order_item') {
+    $fields['print'] = [
+      'type' => 'callback',
+      'label' => 'Print tickets',
+      'weight' => 5,
+      'callback' => '_get_path_pdf',
+    ];
+    $fields['print_group'] = [
+      'type' => 'callback',
+      'label' => 'Print group tickets',
+      'weight' => 5,
+      'callback' => '_get_path_group_pdf',
+    ];
+  }
+}
+
+/**
+ * Gets paths for prints tickets.
+ */
+function _get_path_pdf($entity) {
+  if($entity->getOrder()->getState()->getString() == 'completed'){
+
+    $order_codes = \Drupal::service('cact_general.order_utility')->getOrderItemCode($entity, true);
+    $links_prints = [];
+    foreach($order_codes as $code):
+      $url = \Drupal::service('cact_order_print.aes_order_item')->getObjectUrl($code['value']);
+      $link_text = $code['value'];
+      if(isset($code['name'])){
+        $link_text .= '<br /><i>' . $code['name'].'</i>';
+        $link_text = Markup::create($link_text);
+      }
+      $link = Link::fromTextAndUrl($link_text, $url);
+      $link = $link->toRenderable();
+      $links_prints[] = \Drupal::service('renderer')->render($link);
+    endforeach;
+
+    return ['#markup' => implode('<br />', $links_prints)];
+  }
+}
+
+/**
+ * Gets paths for prints group tickets.
+ */
+function _get_path_group_pdf($entity) {
+  if($entity->getOrder()->getState()->getString() == 'completed'){
+
+    $links_prints = [];
+    if(!$entity->getOrder()->get('field_reference_openbravo')->isEmpty()){
+      $order_codes = \Drupal::service('cact_general.order_utility')->getOrderItemCode($entity);
+      if(count($order_codes) > 0){
+        $code = reset($order_codes);
+        $url = \Drupal::service('cact_order_print.aes_order_item')->getObjectUrl($code['value'], true);
+        $link = Link::fromTextAndUrl($entity->getOrder()->get('field_reference_openbravo')->getString(), $url);
+        $link = $link->toRenderable();
+        $links_prints[] = \Drupal::service('renderer')->render($link);
+      }
+    }
+    return ['#markup' => implode('<br />', $links_prints)];
+  }
+}

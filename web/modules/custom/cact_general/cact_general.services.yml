@@ -1,0 +1,19 @@
+services:
+  cact_general.order_utility:
+    class: Drupal\cact_general\CactOrderUtility
+    arguments: ['@entity_type.manager', '@current_user']
+  cact_general.twig.order_item_info:
+    class: Drupal\cact_general\TwigExtension\OrderItemInfo
+    arguments: [ '@entity_type.manager' ]
+    tags:
+      - { name: twig.extension }
+  cact_general.mail_manager_decorator:
+    class: Drupal\cact_general\Service\CactMailManager
+    decorates: easy_email_override.mail_manager_decorator
+    decoration_priority: 1
+    arguments: ['@easy_email_override.mail_manager_decorator.inner', '@container.namespaces', '@module_handler', '@renderer']
+  cact_general.completion_message:
+    class: Drupal\cact_general\Plugin\Commerce\CheckoutPane\CompletionMessage
+    tags:
+      - { name: commerce_checkout_pane, id: completion_message, label: 'Completion Message' }
+ 

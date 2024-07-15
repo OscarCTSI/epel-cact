@@ -1,0 +1,22 @@
+form[id^='simplenews-subscriptions-block-simple-newsletter']
+  &:not(.user-login-form):not(.views-exposed-form)
+    .js-form-type-email
+      display: flex
+      flex-direction: column
+
+      label
+        left: 7%
+        transform: none
+
+      input
+        order: 1
+
+      .description
+        color: $white
+        font-family: $montserrat
+        font-size: calc-rem(12px)
+        margin-bottom: calc-rem(14px)
+        order: 0
+
+    .form-actions
+      display: none

@@ -1,0 +1,22 @@
+cact_openbravo:
+  url: 'https://cact-test.practicsbs.com/openbravo/ws'
+  user: Webservice
+  password: openbravo
+  sandbox:
+    sandbox_enable: 1
+    customer_name: C/1000088
+    customer_fiscal_name: C/1000088
+    customer_tax_id: C/1000088
+    customer_address_line1: C/1000088
+    customer_address_line2: C/1000088
+    customer_postal_code: '41000'
+    customer_city: C/1000088
+    customer_region_code: '41'
+    customer_country_code: ES
+  no_integration: 0
+  payments_gateways:
+    bank_transfer: Transferencia
+    gratis: Gratis
+    paypal: Tarjeta
+    redsys: Tarjeta
+  mails: 'martacdt@centrosturisticos.com, info@centrosturisticos.com'

@@ -1,0 +1,29 @@
+uuid: f34a7008-6691-467c-9459-6d65cd67df81
+langcode: es
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:0c5535de-4b94-4ecc-8001-b33e12a8ac1c'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - cact
+third_party_settings:
+  block_class:
+    classes: null
+id: logofooter
+theme: cact
+region: footer_info
+weight: -11
+provider: null
+plugin: 'block_content:0c5535de-4b94-4ecc-8001-b33e12a8ac1c'
+settings:
+  id: 'block_content:0c5535de-4b94-4ecc-8001-b33e12a8ac1c'
+  label: 'Logo footer'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

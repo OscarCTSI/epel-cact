@@ -1,0 +1,176 @@
+uuid: c180045e-299f-4a48-9754-29a664f60b3f
+langcode: es
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.ticket
+    - media.type.audio
+    - media.type.document
+    - media.type.image
+    - media.type.remote_video
+    - media.type.video
+    - node.type.article
+    - node.type.page
+    - node.type.seat_map
+    - node.type.simplenews_issue
+    - taxonomy.vocabulary.product_categories
+    - taxonomy.vocabulary.tags
+  module:
+    - block_content
+    - comment
+    - commerce
+    - commerce_order
+    - commerce_product
+    - commerce_store
+    - content_translation
+    - contextual
+    - easy_email
+    - file
+    - media
+    - menu_link_content
+    - node
+    - path
+    - profile
+    - system
+    - taxonomy
+    - toolbar
+    - tour
+_core:
+  default_config_hash: Wur9kcEOwY1Jal81NssKnz3RhVJxAvBwyWQBGcA_1Go
+id: content_editor
+label: 'Content editor'
+weight: 2
+is_admin: false
+permissions:
+  - 'access administration pages'
+  - 'access commerce administration pages'
+  - 'access commerce_order overview'
+  - 'access commerce_product overview'
+  - 'access commerce_product_attribute overview'
+  - 'access commerce_store overview'
+  - 'access content overview'
+  - 'access contextual links'
+  - 'access files overview'
+  - 'access media overview'
+  - 'access toolbar'
+  - 'access tour'
+  - 'administer commerce_product'
+  - 'administer commerce_product_attribute'
+  - 'administer url aliases'
+  - 'administer users'
+  - 'create article content'
+  - 'create audio media'
+  - 'create commerce_product_attribute'
+  - 'create content translations'
+  - 'create customer profile'
+  - 'create default commerce_product'
+  - 'create document media'
+  - 'create image media'
+  - 'create media'
+  - 'create page content'
+  - 'create remote_video media'
+  - 'create seat_map content'
+  - 'create terms in tags'
+  - 'create ticket commerce_product'
+  - 'create url aliases'
+  - 'create video media'
+  - 'delete any article content'
+  - 'delete any audio media'
+  - 'delete any customer profile'
+  - 'delete any default commerce_product'
+  - 'delete any document media'
+  - 'delete any image media'
+  - 'delete any media'
+  - 'delete any page content'
+  - 'delete any remote_video media'
+  - 'delete any seat_map content'
+  - 'delete any ticket commerce_product'
+  - 'delete any video media'
+  - 'delete article revisions'
+  - 'delete commerce_product_attribute'
+  - 'delete content translations'
+  - 'delete media'
+  - 'delete own article content'
+  - 'delete own audio media'
+  - 'delete own customer profile'
+  - 'delete own default commerce_product'
+  - 'delete own document media'
+  - 'delete own image media'
+  - 'delete own page content'
+  - 'delete own remote_video media'
+  - 'delete own seat_map content'
+  - 'delete own ticket commerce_product'
+  - 'delete own video media'
+  - 'delete page revisions'
+  - 'delete seat_map revisions'
+  - 'delete simplenews_issue revisions'
+  - 'edit any article content'
+  - 'edit any audio media'
+  - 'edit any document media'
+  - 'edit any image media'
+  - 'edit any page content'
+  - 'edit any remote_video media'
+  - 'edit any seat_map content'
+  - 'edit any simplenews_issue content'
+  - 'edit any video media'
+  - 'edit own article content'
+  - 'edit own audio media'
+  - 'edit own comments'
+  - 'edit own document media'
+  - 'edit own image media'
+  - 'edit own page content'
+  - 'edit own remote_video media'
+  - 'edit own seat_map content'
+  - 'edit own simplenews_issue content'
+  - 'edit own video media'
+  - 'edit terms in tags'
+  - 'manage ticket commerce_order_item'
+  - 'manage ticket commerce_product_variation'
+  - 'revert all revisions'
+  - 'revert article revisions'
+  - 'revert page revisions'
+  - 'revert seat_map revisions'
+  - 'revert simplenews_issue revisions'
+  - 'translate any entity'
+  - 'translate block_content'
+  - 'translate commerce_product_attribute_value'
+  - 'translate commerce_product_variation'
+  - 'translate easy_email'
+  - 'translate editable entities'
+  - 'translate menu_link_content'
+  - 'translate page node'
+  - 'translate product_categories taxonomy_term'
+  - 'translate ticket commerce_product'
+  - 'update any customer profile'
+  - 'update any default commerce_product'
+  - 'update any media'
+  - 'update any ticket commerce_product'
+  - 'update commerce_product_attribute'
+  - 'update content translations'
+  - 'update default commerce_order'
+  - 'update media'
+  - 'update own customer profile'
+  - 'update own default commerce_product'
+  - 'update own ticket commerce_product'
+  - 'view all media revisions'
+  - 'view all revisions'
+  - 'view any customer profile'
+  - 'view any profile'
+  - 'view article revisions'
+  - 'view commerce_order'
+  - 'view commerce_product_attribute'
+  - 'view commerce_store'
+  - 'view default commerce_order'
+  - 'view default commerce_product'
+  - 'view online commerce_store'
+  - 'view own customer profile'
+  - 'view own profile'
+  - 'view own unpublished commerce_product'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view own unpublished profile'
+  - 'view page revisions'
+  - 'view seat_map revisions'
+  - 'view simplenews_issue revisions'
+  - 'view the administration theme'
+  - 'view ticket commerce_product'

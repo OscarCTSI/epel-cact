@@ -1,0 +1,20 @@
+uuid: 09de46bf-a8c3-4d6f-9314-2e5541df62dd
+langcode: en
+status: true
+dependencies:
+  theme:
+    - da_vinci
+_core:
+  default_config_hash: 7rR9chwXvdM2H8OYMAYx9Zj3GGlPMrZp_M3ZA4thYTk
+id: da_vinci_page_title
+theme: da_vinci
+region: content
+weight: 0
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility: {  }

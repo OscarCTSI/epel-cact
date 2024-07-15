@@ -1,0 +1,71 @@
+.menunav--burguer
+  width: 28px
+  height: 28px
+  margin: 0 auto
+  position: relative
+  padding-top: 0px
+  -webkit-transform: rotate(0deg)
+  -moz-transform: rotate(0deg)
+  -o-transform: rotate(0deg)
+  transform: rotate(0deg)
+  -webkit-transition: 0.5s
+  -moz-transition: 0.5s
+  -o-transition: 0.5s
+  transition: 0.5s
+  cursor: pointer
+  z-index: 1000
+  +breakpoint($large)
+    display: none
+
+  span
+    display: block
+    position: relative
+    height: 2px//1.6px
+    width: 100%
+    background: $primary-color
+    //border-radius: 9px
+    opacity: 1
+    left: 0
+    margin: 0 auto
+    -webkit-transform: rotate(0deg)
+    -moz-transform: rotate(0deg)
+    -o-transform: rotate(0deg)
+    transform: rotate(0deg)
+    -webkit-transition: 0.5s
+    -moz-transition: 0.5s
+    -o-transition: 0.5s
+    transition: 0.5s
+
+    &:nth-child(1)
+      top: 8px
+
+    &:nth-child(2)
+      top: 14px//15px
+
+    &:nth-child(3)
+      top: 20px//25px
+
+  &.open span
+    background: $primary-color
+    z-index: 1050
+
+    &:nth-child(1)
+      top: 12px
+      -webkit-transform: rotate(135deg)
+      -moz-transform: rotate(135deg)
+      -o-transform: rotate(135deg)
+      transform: rotate(135deg)
+
+    &:nth-child(2)
+      opacity: 0
+
+    &:nth-child(3)
+      top: 8px//15px
+      -webkit-transform: rotate(-135deg)
+      -moz-transform: rotate(-135deg)
+      -o-transform: rotate(-135deg)
+      transform: rotate(-135deg)
+
+#click-menu
+  border: 0
+  background: $white

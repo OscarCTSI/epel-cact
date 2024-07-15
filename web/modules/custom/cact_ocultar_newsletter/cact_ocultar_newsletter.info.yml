@@ -1,0 +1,8 @@
+name: 'CACT Ocultar Newsletter'
+type: module
+description: 'Módulo personalizado para ocultar checkbox de newsletter en el checkout.'
+core_version_requirement: ^8 || ^9 || ^10
+package: Custom
+version: 1.0
+libraries:
+  - cact_ocultar_newsletter/cact_ocultar_newsletter.styles

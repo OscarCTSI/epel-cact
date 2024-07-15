@@ -1,0 +1,8 @@
+_core:
+  default_config_hash: yc5YKO-MODUc-FVbspHMphVI_H4mibzzfZVjM7YapO4
+langcode: es
+default_formats:
+  - json
+default_authentication:
+  - cookie
+default_no_cache: false

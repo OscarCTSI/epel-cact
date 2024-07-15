@@ -1,0 +1,19 @@
+uuid: 3debd637-1461-4e82-aa8c-68746429599a
+langcode: en
+status: true
+dependencies:
+  config:
+    - easy_email.easy_email_type.complete_order
+    - field.storage.easy_email.body_plain
+id: easy_email.complete_order.body_plain
+field_name: body_plain
+entity_type: easy_email
+bundle: complete_order
+label: 'Plain Text Body'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: null
+settings: {  }
+field_type: string_long

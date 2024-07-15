@@ -1,0 +1,19 @@
+uuid: 2187c05a-484a-43a1-8858-2e50d3398526
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.ticket
+    - field.storage.commerce_product.field_place
+id: commerce_product.ticket.field_place
+field_name: field_place
+entity_type: commerce_product
+bundle: ticket
+label: Place
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

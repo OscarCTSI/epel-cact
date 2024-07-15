@@ -1,0 +1,29 @@
+uuid: 6df4efe4-d8ab-4dbd-a2d6-62eec395d924
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.ticket
+    - field.storage.commerce_product.field_seat_map
+    - node.type.seat_map
+id: commerce_product.ticket.field_seat_map
+field_name: field_seat_map
+entity_type: commerce_product
+bundle: ticket
+label: 'Seat map'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      seat_map: seat_map
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,4 @@
+services:
+  cact_order_print.aes_order_item:
+    class: Drupal\cact_order_item_print\AesOrderItem
+    arguments: ['@encryption', '@entity_type.manager']

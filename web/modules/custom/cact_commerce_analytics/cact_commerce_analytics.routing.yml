@@ -1,0 +1,7 @@
+cact_commerce_analytics.track_product_click:
+  path: 'commerce_analytics/click'
+  defaults:
+    _controller: '\Drupal\cact_commerce_analytics\Controller\EventsController::trackProductClickEvent'
+  requirements:
+    _access: 'TRUE'
+  methods: [POST]

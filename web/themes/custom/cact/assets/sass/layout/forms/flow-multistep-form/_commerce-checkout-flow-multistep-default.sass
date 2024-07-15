@@ -1,0 +1,491 @@
+// General style.
+.commerce-checkout-flow-multistep-default
+  .address-container-inline
+    display: flex
+    flex-flow: row wrap
+    width: 100%
+
+  .field--name-field-first-name,
+  .field--name-field-second-name
+    width: 100%
+    display: inline-block
+    +breakpoint($medium)
+      width: 48%
+
+    label
+      left: 8%
+
+
+  .field--name-field-first-name
+    +breakpoint($medium)
+      float: left
+
+  .field--name-field-second-name
+    +breakpoint($medium)
+      float: right
+
+  .form-type-email
+    display: inline-block
+    width: 100%
+
+  .field--name-field-country
+    width: 100%
+    display: inline-block
+    +breakpoint($medium)
+      float: left
+
+  .form-item
+    &-payment-information-billing-information-address-0-address-given-name,
+      width: 100%
+      +breakpoint($medium)
+        margin-right: 10px !important
+        width: 48%
+
+      label
+        left: 8%
+
+    &-payment-information-billing-information-address-0-address-family-name
+      width: 100%
+      +breakpoint($medium)
+        width: 50%
+
+      label
+        left: 8%
+
+    &-payment-information-billing-information-address-0-address-postal-code
+      margin-right: 10px !important
+      width: 32%
+
+      label
+        left: 15%
+
+    &-order-fieldscheckout-field-first-name-0-value
+      margin: 20px 0 0 0 !important
+
+    &-order-fieldscheckout-field-second-name-0-value
+      margin: 20px 0 0 0 !important
+
+    &-order-fieldscheckout-field-phone-0-value,
+    &-order-fieldscheckout-field-country-0-value
+      margin: 6px 0 0 0 !important
+      label
+        margin-bottom: 0
+
+    &-contact-information-email-confirm
+      margin: 20px 10px 20px 0 !important
+
+    &-payment-information-billing-information-address-0-address-address-line1
+      margin: 40px 10px 20px 0 !important
+
+    &-payment-information-billing-information-address-0-address-locality
+      margin-right: 10px !important
+      width: 32%
+
+      label
+        left: 12%
+
+    &-payment-information-billing-information-address-0-address-administrative-area
+      position: relative
+      width: 100%
+      +breakpoint($large)
+        width: 32%
+
+      label
+        position: absolute
+        top: -28px
+
+      select
+        padding: 0.78571rem 1.5rem !important
+
+    &-payment-information-billing-information-address-0-address-organization, &-payment-information-billing-information-address-0-address-address-line1
+      label
+        left: 3%
+
+    &-payment-information-billing-information-field-phone-0-value
+      margin: 0 10px 20px 0 !important
+
+    &-sidebar-coupon-redemption-form-code
+      label
+        left: 6%
+
+    &-payment-information-billing-information-select-address
+      margin: 1.14286rem 0 !important
+
+  .js-form
+    &-type-textfield,
+    &-type-entity-autocomplete,
+    &-type-email,
+    &-type-password,
+    &-type-number
+
+      label
+        top: 68% !important
+
+        &.freeze
+          left: 0
+          top: -6px !important
+
+    &-type-email
+      label
+        left: 3%
+
+    &-type-textarea
+      margin: calc-rem(28px) 0
+      label
+        &.freeze
+          left: 0 !important
+          top: calc-rem(-28px) !important
+
+  .js-form
+    &-type-textfield
+      label
+        top: 50% !important
+
+        &.freeze
+          left: 0
+          top: -14px !important
+
+  .js-form
+    &-type-phone-international
+      input
+        padding-left: 52px !important
+
+
+  #edit-review-order-fieldscheckout
+    span
+      &:not(.fieldset-legend)
+        background: rgb(249, 249, 249)
+        border-radius: 4px
+        border: 1px solid #DDDDDD
+        color: rgb(115, 115, 115)
+        line-height: 48px
+        padding: 10px 10px 10px 15px
+        display: block
+
+
+      &::before
+        font-weight: 500
+        margin-left: 15px
+
+      &.fullname
+        +icomoon-text($icon-user, 20px, rgb(115, 115, 115))
+        line-height: 24px
+        margin-bottom: calc-rem(8px)
+        padding-left: 44px
+        width: 100%
+
+      &.fulladdress
+        +icomoon-text($icon-location, 20px, rgb(115, 115, 115))
+        line-height: 24px
+        margin-bottom: calc-rem(8px)
+        padding-left: 44px
+        width: 100%
+
+  .field--name-address
+    p
+      span
+        background: rgb(249, 249, 249)
+        border-radius: 4px
+        border: 1px solid #DDDDDD
+        color: rgb(115, 115, 115)
+        line-height: 48px
+        padding: 10px 10px 10px 15px
+
+        &::before
+          font-weight: 500
+          margin-left: 15px
+
+        &.fullname
+          +icomoon-text($icon-user, 20px, rgb(115, 115, 115))
+          line-height: 24px
+          margin-bottom: calc-rem(8px)
+          padding-left: 44px
+          width: 100%
+
+        &.organization-review
+          +icomoon-text($icon-briefcase, 20px, rgb(115, 115, 115))
+          line-height: 24px
+          margin-bottom: calc-rem(8px)
+          padding-left: 44px
+          width: 100%
+
+        &.fulladdress
+          +icomoon-text($icon-location, 20px, rgb(115, 115, 115))
+          line-height: 24px
+          margin-bottom: calc-rem(8px)
+          padding-left: 44px
+          width: 100%
+
+  .field--name-field-phone
+    input
+      background: rgb(249, 249, 249)
+      border-radius: 4px
+      border: 1px solid #DDDDDD
+
+    a
+      +icomoon-text($icon-phone, 20px, rgb(115, 115, 115))
+      color: rgb(115, 115, 115)
+      font-weight: 500
+      line-height: 24px
+      padding-left: 30px
+      width: 100%
+
+      &::before
+        font-weight: 400
+
+  .form-composite
+    margin: 5px 10px 20px 0 !important
+    max-width: 100% !important
+
+    legend
+      margin-bottom: 0 !important
+
+    .fieldset-wrapper
+      border: none
+      box-shadow: none !important
+      padding: 0 !important
+
+      .form-item
+        background: #F9F9F9
+        border: 1px solid #DDDDDD
+        border-radius: 4px
+        margin: 8px 0 !important
+        padding: 10px 10px 5px 15px
+
+        label
+          color: $black
+
+          &::before
+            background-repeat: no-repeat
+
+  #edit-sidebar-coupon-redemption-form
+    display: grid
+
+  #edit-sidebar-coupon-redemption-form-apply
+    margin-left: auto
+
+  .checkout-order-summary
+    font-weight: 500
+
+
+  .address-book-edit-button
+    float: right
+
+  #edit-review-payment-information
+    .profile--type--customer
+      margin-top: 10px
+
+  .form-item-payment-information-billing-information-address-0-address-address-line1
+    margin-right: 0 !important
+
+
+// Specific when it's complete step.
+form[action*='complete']
+  .layout-checkout-form
+    +breakpoint($medium)
+      align-items: flex-start
+      display: flex
+
+    .checkout-pane
+      &.checkout-pane-completion-message
+        +breakpoint($medium)
+          margin-right: calc-rem(38px)
+          width: 60%
+
+        p
+          color: $balck-01
+          font-weight: 400
+
+        h4
+          +icomoon-text($icon-arrow-down, 8px, $turquoise, right, center, 8px, transparent, 0, after)
+          display: inline-block
+          font-size: calc-rem(24px)
+          font-weight: 400
+          letter-spacing: .2px
+          line-height: 30px
+
+          &::after
+            padding-right: calc-rem(16px)
+            transform: translateY(-50%) rotate(180deg)
+
+          &:hover
+            cursor: pointer
+
+          &.arrow-up
+            &::after
+              padding-left: calc-rem(16px)
+              padding-right: 0
+              transform: translateY(-50%) rotate(0deg)
+
+        .address
+          background-color: $light-grey
+          border-radius: 4px
+          padding: calc-rem(40px) calc-rem(25px)
+
+          .given-name
+            +icomoon-text($icon-user, 20px, #959595)
+            display: inline-block
+            margin-bottom: calc-rem(24px)
+            padding-left: calc-rem(44px)
+
+          .family-name
+            display: inline-block
+            margin-bottom: calc-rem(24px)
+
+          .organization
+            +icomoon-text($icon-briefcase, 20px,  #959595)
+            display: inline-block
+            margin-bottom: calc-rem(24px)
+            padding-left: calc-rem(44px)
+
+          .address-line1
+            +icomoon-text($icon-home-outline, 20px, #959595)
+            display: block
+            padding-left: calc-rem(44px)
+
+          .postal-code
+            +icomoon-text($icon-mailbox-up-outline, 20px, #959595)
+            display: inline-block
+            margin-bottom: calc-rem(24px)
+            padding-left: calc-rem(44px)
+
+          .country
+            +icomoon-text($icon-location, 20px, #959595)
+            padding-left: calc-rem(44px)
+            display: block
+
+          .phone
+            +icomoon-text($icon-phone, 20px, #959595)
+            padding-left: calc-rem(44px)
+            margin-bottom: calc-rem(24px)
+
+          &.hidden-contact-data
+            display: none
+
+      &.checkout-pane-complete-order-summary
+        background: $white
+        border: 1px solid $white
+        border-radius: 10px
+        box-shadow: 0 4px 9px rgba($black, .07)
+        padding: calc-rem(40px) calc-rem(10px)
+        +breakpoint($medium)
+          width: 40%
+
+        table
+          tr
+            border-color: #F6F7F8
+
+            .field--name
+              &-product-id
+                margin-bottom: calc-rem(15px)
+
+                a
+                  color: $blue
+                  font-size: calc-rem(16px)
+                  font-weight: 400
+                  line-height: 24px
+
+              &-attribute-age
+                font-size: calc-rem(16px)
+                font-weight: 400
+                line-height: 24px
+                margin-bottom: calc-rem(15px)
+
+              &-price
+                font-size: calc-rem(13px)
+                font-weight: 400
+                line-height: 20px
+
+            &:hover
+              background-color: $white
+              cursor: auto
+
+      .checkout-complete
+        +breakpoint($medium)
+          padding-left: calc-rem(70px)
+
+form[action*='order_information'],
+form[action*='review']
+
+  .layout-region-checkout-main
+    width: 100%
+    +breakpoint($large)
+      width: 60%
+
+    .paypal-buttons-container
+      float: right
+    .link--previous
+      display: flex
+      padding-top: 10px
+      padding-right: 15px
+      justify-content: right
+
+  .layout-region-checkout-secondary
+    background: #FFFFFF
+    border: 1px solid #F1F1F1
+    box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.07)
+    border-radius: 10px
+    padding: 20px 20px 20px 40px
+    width: 100%
+    +breakpoint($large)
+      width: 40%
+
+    h3
+      +breakpoint($large)
+        margin-bottom: 34px
+        position: relative
+
+
+      &::before
+        +breakpoint($large)
+          background: #F6F7F8
+          border-radius: 0px
+          content: ""
+          height: 2px
+          width: 100%
+          position: absolute
+          top: 200%
+
+  .layout-region-checkout-footer
+    padding-right: 0
+    width: 100%
+    +breakpoint($large)
+      padding-right: 2rem
+      width: 60%
+
+  .checkout-pane
+    &.checkout-pane-order-summary
+      background: $white
+      padding: calc-rem(55px) calc-rem(10px)
+
+      table
+        tr
+          border-color: #F6F7F8
+
+          .field--name
+            &-product-id
+              margin-bottom: calc-rem(15px)
+
+              a
+                color: $blue
+                font-size: calc-rem(16px)
+                font-weight: 400
+                line-height: 24px
+
+            &-attribute-age
+              font-size: calc-rem(16px)
+              font-weight: 400
+              line-height: 24px
+              margin-bottom: calc-rem(15px)
+
+            &-price
+              font-size: calc-rem(13px)
+              font-weight: 400
+              line-height: 20px
+form
+  &.commerce-order-item-add-to-cart-form
+    #name-wrapper
+      label
+        position: unset
+        transform: none
+        margin-bottom: calc-rem(5px)

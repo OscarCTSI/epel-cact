@@ -1,0 +1,121 @@
+--- modules/order/src/OrderStorage.php
++++ modules/order/src/OrderStorage.php
+@@ -7,6 +7,7 @@ use Drupal\commerce_order\Entity\OrderInterface;
+ use Drupal\commerce_order\Event\OrderEvent;
+ use Drupal\commerce_order\Event\OrderEvents;
+ use Drupal\Core\Entity\EntityInterface;
++use Drupal\Core\Entity\EntityStorageException;
+ use Drupal\Core\Entity\EntityTypeInterface;
+ use Symfony\Component\DependencyInjection\ContainerInterface;
+ 
+@@ -29,12 +30,27 @@ class OrderStorage extends CommerceContentEntityStorage {
+    */
+   protected $skipRefresh = FALSE;
+ 
++  /**
++   * List of successfully locked orders.
++   *
++   * @var int[]
++   */
++  protected $updateLocks = [];
++
++  /***
++   * The lock backend.
++   *
++   * @var \Drupal\Core\Lock\LockBackendInterface
++   */
++  protected $lockBackend;
++
+   /**
+    * {@inheritdoc}
+    */
+   public static function createInstance(ContainerInterface $container, EntityTypeInterface $entity_type) {
+     $instance = parent::createInstance($container, $entity_type);
+     $instance->orderRefresh = $container->get('commerce_order.order_refresh');
++    $instance->lockBackend = $container->get('lock');
+     return $instance;
+   }
+ 
+@@ -76,6 +92,13 @@ class OrderStorage extends CommerceContentEntityStorage {
+    *   The order.
+    */
+   protected function doOrderPreSave(OrderInterface $order) {
++    if (!$order->isNew() && !isset($this->updateLocks[$order->id()]) && !$this->lockBackend->lockMayBeAvailable($this->getLockId($order->id()))) {
++      // This is updating an order that someone else has locked.
++      // @todo what to do here? Could acquire the lock and wait for it to be
++      //  but that will still result in overwriting data. Throw an exception?
++      //  Respect the optimistic locking setting?
++    }
++
+     // Ensure the order doesn't reference any removed order item by resetting
+     // the "order_items" field with order items that were successfully loaded
+     // from the database.
+@@ -122,4 +145,68 @@ class OrderStorage extends CommerceContentEntityStorage {
+     return parent::postLoad($entities);
+   }
+ 
++  /**
++   * {@inheritdoc}
++   */
++  public function save(EntityInterface $entity) {
++    try {
++      return parent::save($entity);
++    }
++    finally {
++      // Release the update lock if it was acquired for this entity.
++      if (isset($this->updateLocks[$entity->id()])) {
++        $this->lockBackend->release($this->getLockId($entity->id()));
++        unset($this->updateLocks[$entity->id()]);
++      }
++    }
++  }
++
++  /**
++   * Loads the unchanged entity, bypassing the static cache, and locks it.
++   *
++   * This implements explicit, pessimistic locking as opposed to the optimistic
++   * locking that will log or prevent a conflicting save. Use this method for
++   * use cases that load an order with the explicit purpose of immediately
++   * changing and saving it again. Especially if these cases may run in parallel
++   * to others, for example notification/return callbacks and termination
++   * events.
++   *
++   * @param int $order_id
++   *   The order ID.
++   *
++   * @return \Drupal\commerce_order\Entity\OrderInterface|null
++   *   The loaded order or NULL if the entity cannot be loaded.
++   *
++   * @throws \Drupal\Core\Entity\EntityStorageException
++   *   Thrown if the lock could not be acquired.
++   */
++  public function loadForUpdate(int $order_id): ?OrderInterface {
++    $lock_id = $this->getLockId($order_id);
++    if ($this->lockBackend->acquire($lock_id)) {
++      $this->updateLocks[$order_id] = TRUE;
++      return $this->loadUnchanged($order_id);
++    }
++    else {
++      // Failed to acquire initial lock, wait for it to free up.
++      if (!$this->lockBackend->wait($lock_id) && $this->lockBackend->acquire($lock_id)) {
++        $this->updateLocks[$order_id] = TRUE;
++        return $this->loadUnchanged($order_id);
++      }
++      throw new EntityStorageException('Failed to acquire lock');
++    }
++  }
++
++  /**
++   * Gets the lock ID for the given order ID.
++   *
++   * @param int $order_id
++   *   The order ID.
++   *
++   * @return string
++   *   The lock ID.
++   */
++  protected function getLockId(int $order_id): string {
++    return 'commerce_order_update:' . $order_id;
++  }
++
+ }

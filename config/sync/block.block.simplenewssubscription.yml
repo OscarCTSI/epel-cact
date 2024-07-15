@@ -1,0 +1,30 @@
+uuid: 2f540681-7ddc-47c0-9e3c-393479f5558e
+langcode: es
+status: true
+dependencies:
+  module:
+    - block_class
+    - simplenews
+  theme:
+    - cact
+third_party_settings:
+  block_class:
+    classes: null
+id: simplenewssubscription
+theme: cact
+region: footer
+weight: -11
+provider: null
+plugin: simplenews_subscription_block
+settings:
+  id: simplenews_subscription_block
+  label: Newsletter
+  label_display: visible
+  provider: simplenews
+  newsletters: {  }
+  default_newsletters:
+    default: default
+  message: ''
+  show_manage: false
+  unique_id: simple_newsletter
+visibility: {  }

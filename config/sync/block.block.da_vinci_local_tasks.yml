@@ -1,0 +1,27 @@
+uuid: 90549755-072d-4534-a657-e5718830b4ca
+langcode: es
+status: true
+dependencies:
+  module:
+    - block_class
+  theme:
+    - da_vinci
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: Lr87YaPCUexV4tCe6QVWesc1m3luzgrye4aiJ3FYg6s
+id: da_vinci_local_tasks
+theme: da_vinci
+region: content
+weight: -7
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

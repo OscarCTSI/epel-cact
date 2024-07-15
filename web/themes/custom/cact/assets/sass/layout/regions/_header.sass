@@ -1,0 +1,108 @@
+// Header.
+$header-background-color: $white
+
+.layout-container
+  > header
+    width: 100%
+    z-index: 10
+
+    .menu-links-mobile
+      background-color: #F8F8F8
+      display: none
+      position: absolute
+      width: 100%
+      z-index: 1
+      +breakpoint($large)
+        display: none
+
+      &.open
+        display: block
+        min-height: 100vh
+        +breakpoint($large)
+          display: none
+
+
+    .wrapper-header
+      background-color: $header-background-color
+      padding: calc-rem(9.5px) calc-rem(15.5px)
+      +breakpoint($large)
+        padding: calc-rem(28px) $container-padding
+
+    .site-header
+      +container
+      align-items: center
+      display: flex
+      flex-direction: row
+      flex-wrap: wrap
+
+      .site-header-desktop,
+      .site-header-mobile
+        flex-grow: 1
+
+      .site-header-mobile
+        align-items: center
+        display: flex
+        +breakpoint($large)
+          display: none
+
+      .site-header-desktop
+        display: none
+        +breakpoint($large)
+          align-content: center
+          align-items: center
+          display: flex
+          padding: 24px 0 0 0
+
+    .region-header
+      align-items: center
+      display: flex
+      flex-grow: 1
+      justify-content: flex-start
+
+      > *
+        &:not(:first-child)
+          margin-left: 1rem
+
+      .block-system-branding-block
+        margin-right: calc-rem(173px)
+
+        .site-logo
+          max-width: calc-rem(39px)
+          +breakpoint($large)
+            max-width: calc-rem(119px)
+
+      .navigation
+        &.menu--main
+          margin-right: auto
+
+      .menu--main
+        +breakpoint(0 $bellow-large)
+          display: none
+
+.block-scroll
+  overflow: hidden
+
+.site-logo
+  max-width: calc-rem(39px)
+  +breakpoint($large)
+    max-width: calc-rem(119px)
+
+.layout-container
+  header
+    position: fixed
+    transform: translateY(0)
+    transition: all .3s ease-in-out
+
+  &.header-hide-scroll
+    > header
+      transform: translateY(calc-rem(-94px))
+      +breakpoint($large)
+        transform: translateY(calc-rem(-146px))
+
+    .wrapper-header
+      padding: 0
+
+  &.menu-hide-scroll
+    > header
+      box-shadow: 0px 1px 6px 0px #0000004D
+      transform: translateY(0)

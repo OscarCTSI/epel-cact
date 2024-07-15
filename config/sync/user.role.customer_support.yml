@@ -1,0 +1,25 @@
+uuid: 100dc4cb-0cbc-490e-9316-e72bac94cedf
+langcode: es
+status: true
+dependencies:
+  module:
+    - commerce
+    - commerce_order
+    - system
+    - toolbar
+id: customer_support
+label: 'Atención al cliente'
+weight: 4
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access commerce administration pages'
+  - 'access commerce_order overview'
+  - 'access toolbar'
+  - 'administer commerce_order'
+  - 'administer users'
+  - 'manage ticket commerce_order_item'
+  - 'update default commerce_order'
+  - 'view commerce_order'
+  - 'view default commerce_order'
+  - 'view the administration theme'

@@ -1,0 +1,106 @@
+_core:
+  default_config_hash: CXhei_vpaZk-3f_Mj2cH0YmpK-ZpKHoSzVA3yZrDq0g
+langcode: es
+definitions:
+  contact__site_page:
+    menu_name: footer
+    parent: ''
+    weight: -49
+    expanded: false
+    enabled: false
+  standard__front_page:
+    menu_name: main
+    parent: ''
+    weight: -50
+    expanded: false
+    enabled: false
+  entity__commerce_order__collection:
+    menu_name: admin
+    parent: commerce.admin_commerce
+    weight: 2
+    expanded: false
+    enabled: true
+  entity__commerce_product_attribute__collection:
+    menu_name: admin
+    parent: commerce.admin_commerce
+    weight: 3
+    expanded: false
+    enabled: true
+  entity__commerce_product__collection:
+    menu_name: admin
+    parent: commerce.admin_commerce
+    weight: 4
+    expanded: false
+    enabled: true
+  entity__commerce_promotion__collection:
+    menu_name: admin
+    parent: commerce.admin_commerce
+    weight: 5
+    expanded: false
+    enabled: true
+  commerce__configuration:
+    menu_name: admin
+    parent: commerce.admin_commerce
+    weight: 6
+    expanded: false
+    enabled: true
+  filter__tips_all:
+    menu_name: tools
+    parent: ''
+    weight: 0
+    expanded: false
+    enabled: true
+  system__admin_content:
+    menu_name: admin
+    parent: system.admin
+    weight: 1
+    expanded: false
+    enabled: true
+  commerce__admin_commerce:
+    menu_name: admin
+    parent: system.admin
+    weight: 2
+    expanded: false
+    enabled: true
+  system__admin_structure:
+    menu_name: admin
+    parent: system.admin
+    weight: 3
+    expanded: false
+    enabled: true
+  system__themes_page:
+    menu_name: admin
+    parent: system.admin
+    weight: 4
+    expanded: false
+    enabled: true
+  system__modules_list:
+    menu_name: admin
+    parent: system.admin
+    weight: 5
+    expanded: false
+    enabled: true
+  system__admin_config:
+    menu_name: admin
+    parent: system.admin
+    weight: 6
+    expanded: false
+    enabled: true
+  entity__user__collection:
+    menu_name: admin
+    parent: system.admin
+    weight: 7
+    expanded: false
+    enabled: true
+  system__admin_reports:
+    menu_name: admin
+    parent: system.admin
+    weight: 8
+    expanded: false
+    enabled: true
+  'commerce_reports:sales_report':
+    menu_name: admin
+    parent: commerce_reports.overview
+    weight: 0
+    expanded: false
+    enabled: false

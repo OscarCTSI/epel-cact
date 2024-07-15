@@ -1,0 +1,9 @@
+langcode: en
+status: true
+id: cookie_policy
+label: 'Cookie Policy'
+group: cookie_policy
+info:
+  format: 'full_html'
+  value: ''
+consent: true

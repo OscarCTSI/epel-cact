@@ -1,0 +1,18 @@
+uuid: 0b820730-7e75-45f6-ab6d-9ce57e38a6ea
+langcode: es
+status: true
+dependencies: {  }
+id: smtp
+label: SMTP
+plugin: smtp
+configuration:
+  user: ventaonline@centrosturisticos.com
+  pass: Kcfxwtemupllkitr
+  host: smtp.gmail.com
+  port: 587
+  query:
+    verify_peer: true
+    local_domain: ''
+    restart_threshold: null
+    restart_threshold_sleep: null
+    ping_threshold: null

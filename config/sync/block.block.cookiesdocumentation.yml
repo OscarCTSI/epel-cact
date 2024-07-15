@@ -1,0 +1,24 @@
+uuid: 8831cd9c-5a3b-4835-a156-662837981698
+langcode: en
+status: false
+dependencies:
+  module:
+    - block_class
+    - cookies
+  theme:
+    - da_vinci
+third_party_settings:
+  block_class:
+    classes: null
+id: cookiesdocumentation
+theme: da_vinci
+region: footer
+weight: -7
+provider: null
+plugin: cookies_docs_block
+settings:
+  id: cookies_docs_block
+  label: 'Cookies Documentation'
+  label_display: '0'
+  provider: cookies
+visibility: {  }

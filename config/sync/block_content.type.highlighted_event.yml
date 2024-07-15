@@ -1,0 +1,8 @@
+uuid: 0547ad93-6260-4bee-8350-08e9f1accd05
+langcode: en
+status: true
+dependencies: {  }
+id: highlighted_event
+label: 'Highlighted event'
+revision: 0
+description: ''

@@ -1,0 +1,20 @@
+uuid: 3a4e6953-118b-4448-9847-7317af663da2
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.seat_map
+  module:
+    - path
+id: node.seat_map.path
+field_name: path
+entity_type: node
+bundle: seat_map
+label: 'URL alias'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

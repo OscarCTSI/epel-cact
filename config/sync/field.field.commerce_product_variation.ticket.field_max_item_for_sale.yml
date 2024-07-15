@@ -1,0 +1,25 @@
+uuid: 1bc9d8e2-b3be-4216-aed0-4bd3213bd301
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.ticket
+    - field.storage.commerce_product_variation.field_max_item_for_sale
+id: commerce_product_variation.ticket.field_max_item_for_sale
+field_name: field_max_item_for_sale
+entity_type: commerce_product_variation
+bundle: ticket
+label: 'Max item for sale'
+description: '-1 maximum amount in openbravo'
+required: false
+translatable: false
+default_value:
+  -
+    value: -1
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

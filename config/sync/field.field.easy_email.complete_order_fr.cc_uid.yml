@@ -1,0 +1,21 @@
+uuid: 41829938-0657-4188-95f8-1888596fd4ac
+langcode: en
+status: true
+dependencies:
+  config:
+    - easy_email.easy_email_type.complete_order_fr
+    - field.storage.easy_email.cc_uid
+id: easy_email.complete_order_fr.cc_uid
+field_name: cc_uid
+entity_type: easy_email
+bundle: complete_order_fr
+label: CC
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: null
+settings:
+  handler: 'default:user'
+  handler_settings: {  }
+field_type: entity_reference

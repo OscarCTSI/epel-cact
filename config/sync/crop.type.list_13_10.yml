@@ -1,0 +1,12 @@
+uuid: 6a9271e6-53f5-4729-bd3c-306b6f819a26
+langcode: en
+status: true
+dependencies: {  }
+label: 'List 13:10'
+id: list_13_10
+description: 'Product list'
+aspect_ratio: '13:10'
+soft_limit_width: 480
+soft_limit_height: 369
+hard_limit_width: null
+hard_limit_height: null

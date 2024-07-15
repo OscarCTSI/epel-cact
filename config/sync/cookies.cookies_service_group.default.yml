@@ -1,0 +1,11 @@
+uuid: d4c9c5db-c630-4bd1-aec9-44c706457cd3
+langcode: es
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: MWjA0PCPcQbODMR7UjJxq4hK8JzyYy4zZeQmmQVjC3M
+id: default
+label: Default
+weight: 2
+title: 'Strictly Necessary Cookies'
+details: 'Strictly Necessary Cookie should be enabled at all times so that we can save your preferences for cookie settings.'

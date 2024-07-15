@@ -1,0 +1,22 @@
+uuid: 93f50645-91a7-4574-aca0-1ace35d65312
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.ticket
+id: commerce_product_variation.ticket.status
+field_name: status
+entity_type: commerce_product_variation
+bundle: ticket
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

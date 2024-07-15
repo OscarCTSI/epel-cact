@@ -1,0 +1,39 @@
+# Front path.
+front:
+  js:
+    js/home.js: {}
+  css:
+    theme:
+      css/home.css: {}
+
+# User login.
+user-login:
+  css:
+    theme:
+      css/user-login.css: {}
+
+# User register.
+user-register:
+  css:
+    theme:
+      css/user-register.css: {}
+
+# User password.
+user-password:
+  css:
+    theme:
+      css/user-password.css: {}
+
+# Control panel.
+  js:
+    js/collapse-menu.js: {}
+
+# Examples.
+# Dynamic Path (Need attach)
+# Add {{ attach_library('mytheme/name_library') }} in a specific Template.
+floating-menu:
+  js:
+    js/example.js: {}
+  css:
+    theme:
+      css/example.css: {}

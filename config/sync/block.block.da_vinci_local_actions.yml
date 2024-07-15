@@ -1,0 +1,25 @@
+uuid: d93afd9e-423e-440c-817f-2bcf0e45cbd1
+langcode: es
+status: true
+dependencies:
+  module:
+    - block_class
+  theme:
+    - da_vinci
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: w3NPCQHIa3lSnU4LKC7lsuI-hGBXeBzF-jpRDuuN2nc
+id: da_vinci_local_actions
+theme: da_vinci
+region: content
+weight: -5
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

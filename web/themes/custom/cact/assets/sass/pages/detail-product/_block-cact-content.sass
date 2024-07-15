@@ -1,0 +1,378 @@
+.path-product
+  .view-product-image-header
+    img
+      width: 100%
+
+  #block-cact-content
+    article
+      display: flex
+      flex-flow: column
+      width: 100%
+      +breakpoint($large)
+        flex-flow: row wrap
+
+    .product-container-left
+      width: 100%
+      +breakpoint($large)
+        margin-right: 10px
+        width: 48%
+
+      .product-container-left-header
+        display: flex
+        flex-flow: row wrap
+        margin-bottom: 38px
+
+        .field__item
+          margin-bottom: calc-rem(8px)
+          width: 48%
+          +breakpoint($medium)
+            width: 32%
+          +breakpoint($large)
+            width: 18%
+
+          &:not(:nth-child(2n))
+            margin-right: 2%
+
+          &:nth-child(2n)
+            +breakpoint($medium)
+              margin-right: 2%
+
+          &:nth-child(3n)
+            +breakpoint($medium)
+              margin-right: 0
+            +breakpoint($large)
+              margin-right: 2%
+
+          &:last-child
+            margin-right: 0
+
+    .field
+      &__item
+        a
+          color: $black
+          font-size: 13px
+          font-weight: 500
+
+      &--type-telephone
+        +icomoon-text($icon-phone, 18px, #468998)
+        border: 2px solid #DCDCDC
+        border-radius: 5px
+        padding: 20px 7px 3px 7px
+
+        a
+          color: #737373
+          line-height: 14px
+
+        &::before
+          top: 0
+          position: relative
+
+      &--type-entity-reference
+        margin-bottom: 14px
+
+      &--name-field-website
+        +icomoon-text($icon-navigation, 18px, #468998, left)
+        border: 2px solid #DCDCDC
+        border-radius: 5px
+        padding: 20px 7px 3px 7px
+
+        a
+          color: #737373
+          line-height: 14px
+
+        &::before
+          top: 0
+          position: relative
+
+      &--name-field-date
+        +icomoon-text($icon-calendar, 18px, #468998, left)
+        border: 2px solid #DCDCDC
+        border-radius: 5px
+        padding: 20px 7px 3px 7px
+
+        .datetime
+          color: #737373
+          font-size: 13px
+          line-height: 14px
+
+        &::before
+          top: 0
+          position: relative
+
+      &--name-field-place
+        +icomoon-text($icon-location, 18px, #468998, left)
+        border: 2px solid #DCDCDC
+        border-radius: 5px
+        padding: 20px 7px 3px 7px
+        color: #737373
+        font-size: 13px
+        line-height: 14px
+
+        &::before
+          top: 0
+          position: relative
+
+      &--name-field-time
+        +icomoon-text($icon-clock-time, 18px, #468998, left)
+        border: 2px solid #DCDCDC
+        border-radius: 5px
+        padding: 20px 7px 3px 7px
+        color: #737373
+        font-size: 13px
+        line-height: 14px
+
+        &::before
+          top: 0
+          position: relative
+
+      &--name-field-title-header
+        h2
+          font-size: 32px
+          line-height: 34px
+          margin-bottom: 24px
+          +breakpoint($large)
+            font-size: 50px
+            line-height: 55px
+            margin-bottom: 12px
+
+      &--name-body
+        p,
+        li
+          font-family: $montserrat
+          font-size: 14px
+          line-height: 18px
+          +breakpoint($large)
+            font-size: 16px
+            line-height: 24px
+
+        h2
+          font-size: 32px
+          line-height: 34px
+          margin-bottom: 24px
+          +breakpoint($large)
+            font-size: 50px
+            line-height: 55px
+            margin-bottom: 12px
+
+    .product-container-right
+      border: 1px solid #DCDCDC
+      box-shadow: 2px 2px 6px 0px #00000012
+      margin: 0 auto
+      height: fit-content
+      padding: calc-rem(16px) calc-rem(16px) calc-rem(20px) calc-rem(16px)
+      max-width: 503px
+      width: 100%
+      margin-top: calc-rem(30px)
+      +breakpoint($x-small)
+        padding: calc-rem(20px) calc-rem(20px) calc-rem(40px) calc-rem(20px)
+      +breakpoint($large)
+        margin-right: 0
+        margin-left: auto
+        margin-top: 0
+
+      h3
+        font-size: 24px
+        font-weight: 500
+        line-height: 36px
+        max-width: 503px
+        margin: auto
+        +breakpoint($large)
+          margin-left: auto
+          margin-right: 0
+
+      .field--name-field-comments-to-add-to-cart
+        font-family: 'Montserrat'
+        font-size: 13px
+        font-weight: 400
+        line-height: 20px
+        text-align: center
+        +breakpoint($large)
+          text-align: left
+
+      .calendar-container
+        margin-top: calc-rem(24px)
+
+        .header-table
+          align-items: center
+          background-color: $primary-color
+          display: flex
+          justify-content: center
+          padding: calc-rem(24px) 0
+
+          #prev-month,
+          #next-month
+            background-color: transparent
+            border: 0
+            box-shadow: none
+            color: transparent
+            font-size: 0
+
+          #prev-month
+            +icomoon($icon-arrow-left, 14px, $white)
+            margin-right: calc-rem(16px)
+
+            &:disabled
+              display: none
+
+          #next-month
+            +icomoon($icon-arrow-right, 14px, $white)
+            margin-left: calc-rem(16px)
+
+            &:disabled
+              display: none
+
+          .header-name-month
+            align-content: center
+            display: flex
+
+            .month,
+            .year
+              color: $white
+              font-size: calc-rem(14px)
+              font-weight: 500
+              line-height: 14px
+              +breakpoint($x-small)
+                font-size: calc-rem(16px)
+                line-height: 16px
+
+            .month
+              margin-right: .5rem
+
+        .calendar
+          display: flex
+          flex-flow: row wrap
+
+          .day-of-week,
+          .empty-cell
+            width: calc(100% / 7)
+
+          .day-of-week
+            padding: .5rem 0
+            text-align: center
+
+          .day
+            align-items: center
+            box-sizing: border-box
+            display: flex
+            height: calc-rem(48px)
+            justify-content: center
+            width: calc(100% / 7)
+
+            span
+              align-items: center
+              display: flex
+              height: calc-rem(28px)
+              justify-content: center
+              width: calc-rem(28px)
+              font-size: calc-rem(14px)
+              line-height: 14px
+              +breakpoint($x-small)
+                font-size: calc-rem(16px)
+                line-height: 16px
+                height: calc-rem(40px)
+                width: calc-rem(40px)
+
+            &.current-day
+              position: relative
+
+              span
+                align-items: center
+                background-color: $primary-color
+                border-radius: 50%
+                color: $white
+
+            &:not(.has-events):not(.current-day)
+              color: $dark-grey
+              pointer-events: none
+
+            &.has-events
+              &:hover
+                cursor: pointer
+
+                &:not(.current-day):not(.selected)
+                  span
+                    background-color: $lighter-grey
+                    border-radius: 50%
+
+            &.selected
+              span
+                background-color: rgba($primary-color, .7)
+                border-radius: 50%
+                color: $white
+
+        .wrapper-hours-available
+          align-items: center
+          display: flex
+          flex-flow: row wrap
+          justify-content: flex-start
+          padding: 1rem
+
+          .hours-total
+            //margin: .5rem
+            border: 1px solid $dark-grey
+            border-radius: 4px
+            margin-bottom: .5rem
+            margin-right: .5rem
+            padding: .5rem
+            width: 30%
+            +breakpoint($medium)
+              width: 23.7%
+
+            &:nth-child(3n)
+              margin-right: 0
+              +breakpoint($medium)
+                margin-right: .5rem
+
+            &:nth-child(4n)
+              +breakpoint($medium)
+                margin-right: 0
+
+            &.selected
+              background-color: $primary-color
+              border-color: $primary-color
+
+              .hours,
+              .qtyAvailable
+                color: $white
+
+                &::before
+                  background-image: url('../images/user-line-white.svg')
+
+            .hours,
+            .qtyAvailable
+              color: $black
+              display: flex
+              font-size: calc-rem(14px)
+              justify-content: center
+
+            .qtyAvailable
+              align-items: center
+              display: flex
+
+              &::before
+                background-image: url('../images/user-line.svg')
+                background-position: center
+                background-size: contain
+                content: ''
+                height: calc-rem(14px)
+                width: calc-rem(14px)
+
+            &:hover
+              background-color: $primary-color
+              border-color: $primary-color
+              cursor: pointer
+
+              .hours,
+              .qtyAvailable
+                color: $white
+
+                &::before
+                  background-image: url('../images/user-line-white.svg')
+
+      // Form.
+      .field--name-variations
+        &.type3
+          display: none
+
+          &.visibility
+            display: block

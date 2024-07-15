@@ -1,0 +1,23 @@
+uuid: 8e54a435-0633-498f-8173-0463ac824cb6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_accept_conditions
+    - profile.type.customer
+id: profile.customer.field_accept_conditions
+field_name: field_accept_conditions
+entity_type: profile
+bundle: customer
+label: 'I accept the conditions of use and the privacy policy'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

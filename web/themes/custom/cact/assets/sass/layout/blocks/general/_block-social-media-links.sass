@@ -1,0 +1,42 @@
+.block-social-media-links
+  margin-bottom: calc-rem(34px)
+  +breakpoint($large)
+    margin-bottom: 0
+
+  h2
+    color: $white
+    font-family: $montserrat
+    font-size: calc-rem(28px)
+    font-weight: 500
+    margin-bottom: calc-rem(30px)
+    position: relative
+    z-index: 1
+    +breakpoint($large)
+      margin-bottom: calc-rem(50px)
+
+  .social-media-links--platforms
+    li
+      .social-media-link-icon
+        &--linkedin
+          +icomoon($icon-linkedin, 30px, $white)
+
+        &--twitter
+          +icomoon($icon-twitter, 30px, $white)
+
+        &--facebook
+          +icomoon($icon-facebook, 30px, $white)
+
+        &--pinterest
+          +icomoon($icon-pinterest, 30px, $white)
+
+        &--youtube_channel
+          +icomoon($icon-youtube, 30px, $white)
+
+        &--email
+          +icomoon($icon-email, 28px, $white)
+
+        &--instagram
+          +icomoon($icon-instagram, 30px, $white)
+
+      &:not(:last-child)
+        margin-right: calc-rem(20px)
