@@ -1,0 +1,5 @@
+services:
+  cact_workflows.cact_payment_event_subscriber:
+    class: Drupal\cact_workflows\EventSubscriber\CactPaymentOrderEventSubscriber
+    tags:
+      - { name: event_subscriber }

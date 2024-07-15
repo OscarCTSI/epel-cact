@@ -1,0 +1,18 @@
+uuid: aa4ef38d-31cb-410f-99d2-14587beead0b
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.seat_map
+id: node.seat_map.changed
+field_name: changed
+entity_type: node
+bundle: seat_map
+label: Changed
+description: 'The time that the node was last edited.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: changed

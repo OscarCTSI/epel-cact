@@ -1,0 +1,25 @@
+uuid: 243599d7-5375-4df4-ade6-13fd70eff786
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - commerce_cart
+  theme:
+    - cact
+third_party_settings:
+  block_class:
+    classes: null
+id: cart
+theme: cact
+region: header
+weight: -6
+provider: null
+plugin: commerce_cart
+settings:
+  id: commerce_cart
+  label: ' Shopping cart'
+  label_display: visible
+  provider: commerce_cart
+  dropdown: true
+visibility: {  }

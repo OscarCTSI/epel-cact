@@ -1,0 +1,215 @@
+.view-commerce-cart-form
+  .view-content
+    .views-table
+      thead
+        display: none
+
+      tbody
+        tr
+          background: $white
+          border: 1px solid #E8E8E8
+          position: relative
+
+          td
+            &.views-field-purchased-entity
+              > div
+                align-items: center
+                display: flex
+
+                .field--name-field-image
+                  min-width: calc-rem(123px)
+
+                .field--name-title
+                  flex-grow: 1
+                  font-family: $montserrat
+                  font-size: calc-rem(16px)
+                  font-weight: 400
+                  letter-spacing: .2px
+                  line-height: 30px
+                  margin-left: calc-rem(20px)
+                  min-width: calc-rem(180px)
+                  +breakpoint($large)
+                    font-size: calc-rem(20px)
+                    margin-left: calc-rem(100px)
+
+              .field--name-attribute-age
+                background-color: $primary-color
+                border-radius: 5px
+                padding: calc-rem(8px)
+                position: absolute
+                right: calc-rem(10px)
+                top: calc-rem(10px)
+
+                .field--type-string
+                  color: $white
+
+            &.views-field-remove-button
+              .form-submit
+                background-color: transparent
+                background-image: url('../assets/images/trash-blue.png')
+                background-position: center
+                background-repeat: no-repeat
+                border: 0
+                color: transparent
+                height: 20px
+                width: 20px
+
+    .views-form
+      div[data-drupal-selector="order-total-summary"]
+        .order-total-line
+          &__subtotal
+            display: none
+
+          &__total
+            margin-top: calc-rem(20px)
+            padding: 0
+
+            span
+              font-family: $montserrat
+              font-size: calc-rem(24px)
+              font-weight: 400
+              letter-spacing: .2px
+              line-height: 30px
+
+              &.order-total-line-label
+                margin-right: .5rem
+
+              &.order-total-line-value
+                width: auto
+
+      #edit-checkout
+        display: block
+        margin-left: auto
+        margin-top: calc-rem(74px)
+
+      #paypal-buttons-container
+        display: none
+
+    .views-row
+      background: $white
+      border: 1px solid #E8E8E8
+      padding: 3rem 1rem 1rem
+      position: relative
+      +breakpoint($x-small)
+        padding: 1rem
+      +breakpoint($large)
+        align-items: center
+        display: flex
+        flex-flow: row wrap
+      +breakpoint($large)
+        padding-right: calc-rem(38px)
+
+      .wrapper-image-title
+        margin-bottom: calc-rem(16px)
+        +breakpoint($large)
+          margin-bottom: 0
+          max-width: calc-rem(583px)
+          width: 100%
+
+        .field--name-product-id
+          article
+            align-items: flex-start
+            display: flex
+            +breakpoint($x-small)
+              align-items: center
+
+            .field--name-field-image
+              margin-right: 2rem
+              max-width: calc-rem(123px)
+              width: 100%
+
+            .wrapper-title-age
+              .field--name-title,
+              .field--name-name
+                color: $black
+                flex-grow: 1
+                font-family: $montserrat
+                font-size: 1rem
+                font-weight: 400
+                letter-spacing: .2px
+                line-height: 30px
+                +breakpoint($large)
+                  font-size: calc-rem(20px)
+
+              .field--name-name
+                font-weight: 600
+
+      .wrapper-info
+        align-items: center
+        display: flex
+        flex-grow: 1
+
+        .unit-price__number,
+        .quantity
+          flex: 1
+          font-size: 1rem
+          font-weight: 500
+          line-height: 24px
+
+        .field-ticket-date
+          time
+            color: $black
+            flex-grow: 1
+            font-family: $montserrat
+            font-size: 1rem
+            font-weight: 400
+            letter-spacing: .2px
+            line-height: 30px
+            +breakpoint($large)
+              font-size: calc-rem(18px)
+
+        .quantity
+          align-items: center
+          display: flex
+
+          &::after
+            background-image: url('../assets/images/user-line.svg')
+            background-position: center
+            background-repeat: no-repeat
+            background-size: contain
+            content: ''
+            display: block
+            height: 14px
+            width: 14px
+
+        .total-price__number
+          +breakpoint(0 $bellow-large)
+            text-align: right
+          +breakpoint($large)
+            flex: 1
+
+          label
+            color: $black
+            display: inline-block
+            font-family: $montserrat
+            font-size: 1rem
+            font-weight: 600
+            letter-spacing: .2px
+            line-height: 30px
+            margin-bottom: 0
+
+            &::after
+              content: ':'
+              font-family: $montserrat
+              font-size: 1rem
+              font-weight: 600
+              letter-spacing: .2px
+              line-height: 24px
+
+        // remove button.
+        .remove-button
+          +breakpoint(0 $bellow-large)
+            position: absolute
+            right: calc-rem(12px)
+            top: calc-rem(12px)
+
+          .form-submit
+            background-color: transparent
+            background-image: url('../assets/images/trash-blue.png')
+            background-position: center
+            background-repeat: no-repeat
+            border: 0
+            color: transparent
+            height: 24px
+            padding: 0
+            width: 24px

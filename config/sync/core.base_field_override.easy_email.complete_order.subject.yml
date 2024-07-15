@@ -1,0 +1,20 @@
+uuid: b391ace3-2e86-4d69-bdd2-74c759790efd
+langcode: en
+status: true
+dependencies:
+  config:
+    - easy_email.easy_email_type.complete_order
+id: easy_email.complete_order.subject
+field_name: subject
+entity_type: easy_email
+bundle: complete_order
+label: Subject
+description: 'The Subject of the Email entity.'
+required: false
+translatable: true
+default_value:
+  -
+    value: ''
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,10 @@
+name: 'date_with_defined_ranges'
+type: module
+description: 'Date popup with a pre-defined list of custom ranges (like last month)'
+core_version_requirement: ^8 || ^9
+package: 'Date'
+
+# Information added by Drupal.org packaging script on 2021-09-26
+version: '1.0.0-alpha2'
+project: 'date_with_defined_ranges'
+datestamp: 1632679339

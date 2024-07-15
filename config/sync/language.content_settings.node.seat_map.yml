@@ -1,0 +1,18 @@
+uuid: 8d2eceec-44c0-4245-816f-3bcf8b62ae0a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.seat_map
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: false
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: node.seat_map
+target_entity_type_id: node
+target_bundle: seat_map
+default_langcode: site_default
+language_alterable: true

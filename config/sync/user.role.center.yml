@@ -1,0 +1,17 @@
+uuid: 63ff6bb1-1082-447c-a3de-da01b415bc23
+langcode: es
+status: true
+dependencies:
+  module:
+    - commerce_order
+    - system
+    - toolbar
+id: center
+label: Centro
+weight: 5
+is_admin: null
+permissions:
+  - 'access toolbar'
+  - 'manage ticket commerce_order_item'
+  - 'view commerce_order'
+  - 'view the administration theme'

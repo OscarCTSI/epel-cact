@@ -1,0 +1,31 @@
+uuid: 767b7cb3-ee8d-4fa1-af79-f70d9a3a1dbc
+langcode: es
+status: true
+dependencies:
+  config:
+    - system.menu.footer
+  module:
+    - block_class
+    - system
+  theme:
+    - da_vinci
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: jIW_20shZkpeGPituWZSYKCAxfSO4Gj_vj7XdEW8Q1Y
+id: da_vinci_footer
+theme: da_vinci
+region: footer
+weight: -8
+provider: null
+plugin: 'system_menu_block:footer'
+settings:
+  id: 'system_menu_block:footer'
+  label: 'Footer menu'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: true
+visibility: {  }

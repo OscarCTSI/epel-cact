@@ -1,0 +1,36 @@
+uuid: c3cd2248-ed30-49f3-a4ac-cf9dd69e8042
+langcode: en
+status: true
+dependencies:
+  module:
+    - cact_general
+third_party_settings:
+  cact_general:
+    message_product_pay:
+      value: "<p><span style=\"font-size:11pt; font-variant:normal; white-space:pre-wrap\"><span style=\"font-family:Arial\"><span style=\"color:#000000\"><span style=\"font-weight:400\"><span style=\"font-style:normal\"><span style=\"text-decoration:none\">Para el control de acceso es imprescindible que sea visible el código QR de cada entrada.</span></span></span></span></span></span></p>\r\n\r\n<table border=\"0\" cellpadding=\"1\" cellspacing=\"1\" style=\"width: 500px;\">\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<td>[cact:mail_info_products]</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>\r\n"
+      format: full_html
+    message_product_free:
+      value: "<p><span style=\"font-size:11pt; font-variant:normal; white-space:pre-wrap\"><span style=\"font-family:Arial\"><span style=\"color:#000000\"><span style=\"font-weight:400\"><span style=\"font-style:normal\"><span style=\"text-decoration:none\">Reserva.</span></span></span></span></span></span></p>\r\n\r\n<table border=\"0\" cellpadding=\"1\" cellspacing=\"1\" style=\"width: 500px;\">\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<td>[cact:mail_info_products_prices]</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>\r\n"
+      format: full_html
+id: complete_order_es
+label: 'Complete Order'
+key: ''
+recipient:
+  - '[easy_email:field_order:entity:mail]'
+cc: {  }
+bcc: {  }
+fromName: 'CACT Lanzarote'
+fromAddress: cactlanzarote@centrosturisticos.com
+replyToAddress: info@centrosturisticos.com
+subject: 'Resumen de tu compra en CACT Lanzarote | [cact:cact_order_number] |'
+inboxPreview: ''
+bodyHtml:
+  value: "<table style=\"min-width: 450px; margin: 5px auto 0 auto; border: 1px solid #cccccc; border-radius: 5px; padding: 40px 30px 30px 30px;\">\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<td colspan=\"2\"><a href=\"[site:url]\" style=\"color: #0e69be; display: block; text-decoration: none; font-weight: bold; margin-top: 15px; text-align:center;\"><img alt=\"\" src=\"[cact:mail_header_image]\" style=\"width: 100%; object-fit: cover; height: 250px;\" /> </a></td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td colspan=\"2\">\r\n\t\t\t<p style=\"line-height:1.38\"><span style=\"font-size:11pt; font-variant:normal; white-space:pre-wrap\"><span style=\"font-family:Arial\"><span style=\"color:#000000\"><span style=\"font-weight:400\"><span style=\"font-style:normal\"><span style=\"text-decoration:none\">Hola [easy_email:field_order:entity:field_first_name:value],&nbsp;</span></span></span></span></span></span></p>\r\n\r\n\t\t\t<p style=\"line-height:1.38\"><span style=\"font-size:11pt; font-variant:normal; white-space:pre-wrap\"><span style=\"font-family:Arial\"><span style=\"color:#000000\"><span style=\"font-weight:400\"><span style=\"font-style:normal\"><span style=\"text-decoration:none\">Te hemos enviado este correo electrónico a partir de los datos que has facilitado a CACT Lanzarote en el proceso de reserva, como confirmación de tu compra. Puedes imprimir las entradas o descargarlas en tu dispositivo móvil.&nbsp;</span></span></span></span></span></span></p>\r\n\r\n\t\t\t<p style=\"line-height:1.38\"><span style=\"font-size:11pt; font-variant:normal; white-space:pre-wrap\"><span style=\"font-family:Arial\"><span style=\"color:#000000\"><span style=\"font-weight:400\"><span style=\"font-style:normal\"><span style=\"text-decoration:none\">Por favor, lea atentamente las instrucciones que se indican en cada entrada. Contienen una serie de recomendaciones para que disfrute de forma plena de la experiencia.</span></span></span></span></span></span></p>\r\n\r\n\t\t\t<p style=\"line-height:1.38;\">[cact:message_product_pay]</p>\r\n\r\n\t\t\t<p>[cact:message_product_free]</p>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td colspan=\"2\">\r\n\t\t\t<p><span style=\"font-size:11pt; font-variant:normal; white-space:pre-wrap\"><span style=\"font-family:Arial\"><span style=\"color:#000000\"><span style=\"font-weight:400\"><span style=\"font-style:normal\"><span style=\"text-decoration:none\">El uso de este ticket conlleva la aceptación de las siguientes condiciones:</span></span></span></span></span></span></p>\r\n\r\n\t\t\t<p><span style=\"font-size:11pt; font-variant:normal; white-space:pre-wrap\"><span style=\"font-family:Arial\"><span style=\"color:#000000\"><span style=\"font-weight:400\"><span style=\"font-style:normal\"><span style=\"text-decoration:none\">1. Al adquirir las entradas se &nbsp;asume toda responsabilidad en caso de que dicho ticket se presente por duplicado,o falsificado, perdiendo los derechos de acceso</span></span></span></span></span></span></p>\r\n\r\n\t\t\t<p><span style=\"font-size:11pt; font-variant:normal; white-space:pre-wrap\"><span style=\"font-family:Arial\"><span style=\"color:#000000\"><span style=\"font-weight:400\"><span style=\"font-style:normal\"><span style=\"text-decoration:none\">2. Sólo se considerará válido el primer ticket presentado, y en ningún caso se permitirá entrar a quienes posteriormente lo intenten con el mismo ticket</span></span></span></span></span></span></p>\r\n\r\n\t\t\t<p><span style=\"font-size:11pt; font-variant:normal; white-space:pre-wrap\"><span style=\"font-family:Arial\"><span style=\"color:#000000\"><span style=\"font-weight:400\"><span style=\"font-style:normal\"><span style=\"text-decoration:none\">Para gestión de incidencias, contacta con CACT Lanzarote</span></span></span></span></span></span></p>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td width=\"16%\"><a href=\"[site:url]\" style=\"color: #0e69be; text-decoration: none; font-weight: bold; margin-top: 15px; text-align:center;\"><img alt=\"\" src=\"/themes/custom/cact/images/Logo%20CACT_VERTICA.png\" style=\"max-width: 100px;\" /> </a></td>\r\n\t\t\t<td>\r\n\t\t\t<p style=\"margin: 0\"><span style=\"font-size:11pt; font-variant:normal; white-space:pre-wrap\"><span style=\"font-family:Arial\"><span style=\"color:#000000\"><span style=\"font-weight:400\"><span style=\"font-style:normal\"><span style=\"text-decoration:none\">☎ +34901200300</span></span></span></span></span></span></p>\r\n\r\n\t\t\t<p style=\"margin: 0\"><span style=\"font-size:11pt; font-variant:normal; white-space:pre-wrap\"><span style=\"font-family:Arial\"><span style=\"color:#000000\"><span style=\"font-weight:400\"><span style=\"font-style:normal\"><span style=\"text-decoration:none\">✉ info@centrosturisticos.com</span></span></span></span></span></span></p>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>\r\n"
+  format: full_html
+bodyPlain: ''
+generateBodyPlain: false
+attachment:
+  - '[cact:attach_file_order]'
+saveAttachment: false
+attachmentScheme: public
+attachmentDirectory: ''

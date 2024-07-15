@@ -1,0 +1,15 @@
+uuid: fe5ddd9c-f89d-4e0b-8de7-af4daf563b62
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_tax
+third_party_settings:
+  commerce_tax:
+    taxable_type: events
+id: ticket
+label: Ticket
+traits: {  }
+locked: false
+purchasableEntityType: commerce_product_variation
+orderType: default

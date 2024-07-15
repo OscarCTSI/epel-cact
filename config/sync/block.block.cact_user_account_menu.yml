@@ -1,0 +1,31 @@
+uuid: 7766e393-2248-46ac-b5de-3f1165133441
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - block_class
+    - system
+  theme:
+    - cact
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: bLxVuC3AcKV_QzXIy3EjHBDxipZW5G6qrZCs2g7Yk-k
+id: cact_user_account_menu
+theme: cact
+region: secondary_menu
+weight: 0
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'User account menu'
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: true
+visibility: {  }

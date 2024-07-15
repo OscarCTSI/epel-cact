@@ -1,0 +1,13 @@
+uuid: afe9624d-853c-4682-921d-7c5a1e912786
+langcode: en
+status: true
+dependencies: {  }
+id: override_order_receipt
+label: override_order_receipt
+module: commerce
+key: order_receipt
+easy_email_type: complete_order
+param_map:
+  -
+    source: order
+    destination: field_order

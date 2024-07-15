@@ -1,0 +1,123 @@
+label: 'Sales report'
+display:
+  default:
+    display_title: Master
+    display_options:
+      exposed_form:
+        options:
+          submit_button: Apply
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      fields:
+        created:
+          label: Date
+          separator: ', '
+        report_id:
+          label: '# of Orders'
+          separator: ','
+        amount:
+          label: 'Total Revenue'
+          separator: ', '
+        amount_1:
+          label: 'Average Order'
+          separator: ', '
+      filters:
+        created:
+          expose:
+            label: 'Order date'
+      sorts:
+        created:
+          expose:
+            label: 'Order date'
+      title: 'Monthly sales report'
+  daily:
+    display_title: Daily
+    display_options:
+      title: 'Daily sales report'
+      menu:
+        title: Daily
+      fields:
+        created:
+          label: Date
+          separator: ', '
+        report_id:
+          label: '# of Orders'
+          separator: ','
+        amount:
+          label: 'Total Revenue'
+          separator: ', '
+        amount_1:
+          label: 'Average Order'
+          separator: ', '
+      sorts:
+        created:
+          expose:
+            label: 'Order date'
+      filters:
+        created:
+          expose:
+            label: 'Order date'
+  monthly:
+    display_title: Monthly
+    display_options:
+      menu:
+        title: Monthly
+        description: 'View monthly sales'
+      tab_options:
+        title: Sales
+  weekly:
+    display_title: Weekly
+    display_options:
+      title: 'Weekly sales report'
+      menu:
+        title: Weekly
+      fields:
+        created:
+          label: Date
+          separator: ', '
+        report_id:
+          label: '# of Orders'
+          separator: ','
+        amount:
+          label: 'Total Revenue'
+          separator: ', '
+        amount_1:
+          label: 'Average Order'
+          separator: ', '
+      sorts:
+        created:
+          expose:
+            label: 'Order date'
+      filters:
+        created:
+          expose:
+            label: 'Order date'
+  yearly:
+    display_title: Yearly
+    display_options:
+      title: 'Yearly sales report'
+      menu:
+        title: Yearly
+      fields:
+        created:
+          label: Date
+          separator: ', '
+        report_id:
+          label: '# of Orders'
+          separator: ','
+        amount:
+          label: 'Total Revenue'
+          separator: ', '
+        amount_1:
+          label: 'Average Order'
+          separator: ', '
+      sorts:
+        created:
+          expose:
+            label: 'Order date'
+      filters:
+        created:
+          expose:
+            label: 'Order date'

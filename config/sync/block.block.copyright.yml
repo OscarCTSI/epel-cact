@@ -1,0 +1,29 @@
+uuid: 028de93a-3c54-42a3-b339-48ddbe8fc637
+langcode: es
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:fe59c035-bfce-417d-969c-f6321f0bfbef'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - cact
+third_party_settings:
+  block_class:
+    classes: null
+id: copyright
+theme: cact
+region: footer_info
+weight: -9
+provider: null
+plugin: 'block_content:fe59c035-bfce-417d-969c-f6321f0bfbef'
+settings:
+  id: 'block_content:fe59c035-bfce-417d-969c-f6321f0bfbef'
+  label: Copyright
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

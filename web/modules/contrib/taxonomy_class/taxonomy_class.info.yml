@@ -1,0 +1,10 @@
+name: 'Taxonomy Class'
+type: module
+description: 'Adds classes specific to Taxonomy term.'
+package: Other
+core_version_requirement: ^8 || ^9 || ^10
+
+# Information added by Drupal.org packaging script on 2022-06-07
+version: '1.0.1'
+project: 'taxonomy_class'
+datestamp: 1654620266

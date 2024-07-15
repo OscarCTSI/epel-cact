@@ -1,0 +1,57 @@
+{% for product_info in products_info %}
+  <p style="font-size: 11pt; font-variant: normal; font-family: Arial; font-weight: 400; font-style: normal; text-decoration: none;">
+    {{ product_info.product_name }}
+    {% if(product_info.reference_openbravo) %}
+      {{'(QR único)'|trans }}
+      <a href="{{ product_info.path }}">
+        🎫 {{ 'Descargar tickets'|trans }} (PDF)
+      </a>
+    {% endif %}<br />
+    {% if(product_info.date) %}
+      {{ 'Fecha y hora'|trans }}: {{ product_info.date }}h <br />
+    {% endif %}
+    {{ 'Total'|trans }}: {{ product_info.total_amount }} €
+  </p>
+
+  {% if(not product_info.reference_openbravo) %}
+    <p style="font-size: 11pt; font-variant: normal; font-family: Arial; font-weight: 400; font-style: normal; text-decoration: none;">
+      {{ 'Download tickets'|trans }}
+    </p>
+  {% else %}
+    <p style="font-size: 11pt; font-variant: normal; font-family: Arial; font-weight: 400; font-style: normal; text-decoration: none;">
+      {{ 'Detalles'|trans }}
+    </p>
+  {% endif %}
+  <ol>
+    {% for ticket in product_info.tickets %}
+      <li>
+        <span class="ticket-product-name" style="font-size: 11pt; font-variant: normal; font-family: Arial; font-weight: 400; font-style: normal; text-decoration: none;">
+          {{ ticket.product_name }}
+        </span>
+        <span class="ticket-ticket-type" style="font-size: 11pt; font-variant: normal; font-family: Arial; font-weight: 400; font-style: normal; text-decoration: none;">
+          {{ ticket.name }}
+        </span>
+
+        <span style="font-size: 11pt; font-variant: normal; font-family: Arial; font-weight: 400; font-style: normal; text-decoration: none;">
+        - {{ 'Locator'|trans }}: {{ ticket.location }} ({{ ticket.price }})
+        </span>
+        {% if(not product_info.reference_openbravo) %}
+          <br />
+          <a href="{{ ticket.path }}" style="font-size: 11pt; font-variant: normal; font-family: Arial; font-weight: 400; font-style: normal; text-decoration: none;">
+            🎫 {{ 'Descargar ticket'|trans }} (PDF)
+          </a>
+          <!--
+          <a href="{{ ticket.path }}">
+            🎫 Descargar Ticket (Passbook)
+          </a>
+          -->
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+  {% if(product_info.calendar) %}
+    <a href="{{ product_info.calendar }}" style="font-size: 11pt; font-variant: normal; font-family: Arial; font-weight: 400; font-style: normal; text-decoration: none;">
+      Añadir a Google Calendar
+    </a><br />
+  {% endif %}
+{% endfor %}

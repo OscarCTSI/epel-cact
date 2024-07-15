@@ -1,0 +1,30 @@
+display:
+  default:
+    display_options:
+      fields:
+        field_ticket_date:
+          label: Date
+        purchased_entity:
+          label: Item
+          separator: ', '
+        unit_price__number:
+          label: Price
+          separator: ', '
+        remove_button:
+          label: Remove
+        total_price__number:
+          label: Total
+          separator: ', '
+      exposed_form:
+        options:
+          submit_button: Apply
+          reset_button_label: Reset
+          exposed_sorts_label: 'Sort by'
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      arguments:
+        order_id:
+          exception:
+            title: All
+    display_title: Master
+label: 'Cart form'

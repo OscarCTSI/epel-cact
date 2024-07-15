@@ -1,0 +1,20 @@
+uuid: 1a51c3af-79f1-4e7a-892b-24698152d93e
+langcode: es
+status: true
+dependencies:
+  config:
+    - easy_email.easy_email_type.complete_order_de
+id: easy_email.complete_order_de.subject
+field_name: subject
+entity_type: easy_email
+bundle: complete_order_de
+label: Tema
+description: 'The Subject of the Email entity.'
+required: false
+translatable: false
+default_value:
+  -
+    value: ''
+default_value_callback: ''
+settings: {  }
+field_type: string

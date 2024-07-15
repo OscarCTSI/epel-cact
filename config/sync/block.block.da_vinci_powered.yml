@@ -1,0 +1,26 @@
+uuid: c3676225-e737-4a4d-a9ce-67565ae79fb0
+langcode: es
+status: true
+dependencies:
+  module:
+    - block_class
+    - system
+  theme:
+    - da_vinci
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: JBnmap54oZAnm59Unxuyu_iivnbjEPvBUeIe93k31Hc
+id: da_vinci_powered
+theme: da_vinci
+region: footer_info
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

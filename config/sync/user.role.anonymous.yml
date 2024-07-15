@@ -1,0 +1,32 @@
+uuid: 1e9a0ffb-934f-4c2a-a28b-2de162719f72
+langcode: es
+status: true
+dependencies:
+  config:
+    - filter.format.restricted_html
+  module:
+    - comment
+    - commerce_checkout
+    - commerce_product
+    - contact
+    - filter
+    - media
+    - search
+    - simplenews
+    - system
+_core:
+  default_config_hash: 6WavjUYXIegP9AAg2zXGx54MWIVoomC3SZhNiqe-Dyk
+id: anonymous
+label: 'Usuario anónimo'
+weight: 0
+is_admin: false
+permissions:
+  - 'access checkout'
+  - 'access comments'
+  - 'access content'
+  - 'access site-wide contact form'
+  - 'search content'
+  - 'subscribe to newsletters'
+  - 'use text format restricted_html'
+  - 'view commerce_product'
+  - 'view media'

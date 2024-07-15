@@ -1,0 +1,14 @@
+uuid: bd526aa0-5154-4000-8967-cf4633af356d
+langcode: es
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: xIwxnXp2TxWVHIA95XzoYFAgOFjyRjOitdRoqbinifs
+id: privacy_overview
+label: 'Privacy overview'
+group: privacy_overview
+info:
+  value: ''
+  format: full_html
+url: privacy
+consent: true

@@ -1,0 +1,22 @@
+uuid: 46b713b9-ad0f-435d-8648-01d1472e7609
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.seat_map
+id: node.seat_map.status
+field_name: status
+entity_type: node
+bundle: seat_map
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

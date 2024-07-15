@@ -1,0 +1,112 @@
+// HTML
+
+/// @ignore Font size.
+$default-font-size: $rem-base
+
+html
+  font-size: $default-font-size
+
+// --------------------------------------------------
+
+// BODY
+
+/// @ignore Body background color.
+$body-background-color: $light-grey
+
+/// @ignore Default color.
+$default-color: $black
+
+/// @ignore Default font family.
+$default-font-family: $ralewway
+
+body
+  background-color: $body-background-color
+  color: $default-color
+  font-family: $default-font-family
+  font-weight: 400
+  line-height: 1.7
+
+// --------------------------------------------------
+
+// HEADINGS
+
+/// @ignore Titles font family.
+$title-font-family: $ralewway
+
+/// @ignore Titles color.
+$title-color: rgba($black, .8)
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+  color: $title-color
+  font-family: $title-font-family
+  font-weight: 600
+  margin: 0
+
+h1
+  font-size: calc-rem(32px)
+  letter-spacing: .5px
+  line-height: 2.28
+  margin: 1.5rem 0
+
+h2
+  font-size: calc-rem(20px)
+
+h3
+  font-size: calc-rem(16px)
+
+h4
+  font-size: calc-rem(14px)
+  line-height: 1.14
+
+// --------------------------------------------------
+
+// PARAGRAPHS
+
+p
+  font-weight: 500
+  margin: 0 0 1.2rem
+
+// ------------------------------------------------
+
+// LINKS
+
+/// @ignore Link color.
+$link-color: $primary-color-dark
+
+/// @ignore Link hover color.
+$link-hover-color: $primary-color-light
+
+a
+  color: $link-color
+  display: inline-block
+  font-weight: 700
+  line-height: 1.14
+  text-decoration: none
+  transition: color .2s
+
+  &:hover
+    color: $link-hover-color
+    text-decoration: none
+
+// ------------------------------------------------
+
+// VARIOUS
+
+summary
+  outline: none
+
+strong
+  font-weight: 700
+
+//code,
+//kbd,
+//pre,
+//samp
+  font-size: calc-rem(13px)
+
+// ------------------------------------------------

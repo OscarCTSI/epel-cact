@@ -1,0 +1,22 @@
+uuid: 2f8f3c67-32c2-44a7-b0f7-799da72b92a4
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.seat_map
+id: node.seat_map.promote
+field_name: promote
+entity_type: node
+bundle: seat_map
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

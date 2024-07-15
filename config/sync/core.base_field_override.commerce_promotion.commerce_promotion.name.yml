@@ -1,0 +1,18 @@
+uuid: 2188661c-c2bc-45a8-bc80-a733d07583c7
+langcode: es
+status: true
+dependencies:
+  module:
+    - commerce_promotion
+id: commerce_promotion.commerce_promotion.name
+field_name: name
+entity_type: commerce_promotion
+bundle: commerce_promotion
+label: Name
+description: 'El nombre de la promoción.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,29 @@
+uuid: b630069f-f731-45ca-af24-8fc93b7d8c79
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - system
+  theme:
+    - cact
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: av67vlq8S5KbF8NySxB_Qwcenu6-uwhhJBulcsoQp84
+id: cact_branding
+theme: cact
+region: header
+weight: -11
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  label_display: '0'
+  provider: system
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

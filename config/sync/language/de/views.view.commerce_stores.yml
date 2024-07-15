@@ -1,0 +1,47 @@
+label: Shops
+display:
+  default:
+    display_title: Master
+    display_options:
+      exposed_form:
+        options:
+          submit_button: Anwenden
+          reset_button_label: Zurücksetzen
+          exposed_sorts_label: 'Sortieren nach'
+          sort_asc_label: Aufsteigend
+          sort_desc_label: Absteigend
+      pager:
+        options:
+          expose:
+            items_per_page_label: 'Elemente pro Seite'
+            items_per_page_options_all_label: '- Alle -'
+            offset_label: Versatz
+          tags:
+            previous: '‹ vorherige Seite'
+            next: 'nächste Seite ›'
+            first: '« erste Seite'
+            last: 'letzte Seite »'
+      fields:
+        commerce_store_bulk_form:
+          action_title: Auswahl
+        name:
+          label: Name
+          separator: ', '
+        changed:
+          label: Aktualisiert
+          separator: ', '
+        type:
+          label: Typ
+          separator: ', '
+        operations:
+          label: Aktionen
+      filters:
+        type:
+          expose:
+            label: Typ
+      title: Shops
+      empty:
+        area_text_custom:
+          content: 'Es sind noch keine Shops vorhanden.'
+  page_1:
+    display_title: Seite

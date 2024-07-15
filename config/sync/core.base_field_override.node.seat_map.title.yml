@@ -1,0 +1,18 @@
+uuid: 33f9b25f-f421-446c-b28d-e4af700bbacb
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.seat_map
+id: node.seat_map.title
+field_name: title
+entity_type: node
+bundle: seat_map
+label: Title
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

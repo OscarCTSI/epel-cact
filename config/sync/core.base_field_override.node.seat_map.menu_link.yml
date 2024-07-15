@@ -1,0 +1,20 @@
+uuid: a1e1244b-a670-4ca3-b35f-208b79f2eca2
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.seat_map
+id: node.seat_map.menu_link
+field_name: menu_link
+entity_type: node
+bundle: seat_map
+label: 'Menu link'
+description: 'Computed menu link for the node (only available during node saving).'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

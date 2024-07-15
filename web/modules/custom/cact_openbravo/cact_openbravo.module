@@ -1,0 +1,16 @@
+<?php
+/**
+ * @file
+ * Contains cact_openbravo.module.
+ */
+/**
+ * Implements hook_mail for module_name.
+ */
+function cact_openbravo_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'openbravo_problems':
+      $message['subject'] = $params['subject'];
+      $message['body'][] = $params['body'];
+      break;
+  }
+}

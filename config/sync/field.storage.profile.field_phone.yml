@@ -1,0 +1,19 @@
+uuid: 8cfccb19-579d-4c90-b5b7-95aceb79883b
+langcode: en
+status: true
+dependencies:
+  module:
+    - phone_international
+    - profile
+id: profile.field_phone
+field_name: field_phone
+entity_type: profile
+type: phone_international
+settings: {  }
+module: phone_international
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

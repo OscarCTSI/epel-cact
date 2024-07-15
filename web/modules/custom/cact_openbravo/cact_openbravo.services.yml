@@ -1,0 +1,17 @@
+services:
+  cact_openbravo.connection:
+    class: Drupal\cact_openbravo\CactOpenbravoConnection
+  cact_openbravo.services:
+    class: Drupal\cact_openbravo\CactOpenbravoServices
+    arguments: ['@cact_openbravo.connection']
+  cact_openbravo.entity_handler:
+    class: Drupal\cact_openbravo\CactOpenbravoEntityHandler
+    arguments: ['@cact_openbravo.services', '@cact_general.order_utility', '@config.factory', '@plugin.manager.mail']
+  cact_openbravo.cact_openbravo_event_subscriber:
+    class: Drupal\cact_openbravo\EventSubscriber\CactOpenbravoEventSubscriber
+    arguments: ['@messenger', '@cact_openbravo.entity_handler', '@cact_general.order_utility', '@entity_type.manager', '@commerce_order.order_receipt_mail']
+    tags:
+      - { name: event_subscriber }
+  cact_openbravo.cact_services_utils:
+    class: Drupal\cact_openbravo\CactServicesUtils
+    arguments: ['@cact_openbravo.services', '@config.factory']    

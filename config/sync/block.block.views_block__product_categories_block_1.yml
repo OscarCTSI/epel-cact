@@ -1,0 +1,33 @@
+uuid: 7c4cedb6-6e38-4532-afe8-0c3a5148b311
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.product_categories
+  module:
+    - block_class
+    - system
+    - views
+  theme:
+    - cact
+third_party_settings:
+  block_class:
+    classes: null
+id: views_block__product_categories_block_1
+theme: cact
+region: featured_top
+weight: -12
+provider: null
+plugin: 'views_block:product_categories-block_1'
+settings:
+  id: 'views_block:product_categories-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '/taxonomy/term/*'

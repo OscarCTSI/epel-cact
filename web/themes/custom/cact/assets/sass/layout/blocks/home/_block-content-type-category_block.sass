@@ -1,0 +1,54 @@
+.block-content-type-category_block
+  position: relative
+  +breakpoint($x-small)
+    float: left
+
+  h2
+    color: $white
+    font-family: $gotham
+
+  .field--name-field-image-background
+    max-width: calc-rem(350px)
+    position: relative
+
+    .field--name-field-media-image
+      &::before
+        content: ''
+        height: 100%
+        left: 0
+        mix-blend-mode: multiply
+        position: absolute
+        top: 0
+        width: 100%
+
+  &:not(:last-of-type)
+    margin-bottom: calc-rem(16px)
+    margin-right: .93%
+
+  .wrapper-info
+    left: 0
+    max-width: 95%
+    padding: calc-rem(24px)
+    position: absolute
+    top: 0
+
+    .field--name-field-subtitle
+      color: $white
+      font-family: $montserrat
+      margin-bottom: calc-rem(10px)
+
+    h2
+      font-family: $montserrat
+      letter-spacing: .2px
+      line-height: 40px
+      margin-bottom: calc-rem(31px)
+      +breakpoint($medium)
+        font-size: calc-rem(40px)
+
+    .field--name-field-link
+      a
+        color: $white
+        font-size: calc-rem(14px)
+        font-weight: 700
+        letter-spacing: .2px
+        line-height: 24px

@@ -1,0 +1,21 @@
+uuid: 75af12c7-064c-441b-b07f-967cfd6e27ad
+langcode: en
+status: true
+dependencies:
+  config:
+    - easy_email.easy_email_type.complete_order
+    - field.storage.easy_email.cc_address
+id: easy_email.complete_order.cc_address
+field_name: cc_address
+entity_type: easy_email
+bundle: complete_order
+label: 'CC Addresses'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: ''
+default_value_callback: null
+settings: {  }
+field_type: string

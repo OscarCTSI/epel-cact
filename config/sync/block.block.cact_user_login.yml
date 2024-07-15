@@ -1,0 +1,26 @@
+uuid: bea0ce66-2b84-4191-b115-ad281cb65372
+langcode: en
+status: false
+dependencies:
+  module:
+    - block_class
+    - user
+  theme:
+    - cact
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: SRUOsK2xzHI1KAGw_U0g9QrJprHsPoJHvsW3Jg2tq9w
+id: cact_user_login
+theme: cact
+region: sidebar_first
+weight: 0
+provider: null
+plugin: user_login_block
+settings:
+  id: user_login_block
+  label: 'User login'
+  label_display: visible
+  provider: user
+visibility: {  }

@@ -1,0 +1,21 @@
+uuid: 5b654743-296b-4dbf-80cd-095f454677a7
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_order
+id: commerce_order_item.field_locators_code
+field_name: field_locators_code
+entity_type: commerce_order_item
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

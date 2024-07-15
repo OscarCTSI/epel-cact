@@ -1,0 +1,59 @@
+diff --git a/src/Service/EmailAttachmentEvaluator.php b/src/Service/EmailAttachmentEvaluator.php
+index e61d47e..2c03734 100644
+--- a/modules/contrib/easy_email/src/Service/EmailAttachmentEvaluator.php
++++ b/modules/contrib/easy_email/src/Service/EmailAttachmentEvaluator.php
+@@ -74,26 +74,30 @@ class EmailAttachmentEvaluator implements EmailAttachmentEvaluatorInterface {
+     // Dynamic Attachments
+     if ($email->hasField('attachment_path')) {
+       $attachment_paths = $email->getAttachmentPaths();
++
+       if (!empty($attachment_paths)) {
+         foreach ($attachment_paths as $path) {
+-          // Relative paths that start with '/' get messed up by the realpath call below.
+-          if (strpos($path, '/') === 0) {
+-            $path = substr($path, 1);
++          $paths = explode(",", $path);
++          foreach ($paths as $p) {
++            // Relative paths that start with '/' get messed up by the realpath call below.
++            if (strpos($p, '/') === 0) {
++              $p = substr($p, 1);
++            }
++            $realpath = $this->fileSystem->realpath($p);
++            if (!file_exists($realpath)) {
++              //continue;
++            }
++
++            if (!empty($save_attachments_to) && $email->hasField('attachment')) {
++              $this->saveAttachment($email, $realpath, $save_attachments_to);
++            }
++
++            $file = new \stdClass();
++            $file->uri = $p;
++            $file->filename = $this->fileSystem->basename($p);
++            $file->filemime = $this->mimeTypeGuesser->guess($p);
++            $files[] = $file;
+           }
+-          $realpath = $this->fileSystem->realpath($path);
+-          if (!file_exists($realpath)) {
+-            continue;
+-          }
+-
+-          if (!empty($save_attachments_to) && $email->hasField('attachment')) {
+-            $this->saveAttachment($email, $realpath, $save_attachments_to);
+-          }
+-
+-          $file = new \stdClass();
+-          $file->uri = $path;
+-          $file->filename = $this->fileSystem->basename($path);
+-          $file->filemime = $this->mimeTypeGuesser->guess($path);
+-          $files[] = $file;
+         }
+       }
+     }
+@@ -113,4 +117,4 @@ class EmailAttachmentEvaluator implements EmailAttachmentEvaluatorInterface {
+     $email->addAttachment($file_entity->id());
+   }
+
+-}
+\ No newline at end of file
++}

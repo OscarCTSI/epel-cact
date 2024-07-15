@@ -1,0 +1,29 @@
+uuid: 72419d29-f896-41d8-97f0-006c23363a4a
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_type.default
+    - easy_email.easy_email_type.complete_order_fr
+    - field.storage.easy_email.field_order
+id: easy_email.complete_order_fr.field_order
+field_name: field_order
+entity_type: easy_email
+bundle: complete_order_fr
+label: Order
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:commerce_order'
+  handler_settings:
+    target_bundles:
+      default: default
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

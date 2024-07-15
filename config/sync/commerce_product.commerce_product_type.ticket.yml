@@ -1,0 +1,14 @@
+uuid: 2758676a-8993-4688-8e6f-de9e43e17b7c
+langcode: es
+status: true
+dependencies: {  }
+id: ticket
+label: Entrada
+traits: {  }
+locked: false
+description: ''
+variationType: ticket
+variationTypes:
+  - ticket
+multipleVariations: true
+injectVariationFields: true

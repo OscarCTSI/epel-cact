@@ -1,0 +1,14 @@
+pricing_calc:
+  version: 1.x
+  js:
+    js/pricing-calc.js: {}
+
+  dependencies:
+    - core/jquery
+
+cact_commerce_age_control.select_slots:
+  js:
+    js/select_slots.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings

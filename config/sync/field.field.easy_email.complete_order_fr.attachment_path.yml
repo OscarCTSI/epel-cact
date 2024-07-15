@@ -1,0 +1,21 @@
+uuid: 75b42a1d-41ad-4551-9791-c89db5136e14
+langcode: en
+status: true
+dependencies:
+  config:
+    - easy_email.easy_email_type.complete_order_fr
+    - field.storage.easy_email.attachment_path
+id: easy_email.complete_order_fr.attachment_path
+field_name: attachment_path
+entity_type: easy_email
+bundle: complete_order_fr
+label: 'Attachment Paths'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: ''
+default_value_callback: null
+settings: {  }
+field_type: string

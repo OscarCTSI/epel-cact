@@ -1,0 +1,21 @@
+uuid: 106af03f-870b-4c14-b178-5305c7a80782
+langcode: en
+status: true
+dependencies:
+  config:
+    - easy_email.easy_email_type.complete_order
+    - field.storage.easy_email.bcc_address
+id: easy_email.complete_order.bcc_address
+field_name: bcc_address
+entity_type: easy_email
+bundle: complete_order
+label: 'BCC Addresses'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: ''
+default_value_callback: null
+settings: {  }
+field_type: string

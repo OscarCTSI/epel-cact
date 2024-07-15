@@ -1,0 +1,140 @@
+uuid: ef03b0b7-17ae-4a23-be79-7bc37f4a7c25
+langcode: es
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_type.default
+    - field.field.commerce_order.default.field_accept_conditions
+    - field.field.commerce_order.default.field_comments
+    - field.field.commerce_order.default.field_country
+    - field.field.commerce_order.default.field_first_name
+    - field.field.commerce_order.default.field_phone
+    - field.field.commerce_order.default.field_reference_openbravo
+    - field.field.commerce_order.default.field_reference_paypal
+    - field.field.commerce_order.default.field_reference_redsys
+    - field.field.commerce_order.default.field_second_name
+  module:
+    - address
+    - commerce_order
+    - inline_entity_form
+    - phone_international
+_core:
+  default_config_hash: 7hXqpb7yxuHJYNjyPmN_vQll6jq_fl7N09Tj-PFcESU
+id: commerce_order.default.default
+targetEntityType: commerce_order
+bundle: default
+mode: default
+content:
+  adjustments:
+    type: commerce_adjustment_default
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  cart:
+    type: boolean_checkbox
+    weight: 7
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_comments:
+    type: string_textarea
+    weight: 8
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_country:
+    type: address_country_default
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_first_name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_phone:
+    type: phone_international_widget
+    weight: 4
+    region: content
+    settings:
+      geolocation: false
+      initial_country: PT
+      exclude_countries: {  }
+      preferred_countries:
+        - PT
+      countries: exclude
+    third_party_settings: {  }
+  field_reference_openbravo:
+    type: string_textfield
+    weight: 8
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_reference_paypal:
+    type: string_textfield
+    weight: 10
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_reference_redsys:
+    type: string_textfield
+    weight: 9
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_second_name:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  mail:
+    type: email_default
+    weight: 3
+    region: content
+    settings:
+      placeholder: ''
+      size: 60
+    third_party_settings: {  }
+  order_items:
+    type: inline_entity_form_complex
+    weight: 5
+    region: content
+    settings:
+      form_mode: default
+      override_labels: true
+      label_singular: 'línea de pedido'
+      label_plural: 'líneas de pedido'
+      allow_new: true
+      allow_existing: false
+      match_operator: CONTAINS
+      allow_duplicate: false
+      collapsible: false
+      collapsed: false
+      revision: false
+    third_party_settings: {  }
+hidden:
+  billing_profile: true
+  created: true
+  field_accept_conditions: true
+  ip_address: true
+  order_number: true
+  state: true
+  store_id: true
+  uid: true

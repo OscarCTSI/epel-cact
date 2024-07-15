@@ -1,0 +1,20 @@
+uuid: 1d8db75b-5990-4c37-92c0-52778929324a
+langcode: en
+status: true
+dependencies:
+  module:
+    - easy_email
+    - user
+id: easy_email.cc_uid
+field_name: cc_uid
+entity_type: easy_email
+type: entity_reference
+settings:
+  target_type: user
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

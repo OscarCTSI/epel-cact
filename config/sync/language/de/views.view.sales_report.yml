@@ -1,0 +1,123 @@
+label: Verkaufsbericht
+display:
+  default:
+    display_title: Master
+    display_options:
+      exposed_form:
+        options:
+          submit_button: Anwenden
+          reset_button_label: Zurücksetzen
+          exposed_sorts_label: 'Sortieren nach'
+          sort_asc_label: Aufsteigend
+          sort_desc_label: Absteigend
+      fields:
+        created:
+          label: Datum
+          separator: ', '
+        report_id:
+          label: '# von Bestellungen'
+          separator: ','
+        amount:
+          label: 'Einnahmen gesamt'
+          separator: ', '
+        amount_1:
+          label: 'Durchschnittliche Bestellung'
+          separator: ', '
+      filters:
+        created:
+          expose:
+            label: Bestelldatum
+      sorts:
+        created:
+          expose:
+            label: Bestelldatum
+      title: 'Monatlicher Verkaufsbericht'
+  daily:
+    display_title: Täglich
+    display_options:
+      title: 'Täglicher Verkaufsbericht'
+      menu:
+        title: Täglich
+      fields:
+        created:
+          label: Datum
+          separator: ', '
+        report_id:
+          label: '# von Bestellungen'
+          separator: ','
+        amount:
+          label: 'Einnahmen gesamt'
+          separator: ', '
+        amount_1:
+          label: 'Durchschnittliche Bestellung'
+          separator: ', '
+      sorts:
+        created:
+          expose:
+            label: Bestelldatum
+      filters:
+        created:
+          expose:
+            label: Bestelldatum
+  monthly:
+    display_title: Monatlich
+    display_options:
+      menu:
+        title: Monatlich
+        description: 'Monatliche Verkäufe anzeigen'
+      tab_options:
+        title: Verkäufe
+  weekly:
+    display_title: Wöchentlich
+    display_options:
+      title: 'Wöchentlicher Verkaufsbericht'
+      menu:
+        title: Wöchentlich
+      fields:
+        created:
+          label: Datum
+          separator: ', '
+        report_id:
+          label: '# von Bestellungen'
+          separator: ','
+        amount:
+          label: 'Einnahmen gesamt'
+          separator: ', '
+        amount_1:
+          label: 'Durchschnittliche Bestellung'
+          separator: ', '
+      sorts:
+        created:
+          expose:
+            label: Bestelldatum
+      filters:
+        created:
+          expose:
+            label: Bestelldatum
+  yearly:
+    display_title: Jährlich
+    display_options:
+      title: 'Jährlicher Verkaufsbericht'
+      menu:
+        title: Jährlich
+      fields:
+        created:
+          label: Datum
+          separator: ', '
+        report_id:
+          label: '# von Bestellungen'
+          separator: ','
+        amount:
+          label: 'Einnahmen gesamt'
+          separator: ', '
+        amount_1:
+          label: 'Durchschnittliche Bestellung'
+          separator: ', '
+      sorts:
+        created:
+          expose:
+            label: Bestelldatum
+      filters:
+        created:
+          expose:
+            label: Bestelldatum

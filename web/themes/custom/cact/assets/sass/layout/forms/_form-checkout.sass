@@ -1,0 +1,112 @@
+.checkout-pane
+
+  .address-container-inline
+    width: 85%
+    .form-item
+      &-payment-information-billing-information-address-0-address-given-name, &-payment-information-billing-information-address-0-address-family-name
+        label
+          left: 8%
+
+      &-payment-information-billing-information-address-0-address-postal-code
+        label
+          left: 15%
+
+  .form-item
+    margin: 27px 10px 20px 0 !important
+
+    &-contact-information-email-confirm
+      margin: 40px 10px 20px 0 !important
+
+    &-payment-information-billing-information-address-0-address-address-line1
+      margin: 40px 10px 20px 0 !important
+    
+    &-payment-information-billing-information-address-0-address-locality
+      max-width: 200px
+      label
+        left: 12% 
+
+    &-payment-information-billing-information-address-0-address-administrative-area
+      margin: 0px 10px 20px 0 !important
+      select
+        padding: 10px !important
+
+    &-payment-information-billing-information-address-0-address-organization, &-payment-information-billing-information-address-0-address-address-line1      
+      label
+        left: 3% 
+
+    &-sidebar-coupon-redemption-form-code
+      label
+        left: 6%
+
+  .js-form
+    &-type-textfield,
+    &-type-entity-autocomplete,
+    //&-type-select:not(.select-multiple),
+    &-type-email,
+    &-type-password,
+    &-type-number
+
+      label
+        top: 68% !important
+        &.freeze
+          left: 0
+          top: -6px !important
+    &-type-email
+      label
+        left: 3%
+
+  .js-form
+    &-type-textfield
+      label
+        top: 50% !important
+        &.freeze
+          left: 0
+          top: -14px !important
+
+  .field--name-address
+    p
+      background: rgb(249, 249, 249)
+      border-radius: 4px
+      padding: 5px 20px
+
+      span
+        line-height: 48px
+
+        &::before
+          margin-right: 20px
+
+        &.given-name
+          +icomoon-text($icon-user, 20px, $black)
+          padding-left: 44px
+          
+        // &.family-name
+        //   width: 40%
+        //   +breakpoint($large)
+        //     width: 60%
+          
+
+        &.address-line1
+          +icomoon-text($icon-location, 20px, $black)
+          padding-left: 44px
+
+        &.postal-code
+          +icomoon-text($icon-map-2-line, 20px, $black)
+          padding-left: 44px
+          
+        &.country
+          +icomoon-text($icon-plus, 20px, $black)
+          padding-left: 44px
+
+  #edit-payment-information-payment-method--wrapper
+    max-width: 100%
+    .fieldset-wrapper
+      border: none
+      box-shadow: none
+      padding: 0
+
+      .form-item
+        background: #F9F9F9
+        border: 1px solid #DDDDDD
+        border-radius: 4px
+        margin: 0
+        padding: 27px 10px 20px 15px

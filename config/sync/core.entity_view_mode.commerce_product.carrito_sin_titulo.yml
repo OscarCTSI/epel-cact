@@ -1,0 +1,10 @@
+uuid: f893c1e0-1a02-4e2a-8aea-dfc5f8c96851
+langcode: es
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product.carrito_sin_titulo
+label: 'Carrito sin titulo'
+targetEntityType: commerce_product
+cache: true

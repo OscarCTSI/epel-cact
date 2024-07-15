@@ -1,0 +1,31 @@
+uuid: 1ca4e696-032b-40f1-b015-b3ee813ecf08
+langcode: es
+status: true
+dependencies:
+  module:
+    - commerce_sermepa
+id: redsys
+label: Redsys
+weight: -10
+plugin: commerce_sermepa
+configuration:
+  display_label: 'Pay with credit or debit card'
+  mode: live
+  payment_method_types:
+    - 'Tarjeta de crédito'
+  collect_billing_information: true
+  merchant_name: 'CENTRO TURISTICO LANZAROT'
+  merchant_code: '154150528'
+  merchant_group: ''
+  merchant_password: a0v5Hog86w/zYgA181DQ0cAsnLcs6vKB
+  merchant_terminal: '001'
+  merchant_paymethods:
+    C: C
+  merchant_consumer_language: '001'
+  currency: 978
+  transaction_type: '0'
+  instructions:
+    value: ''
+    format: plain_text
+conditions: {  }
+conditionOperator: AND

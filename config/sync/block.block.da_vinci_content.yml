@@ -1,0 +1,26 @@
+uuid: 42c6231a-ce33-4932-aefb-2a22d2714507
+langcode: es
+status: true
+dependencies:
+  module:
+    - block_class
+    - system
+  theme:
+    - da_vinci
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: fcWi3n7liMMgnBpkE6vepgsB39gnML1_azOFWFhBoO4
+id: da_vinci_content
+theme: da_vinci
+region: content
+weight: -4
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

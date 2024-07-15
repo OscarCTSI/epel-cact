@@ -1,0 +1,21 @@
+uuid: bd659631-7854-4bc1-8b71-f4648efc726f
+langcode: en
+status: true
+dependencies:
+  config:
+    - easy_email.easy_email_type.complete_order_fr
+    - field.storage.easy_email.recipient_uid
+id: easy_email.complete_order_fr.recipient_uid
+field_name: recipient_uid
+entity_type: easy_email
+bundle: complete_order_fr
+label: Recipients
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: null
+settings:
+  handler: 'default:user'
+  handler_settings: {  }
+field_type: entity_reference

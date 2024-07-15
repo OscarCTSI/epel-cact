@@ -1,0 +1,10 @@
+uuid: afb2daa8-734a-4ef9-957f-18d6fed2e08f
+langcode: es
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product_variation.cesta_compra_sin_titulo
+label: 'Cesta compra sin titulo'
+targetEntityType: commerce_product_variation
+cache: true

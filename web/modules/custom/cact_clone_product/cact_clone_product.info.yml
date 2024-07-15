@@ -1,0 +1,10 @@
+name: 'CACT clone products'
+type: module
+description: 'CACT clone products.'
+core: 8.x
+core_version_requirement: ^8 || ^9
+package: 'CACT'
+dependencies:
+  - replicate:replicate
+
+project: 'cact'

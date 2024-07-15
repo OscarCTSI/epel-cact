@@ -1,0 +1,7 @@
+uuid: 60923c50-9754-4cdd-830c-ffecddd3eddf
+langcode: en
+status: true
+dependencies: {  }
+id: age
+label: Age
+elementType: commerce_product_rendered_attribute

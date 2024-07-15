@@ -1,0 +1,4 @@
+services:
+  cact_commerce_age_control.commerce_utils:
+    class: Drupal\cact_commerce_age_control\CactCommerceUtils
+    arguments: ['@current_user', '@commerce_order.availability_manager', '@commerce_store.current_store', '@commerce_cart.cart_provider']

@@ -1,0 +1,31 @@
+uuid: 76db6347-a4e5-4458-8dd3-d9deb34f11ce
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - block_class
+    - system
+  theme:
+    - cact
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: BBYy-TdAxs7t7Qt2xLj4Xtxg5s0zdVUpf2u5jAABCM4
+id: cact_main_menu
+theme: cact
+region: header
+weight: -7
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 1
+  expand_all_items: true
+visibility: {  }

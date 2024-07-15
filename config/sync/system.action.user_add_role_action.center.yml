@@ -1,0 +1,14 @@
+uuid: 75e22b8f-e7e3-452b-b4a4-7dbdb9b71711
+langcode: es
+status: true
+dependencies:
+  config:
+    - user.role.center
+  module:
+    - user
+id: user_add_role_action.center
+label: 'Añade el rol Centro al(los) usuario(s) seleccionado(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: center

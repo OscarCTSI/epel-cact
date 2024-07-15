@@ -1,0 +1,113 @@
+$menu-footer-link-color: $white
+
+
+// Footer instance
+.main-menu-footer
+  +breakpoint($large)
+    margin: calc-rem(18px) 0 calc-rem(53px) calc-rem(48px)
+  +breakpoint($xx-large)
+    margin: calc-rem(18px) 0 calc-rem(53px) calc-rem(122px)
+
+  // First level.
+  > .menu
+    +breakpoint($large)
+      display: flex
+      flex-flow: row wrap
+
+    > li
+      margin-bottom: calc-rem(34px)
+      +breakpoint($large)
+        margin-bottom: 0
+        max-width: calc-rem(200px)
+        width: 100%
+
+      > a
+        color: $menu-footer-link-color
+        font-size: calc-rem(24px)
+        font-weight: 500
+        +breakpoint($large)
+          display: block
+
+        &::after
+          content: none
+
+      &.menu-item--expanded
+        .icon-arrow
+          +breakpoint(0 $bellow-large)
+            +icomoon($icon-arrow-down, 12px, $white)
+            display: inline-block
+            margin-left: calc-rem(20px)
+
+            &::before
+              transition: .2s
+
+          &.deploy
+            &::before
+              transform: translate(-50%, -50%) rotate(180deg)
+              transition: .2s
+
+      &:not(:last-child)
+        +breakpoint($large)
+          margin-bottom: 0
+          margin-right: calc-rem(70px)
+          +breakpoint($xx-large)
+            margin-right: calc-rem(122px)
+
+      // Second level.
+      .menu
+        display: none
+        margin-top: calc-rem(24px)
+        +breakpoint($large)
+          display: block
+
+        > li
+          &:not(:last-child)
+            margin-bottom: calc-rem(8px)
+
+          a
+            color: $menu-footer-link-color
+            display: block
+            font-family: $montserrat
+            font-size: calc-rem(16px)
+            font-weight: 500
+
+            &::after
+              content: none
+
+        &.deploy
+          display: block
+
+// Legal menu
+.legal-menu
+  margin: 0 0 calc-rem(50px) 0
+  +breakpoint($xx-large)
+    margin: 0
+
+  .menu
+    +breakpoint($medium)
+      align-items: center
+      display: flex
+      flex-flow: row wrap
+
+    li
+      margin-bottom: calc-rem(30px)
+      +breakpoint($large)
+        margin-bottom: 0
+
+      &:last-child
+        margin-bottom: 0
+        +breakpoint($medium)
+          margin-bottom: calc-rem(30px)
+        +breakpoint($large)
+          margin-bottom: 0
+
+      &:not(:last-child)
+        +breakpoint($medium)
+          margin-right: calc-rem(37.09px)
+
+      a
+        color: $menu-footer-link-color
+        font-family: $montserrat
+        font-size: calc-rem(14px)
+        font-weight: 500
+        text-decoration: underline

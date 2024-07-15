@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ruleset name="commerce_sermepa">
+  <description>Default PHP CodeSniffer configuration for Commerce Webform Order.</description>
+  <file>.</file>
+  <arg name="extensions" value="inc,install,module,php,profile,test,theme,yml"/>
+  <config name="drupal_core_version" value="8"/>
+
+  <exclude-pattern>*/.git/*</exclude-pattern>
+
+  <rule ref="Drupal"/>
+  <rule ref="DrupalPractice"/>
+
+</ruleset>

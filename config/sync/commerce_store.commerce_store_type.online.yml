@@ -1,0 +1,11 @@
+uuid: cad741da-72bb-4012-8b79-a3c20728906c
+langcode: es
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: FGYrs0ZrjxSzRQMODyYqquV1UW5MN7S5wUG0Dp_OxWU
+id: online
+label: Online
+traits: {  }
+locked: false
+description: ''

@@ -1,0 +1,22 @@
+uuid: f01cbfda-1e5c-4390-aeae-c9604ebfa905
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: product_categories
+label: 'Product categories'
+type: 'canonical_entities:taxonomy_term'
+pattern: '[term:name]'
+selection_criteria:
+  17b55118-ddea-48a2-bc19-71e5a07ab2e3:
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    uuid: 17b55118-ddea-48a2-bc19-71e5a07ab2e3
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    bundles:
+      product_categories: product_categories
+selection_logic: and
+weight: -5
+relationships: {  }

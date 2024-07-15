@@ -1,0 +1,22 @@
+uuid: 06291cc1-e1c1-4578-aee7-c865eb3890e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.image
+id: media.image.status
+field_name: status
+entity_type: media
+bundle: image
+label: Published
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

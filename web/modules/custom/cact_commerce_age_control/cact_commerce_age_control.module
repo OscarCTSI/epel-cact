@@ -1,0 +1,823 @@
+<?php
+
+/**
+ * @file
+ * Contains cact_commerce_age_control.module.
+ */
+
+use Drupal\commerce\PurchasableEntityInterface;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\ReplaceCommand;
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_help().
+ */
+function cact_commerce_age_control_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the cact_commerce_age_control module.
+    case 'help.page.cact_commerce_age_control':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('A custom module to alter and control the price resolvers and oder types.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function cact_commerce_age_control_form_alter(&$form, $form_state, $form_id) {
+  // Commerce Add to Cart form.
+  if ((strpos($form_id, 'commerce_order_item_add_to_cart_form_commerce_product_') === 0)) {
+    unset($form['actions']['submit']['#submit'][0]);
+    $form['#validate'][] = 'cact_commerce_age_control_form_validate_add_to_cart';
+    $form['actions']['submit']['#submit'][] = 'cact_commerce_age_control_form_submit_add_to_cart';
+
+    $form['actions']['buy_now'] = array(
+      '#type' => 'submit',
+      '#access' => TRUE,
+      '#value' => t('Buy now'),
+      '#weight' => 30,
+    );
+
+    $form['actions']['buy_now']['#submit'][] = 'cact_commerce_age_control_form_submit_directly_buy';
+
+    // Get commerce product
+    $commerce_product = \Drupal::routeMatch()->getParameter('commerce_product');
+    $close_cart = false;
+    if (!$commerce_product->get('field_expiration_date_cart')->isEmpty()) {
+      $expiration = DrupalDateTime::createFromTimestamp($commerce_product->get('field_expiration_date_cart')->date->getTimestamp())->getTimestamp();
+      if (DrupalDateTime::createFromTimestamp(time())->getTimestamp() >= $expiration) {
+        $close_cart = true;
+      }
+    }
+
+    if (!$close_cart) {
+      $product_event_type = $commerce_product->get('field_event_type')->value;
+      $variations = $commerce_product->getVariations();
+      if (count($variations) > 0) {
+        $form['variations']['#tree'] = TRUE;
+        $form['variations']['#weight'] = 2;
+      }
+      $first_sku = null;
+      $rounder = \Drupal::service('commerce_price.rounder');
+      foreach ($variations as $index => $var):
+        if ($index == 0) {
+          $first_sku = $var->getSku();
+        }
+
+        $max_limit = null;
+        if (!$var->get('field_max_item_for_sale')->isEmpty() &&
+          (int)$var->get('field_max_item_for_sale')->getString() != -1) {
+          $max_limit = (int)$var->get('field_max_item_for_sale')->getString();
+        }
+
+        $rounder_price = $rounder->round($var->getPrice())->toArray();
+        $attributes = $var->getAttributeValues();
+        if (is_array($attributes)) {
+          $attributes = reset($attributes);
+        }
+        $form['variations'][$var->getSku()] = [
+          '#type' => 'number',
+          '#title' => $attributes->get('name')->getString(),
+          '#description' => $rounder_price['number'] . ' ' . $rounder_price['currency_code']
+        ];
+
+        if (isset($max_limit)) {
+          $form['variations'][$var->getSku()]['#attributes']['max'] = $max_limit;
+        }
+      endforeach;
+    }
+
+    /*
+     * Add validation for product type: 1 or 2 with dates
+     * */
+    if (!$close_cart && ($product_event_type == 1 || $product_event_type == 2)) {
+      $sessions = \Drupal::service('cact_openbravo.services')->getProduct($first_sku);
+      if (isset($sessions['data']['result']['product']['sessions']) && count($sessions['data']['result']['product']['sessions']) > 0) {
+        $month = null;
+        $first_month = null;
+        // Open variable to configuration
+        $break_select = 4;
+
+        $results_sessions = $sessions['data']['result']['product']['sessions'];
+        // Remove sessions from field release hours
+        if (!$commerce_product->get('field_release')->isEmpty() && is_numeric($commerce_product->get('field_release')->getString()) &&
+          $commerce_product->get('field_release')->getString() > 0) {
+          $release = $commerce_product->get('field_release')->getString();
+          $release = explode('.', $release);
+          $hours = $release[0];
+          $min = 0;
+          if (count($release) > 0) {
+            $min = $release[1] * 60 / 100;
+          }
+          $date_ref = strtotime(date("Y-m-d H:i:s", strtotime('+ ' . $hours . ' hours', strtotime('+' . $min . ' minutes'))));
+          foreach ($results_sessions as $index => $rs):
+            if (isset($rs['sessionDate']) && strtotime($rs['sessionDate']) <= $date_ref) {
+              unset($results_sessions[$index]);
+            }
+          endforeach;
+          $results_sessions = array_values($results_sessions);
+        }
+
+
+        $form['#sessions'] = $results_sessions;
+
+        $form['field_months']['widget'][0]['value']['#type'] = 'select';
+        $form['field_months']['widget'][0]['value']['#options'] = [];
+
+        foreach ($form['#sessions'] as $index => $session):
+          $date = DrupalDateTime::createFromTimestamp(strtotime($session['sessionDate']));
+          $month = $date->format('F');
+          /*
+           * Disponible dates
+           * */
+          if (!in_array($month, $form['field_months']['widget'][0]['value']['#options'])) {
+            if ($index == 0) {
+              $first_month = $date->format('Y-m');
+            }
+            $form['field_months']['widget'][0]['value']['#options'][$date->format('Y-m')] = $month;
+            if (count($form['field_months']['widget'][0]['value']['#options']) >= $break_select) {
+              break;
+            }
+          }
+        endforeach;
+
+        unset($form['field_months']['widget'][0]['value']['#size']);
+        unset($form['field_months']['widget'][0]['value']['#maxlength']);
+
+        $form['field_months']['widget'][0]['value']['#ajax'] = [
+          'callback' => 'callback_field_session_trigger',
+          'event' => 'change',
+          'wrapper' => 'session-wrapper',
+          'method' => 'replace',
+          '#limit_validation_errors' => []
+        ];
+
+        $field_months = $form_state->getValue('field_months');
+
+        $form['field_session']['#prefix'] = '<div id="session-wrapper">';
+        $form['field_session']['#suffix'] = '</div>';
+        $form['field_session']['widget'][0]['value']['#type'] = 'select';
+        $form['field_session']['widget'][0]['value']['#options'] = [];
+
+        if (!$field_months) {
+          $field_months_value = $first_month;
+          $form['field_months']['widget'][0]['value']['#default_value'][0] = $field_months_value;
+        } else {
+          $field_months_value = $field_months[0]['value'];
+        }
+        $form['field_session']['widget'][0]['value']['#options'] = getSessionOptionsFromDate($field_months_value, $form['#sessions']);
+
+        $field_session = $form_state->getValue('field_session');
+        if (!$field_session) {
+          $form['field_session']['widget'][0]['value']['#default_value'][0] = array_key_first($form['field_session']['widget'][0]['value']['#options']);
+        }
+
+        unset($form['field_session']['widget'][0]['value']['#size']);
+        unset($form['field_session']['widget'][0]['value']['#maxlength']);
+
+        /*
+         * if type is 2 (numbered ticket)
+         * */
+        if ($product_event_type == 2) {
+          if (!$field_session) {
+            $session_id = $form['field_session']['widget'][0]['value']['#default_value'][0];
+          } else {
+            $session_id = $field_session[0]['value'];
+          }
+
+          $stock = \Drupal::service('cact_openbravo.services')->getStocks($session_id);
+          if (isset($stock['data']['result']['session']['locations']) && count($stock['data']['result']['session']['locations']) > 0) {
+            $form['seats'] = [
+              '#prefix' => '<div id="seat-wrapper">',
+              '#suffix' => '</div>',
+              '#tree' => TRUE,
+              '#weight' => 3
+            ];
+
+            $data_locations = ['' => '-'];
+            foreach ($stock['data']['result']['session']['locations'] as $location):
+              if ($location['locationStatus'] == 'AVAILABLE') {
+                $data_locations[$location['locationNo']] = $location['locationNo'];
+              }
+            endforeach;
+            $data_locations_ref = $data_locations;
+
+            $seats_state = $form_state->getValue('seats');
+            if (isset($seats_state)) {
+              foreach ($seats_state as $index_st => $st):
+                if ($form_state->getValue('variations')[$index_st] > 0) {
+                  foreach ($st as $st_location):
+                    unset($data_locations[$st_location]);
+                  endforeach;
+                }
+              endforeach;
+            }
+
+            foreach ($form['variations'] as $index => $variation):
+              if ($index != '#tree' && $index != '#weight') {
+                $form['variations'][$index]['#ajax'] = [
+                  'callback' => 'callback_field_seat_trigger',
+                  'event' => 'change',
+                  'wrapper' => 'seat-wrapper',
+                  'method' => 'replace',
+                  '#limit_validation_errors' => []
+                ];
+
+                if ((int)$form_state->getValue('variations')[$index] > 0) {
+                  if (!isset($form['seats'][$index])) {
+                    $form['seats'][$index] = [];
+                  }
+
+                  for ($i = 0; $i < (int)$form_state->getValue('variations')[$index]; $i++) {
+                    $data_locations_element = $data_locations;
+                    $value = null;
+                    if (isset($seats_state[$index][$i])) {
+                      $value = $seats_state[$index][$i];
+                      $data_locations_element += [$value => $data_locations_ref[$value]];
+                    }
+
+                    $form['seats'][$index][$i] = [
+                      '#type' => 'select',
+                      '#title' => t('Ticket type: @type (@number)', ['@type' => $variation['#title'], '@number' => $i + 1]),
+                      '#required' => TRUE,
+                      '#default_value' => $value,
+                      '#options' => $data_locations_element,
+                      '#ajax' => [
+                        'callback' => 'callback_field_seat_trigger',
+                        'event' => 'change',
+                        'wrapper' => 'seat-wrapper',
+                        'method' => 'replace',
+                        '#limit_validation_errors' => []
+                      ],
+                    ];
+                  }
+                }
+
+              }
+            endforeach;
+          }
+        }
+      } else {
+        $close_cart = true;
+      }
+    } else if(!$close_cart && $product_event_type == 3) {
+      // Aquí irá el control de la funcionalidad de date with time slots
+      unset($form['field_session']);
+      unset($form['field_months']);
+
+      /* ------------------ ESTA PARTE ES SOLO DE PRUEBA HASTA QUE TENGAMOS EL ENDPOINT DEFINITIVO ------------- */
+      //Llamaremos al webservice nuevo, ahora mismo vamos a llamar a este:
+      /* ------------------ FIN DE LA PRUEBA ------------- */
+      // Este es el antiguo pero nos va a servir de ejemplo. Como vemos le pasamos el primer product id que tenemos en el producto
+      // Nosotros en el nuevo endpoint además le pasaremos fecha de inicio y fecha de fin
+      $commerceUtils = Drupal::service('cact_openbravo.cact_services_utils');
+
+      // Hay que tener en cuenta el release o tiempo previo que tenga configurado el producto. (Ejemplo: si tiene 48 horas configuradas, tendremos que sacar del json el día de hoy y de mañana)
+      // Un ejemplo de esto lo vemos en la línea 111 de este mismo archivo.
+      // Remove sessions from field release hours
+      $date_ref = null;
+      if (!$commerce_product->get('field_release')->isEmpty() && is_numeric($commerce_product->get('field_release')->getString()) &&
+        $commerce_product->get('field_release')->getString() > 0) {
+        $release = $commerce_product->get('field_release')->getString();
+        $release = explode('.', $release);
+        $hours = $release[0];
+        $min = 0;
+        if (count($release) > 0) {
+          $min = $release[1] * 60 / 100;
+        }
+        $today =  date("Y-m-d H:i:s", strtotime('+ ' . $hours . ' hours', strtotime('+' . $min . ' minutes')));
+        $date_ref = strtotime($today);
+      }
+
+      foreach ($commerce_product->getVariations() as $variation) {
+        $first_sku = $variation->get('sku')->getString();
+      }
+      $data_calendar = $commerceUtils->getDataStocks($first_sku, $date_ref);
+
+      // Hay que preaprar un campo hidden del formulario para recibir el valor del slot id que el usuario marque como el que quiere comprar
+      // Algo así como: $form['field_time_slot_id']['widget'][0]['value']['#type'] = 'hidden';
+      $form["field_time_slot_id"] = [
+        '#type' => 'hidden',
+        '#attributes' => [
+          'id' => 'field-time-slot-id',
+          'class' => ['field-time-slot-id'],
+        ],
+      ];
+      $form['field_ticket_date'] = [
+        '#type' => 'hidden',//TODO hidden textfield
+        '#attributes' => [
+          'id' => 'field-ticket-date',
+          'class' => ['field-ticket-date'],
+        ],
+      ];
+      $form['#attached']['drupalSettings']['data_calendar'] = $data_calendar;
+      
+      $form['#attached']['drupalSettings']['month_names'] = $commerceUtils->getMonthNames();
+      $url = Url::fromRoute('cact_openbravo.cact_webservices_endpoint', [
+        'product_id' => $first_sku,
+        'datefrom' => 'change-datefrom',
+        'dateto' => 'change-dateto',
+        'detailed' => 'true'
+      ])->setAbsolute()->toString();
+      $form['#attached']['drupalSettings']['url_requested_slots'] = $url;
+      $form['#attached']['library'][] = 'cact_commerce_age_control/cact_commerce_age_control.select_slots';  
+    } else{
+      unset($form['field_session']);
+      unset($form['field_months']);
+    }
+
+    /*
+     * Products with name requirements
+     * */
+    if (!$close_cart && ($product_event_type == 1 || $product_event_type == 2 || $product_event_type == 3)) {
+      if (!$commerce_product->get('field_required_name_tickets')->isEmpty() &&
+        $commerce_product->get('field_required_name_tickets')->getValue()[0]['value']) {
+        $form['names'] = [
+          '#prefix' => '<div id="name-wrapper">',
+          '#suffix' => '</div>',
+          '#tree' => TRUE,
+          '#weight' => 3
+        ];
+
+        $names_state = $form_state->getValue('names');
+        foreach ($form['variations'] as $index => $variation):
+          if ($index != '#tree' && $index != '#weight') {
+            $form['variations'][$index]['#ajax'] = [
+              'callback' => 'callback_field_seat_trigger',
+              'event' => 'change',
+              'wrapper' => 'seat-wrapper',
+              'method' => 'replace',
+              '#limit_validation_errors' => []
+            ];
+
+            $variations_value = $form_state->getValue('variations');
+            if (isset($variations_value) && (int)$form_state->getValue('variations')[$index] > 0) {
+              if (!isset($form['names'][$index])) {
+                $form['names'][$index] = [];
+              }
+
+              for ($i = 0; $i < (int)$form_state->getValue('variations')[$index]; $i++) {
+                $value = null;
+                if (isset($names_state[$index][$i])) {
+                  $value = $names_state[$index][$i];
+                }
+                $form['names'][$index][$i] = [
+                  '#type' => 'textfield',
+                  '#title' => t('Name for @type (@number)', ['@type' => $variation['#title'], '@number' => $i + 1]),
+                  '#required' => TRUE,
+                  '#default_value' => $value,
+                ];
+              }
+            }
+
+          }
+        endforeach;
+
+        // Disable submits while not selecting variation and focusing elsewhere on the form
+        $form['actions']['submit']['#attributes']['disabled'] = 'disabled';
+        $form['actions']['buy_now']['#attributes']['disabled'] = 'disabled';
+      }
+    }
+
+    if($close_cart){
+      unset($form['actions']['submit']);
+      unset($form['actions']['buy_now']);
+      unset($form['field_session']);
+      unset($form['field_months']);
+      unset($form['variations']);
+    }
+  }else if ((strpos($form_id, 'views_form_commerce_cart_form_default_') === 0)) {
+    unset($form['actions']);
+  }else if($form_id == 'commerce_checkout_flow_multistep_default' && $form['#step_id'] == 'order_information' && isset($form['order_fields:checkout'])){
+
+    $form['order_fields:checkout']['newsletter'] = array(
+      '#title' => t('I want to receive the newsletter'),
+      '#type' => 'checkbox',
+      '#weight' => 10
+    );
+    array_unshift($form['actions']['next']['#submit'], 'cact_commerce_age_control_form_submit_add_to_nesletter');
+  }else if($form_id == 'commerce_checkout_flow_multistep_default' && $form['#step_id'] == 'review' && isset($form['review']['order_fields:checkout'])){
+    $form['review']['order_fields:checkout']['field_fullname'] = [ '#markup' => '<span class="fullname">' .
+      $form['review']['order_fields:checkout']['summary']['field_first_name']['#items']->getString() . ' ' .
+      $form['review']['order_fields:checkout']['summary']['field_second_name']['#items']->getString()
+      . '</span>',
+      '#weight' => -2];
+    $form['review']['order_fields:checkout']['field_fulladdress'] = [ '#markup' => '<span class="fulladdress">' .
+      $country = \Drupal::service('country_manager')->getList()[$form['review']['order_fields:checkout']['summary']['field_country']['#items']->getString()]->__toString()
+      . '</span>',
+      '#weight' => -1];
+
+    unset($form['review']['order_fields:checkout']['summary']['field_first_name']);
+    unset($form['review']['order_fields:checkout']['summary']['field_second_name']);
+    unset($form['review']['order_fields:checkout']['summary']['field_country']);
+  }
+}
+
+/**
+ * @param array $form
+ * @param $form_state
+ * @return mixed
+ */
+function callback_field_session_trigger(array $form, $form_state){
+  return $form['field_session'];
+}
+/**
+ * @param array $form
+ * @param $form_state
+ * @return mixed
+ */
+function callback_field_seat_trigger(array &$form, $form_state){
+  $response = new AjaxResponse();
+
+  if(isset($form['seats'])){
+    $response->addCommand(new ReplaceCommand('#seat-wrapper', $form['seats']));
+  }
+  if(isset($form['names'])){
+    // Enable names and sumit inputs
+    unset($form['actions']['submit']['#attributes']['disabled']);
+    unset($form['actions']['buy_now']['#attributes']['disabled']);
+    $response->addCommand(new ReplaceCommand('#name-wrapper', $form['names']));
+    $response->addCommand(new ReplaceCommand('#edit-submit', $form['actions']['submit']));
+    $response->addCommand(new ReplaceCommand('#edit-submit--1', $form['actions']['submit']));
+    $response->addCommand(new ReplaceCommand('#edit-submit--2', $form['actions']['submit']));
+    $response->addCommand(new ReplaceCommand('#edit-submit--3', $form['actions']['submit']));
+    $response->addCommand(new ReplaceCommand('#edit-buy-now', $form['actions']['buy_now']));
+  }
+
+  return $response;
+}
+
+/**
+ * @param $month_value
+ * @param $sessions
+ * @return array
+ */
+function getSessionOptionsFromDate($month_value, $sessions){
+  $options = [];
+  if(isset($sessions) && is_array($sessions)){
+    foreach($sessions as $session):
+      $date = DrupalDateTime::createFromTimestamp(strtotime($session['sessionDate']));
+      if($date->format('Y-m') == $month_value){
+        $options[$session['sessionId']] = $date->format('l, F j, Y - H:i');
+      }
+    endforeach;
+  }
+  return $options;
+}
+
+
+
+function cact_commerce_age_control_form_validate_add_to_cart($form, &$form_state) {
+  $variations = $form_state->getValue('variations');
+  $commerce_product = \Drupal::routeMatch()->getParameter('commerce_product');
+  $variations_product_ref = $commerce_product->getVariations();
+  $variations_product = [];
+  $first_sku = null;
+
+  foreach($variations_product_ref as $varation_p_r):
+    $variations_product[$varation_p_r->getSku()] = $varation_p_r;
+
+    if(is_null($first_sku))
+      $first_sku = $varation_p_r->getSku();
+  endforeach;
+
+  $product_event_type = $commerce_product->get('field_event_type')->value;
+
+  /*
+   * Validate variations
+   * */
+  $has_variations = false;
+  if($product_event_type == 2){
+    $seats = $form_state->getValue('seats');
+  }
+
+  /*
+   * Products with name requirements
+   * */
+  if(!$commerce_product->get('field_required_name_tickets')->isEmpty() &&
+    $commerce_product->get('field_required_name_tickets')->getValue()[0]['value']){
+    $names = $form_state->getValue('names');
+  }
+
+  $quantity = 0;
+  $total_price = 0;
+  foreach($variations as $index => $var):
+    if((int)$var > 0 && isset($variations_product[$index])){
+
+      $max_limit = null;
+      if(!$variations_product[$index]->get('field_max_item_for_sale')->isEmpty() &&
+        (int)$variations_product[$index]->get('field_max_item_for_sale')->getString() != -1){
+        $max_limit = (int)$variations_product[$index]->get('field_max_item_for_sale')->getString();
+        $quantity_puchase = Drupal::service('cact_commerce_age_control.commerce_utils')->getCartNumberPurchaseEntity($variations_product[$index], $form_state->getValue('field_session')[0]['value']);
+      }
+
+      $quantity += $var;
+      $has_variations = true;
+      $total_price += $variations_product[$index]->getPrice()->getNumber();
+      if($product_event_type == 2){
+        if(!isset($seats[$index]) || count($seats[$index]) != $var){
+          $form_state->setErrorByName('seats', t('Session is required.'));
+        }
+      }
+
+      /*
+       * Products with name requirements
+       * */
+      if(!$commerce_product->get('field_required_name_tickets')->isEmpty() &&
+        $commerce_product->get('field_required_name_tickets')->getValue()[0]['value']){
+        if(!isset($names[$index]) || count($names[$index]) != $var){
+          $form_state->setErrorByName('names', t('Name is required.'));
+        }
+      }
+
+      if(isset($max_limit)){
+        if($var > $max_limit){
+          $form_state->setErrorByName('seats', t('The maximum number for @variation_name is @number.',
+            ['@variation_name' => strtolower(reset($variations_product[$index]->getAttributeValues())->get('name')->getString()), '@number' => $max_limit]));
+        }else if(($var + $quantity_puchase) > $max_limit){
+          $form_state->setErrorByName('seats', t('The maximum number for @variation_name is @number. You already have added to the cart @quantity_puchase',
+            ['@variation_name' => strtolower(reset($variations_product[$index]->getAttributeValues())->get('name')->getString()), '@number' => $max_limit, '@quantity_puchase' => $quantity_puchase]));
+        }
+
+      }
+    }
+  endforeach;
+
+  if(!$has_variations){
+    if (isset($form['names'])) {
+      $form_state->setErrorByName('variations', t('Before clicking on buy, you must indicate the names for the tickets'));
+    } else
+      $form_state->setErrorByName('variations', t('You must add the number tickets.'));
+  }
+//$product_event_type = $commerce_product->get('field_event_type')->value;
+  if($commerce_product->hasField('field_gratuitous') && $commerce_product->field_gratuitous->value != 1 && $has_variations && $total_price == 0){
+    $form_state->setErrorByName('price', t('Tickets at 0 euros require the purchase of at least one other paid ticket.'));
+  }
+
+
+  /*
+   * Validate sessions
+   * */
+  if($product_event_type == 1 || $product_event_type == 2){
+    if (!$form_state->hasValue('field_session')) {
+      $form_state->setErrorByName('field_session', t('Session is required.'));
+    }else{
+      $session_id = $form_state->getValue('field_session')[0]['value'];
+      $stock = \Drupal::service('cact_openbravo.services')->getStocks($session_id);
+      $session_validate = false;
+      if($product_event_type == 1){
+        if(isset($stock['data']['result']['session']['qtyAvailable']) && $stock['data']['result']['session']['qtyAvailable'] >= $quantity) {
+          $session_validate = true;
+        }
+        if(!$session_validate) {
+          $form_state->setErrorByName('field_session', t('There is no stock available for the selected quantity.'));
+        }
+      }
+    }
+  }
+
+  // Validate slot quantity
+  if($product_event_type == 3){
+    if (empty($form_state->getValue('field_ticket_date')) ){
+      $form_state->setErrorByName('field_ticket_date', t('You are required to select a time.'));
+    } else if (empty($form_state->getValue('field_time_slot_id')) ){
+      $form_state->setErrorByName('field_time_slot_id', t('Time slot is required.'));
+    } else {
+      $commerceUtils = Drupal::service('cact_openbravo.cact_services_utils');
+      $slot_id = $form_state->getValue('field_time_slot_id');
+      $query_dates = [
+        'datefrom' => $form_state->getValue('field_ticket_date'),
+        'dateto' =>$form_state->getValue('field_ticket_date')
+      ];
+
+      $slots = $commerceUtils->getDataStocks($first_sku, null, $query_dates, 'true');
+      $slot_validate = false;
+
+      foreach($slots['result']['dates'][0]['timeSlots'] as $slot):
+        if ($slot['detailTimeSlotId'] == $slot_id) {
+          if(isset($slot['qtyAvailable']) && $slot['qtyAvailable'] >= $quantity) {
+            $slot_validate = true;
+          }
+        }
+      endforeach;
+
+      if(!$slot_validate) {
+        $form_state->setErrorByName('field_session', t('There is no stock available for the selected quantity.'));
+      }
+    }
+  }
+}
+
+function cact_commerce_age_control_form_submit_directly_buy($form, &$form_state) {
+  cact_commerce_age_control_form_submit_add_to_cart($form, $form_state);
+  $cart_provider = \Drupal::service('commerce_cart.cart_provider');
+  $cart = $cart_provider->getCart('default');
+  // Now redirect to the checkout page.
+  if(isset($cart)) {
+    return $form_state->setRedirect('commerce_checkout.form', [
+      'commerce_order' => $cart->id(),
+    ]);
+  }
+}
+/**
+ * Implements hook_form_submit().
+ */
+function cact_commerce_age_control_form_submit_add_to_cart($form, &$form_state) {
+  $cartManager = Drupal::service('commerce_cart.cart_manager');
+  $entityTypeManager = Drupal::service('entity_type.manager');
+  $commerceUtils = Drupal::service('cact_commerce_age_control.commerce_utils');
+  /*
+   * if product is 1 or 2 set date from session else date today
+   * */
+  $commerce_product = \Drupal::routeMatch()->getParameter('commerce_product');
+  $product_event_type = $commerce_product->get('field_event_type')->value;
+  if($product_event_type == 0){
+    $dateTime = DrupalDateTime::createFromFormat('Y-m-d H:i:s',date('Y-m-d H:i:s', time()));
+    $dateTicket = $dateTime->format('Y-m-d\TH:i:s');
+  }
+  else if($product_event_type == 3){
+    $field_time_slot_id = $form_state->getValue('field_time_slot_id');
+    $field_ticket_date = $form_state->getValue('field_ticket_date');
+    
+    // Convertir a un objeto DrupalDateTime.
+    $dateTime = new DrupalDateTime($field_ticket_date, 'UTC');
+    // Formatear la fecha en 'Y-m-d\TH:i:s'.
+    $dateTicket = $dateTime->format('Y-m-d\TH:i:s');
+  }
+  else{
+    if(isset($form_state->getValue('field_session')[0]['value'])){
+      $commerce_product = \Drupal::routeMatch()->getParameter('commerce_product');
+      $variations = $commerce_product->getVariations();
+      if(count($variations) == 0){
+        throw new NotFoundHttpException();
+      }
+
+      $first_sku = null;
+      foreach($variations as $index => $var):
+        if($index == 0){
+          $first_sku = $var->getSku();
+          break;
+        }
+      endforeach;
+
+      $sessions = \Drupal::service('cact_openbravo.services')->getProduct($first_sku);
+      if(isset($sessions['data']['result']['product']['sessions']) && count($sessions['data']['result']['product']['sessions']) > 0){
+        foreach($form['#sessions'] as $index => $session):
+          $dateTime = DrupalDateTime::createFromTimestamp(strtotime($session['sessionDate']));
+          if($form_state->getValue('field_session')[0]['value'] == $session['sessionId']){
+            $dateTicket = $dateTime->format('Y-m-d\TH:i:s');
+            break;
+          }
+        endforeach;
+      }else{
+        throw new NotFoundHttpException();
+      }
+    }else{
+      throw new NotFoundHttpException();
+    }
+  }
+
+
+  $variations = $form_state->getValue('variations');
+  $products = [];
+  foreach($variations as $index => $var):
+    if((int)$var > 0){
+      $products[] = [
+        'quantity' => $var,
+        'sku' => $index
+      ];
+    }
+  endforeach;
+
+  if($product_event_type == 1 || $product_event_type == 2) {
+    $session_id = $form_state->getValue('field_session')[0]['value'];
+  }
+  if($product_event_type == 2){
+    $seats = $form_state->getValue('seats');
+  }
+
+  /*
+   * Products with name requirements
+   * */
+  if(!$commerce_product->get('field_required_name_tickets')->isEmpty() &&
+    $commerce_product->get('field_required_name_tickets')->getValue()[0]['value']){
+    $names = $form_state->getValue('names');
+  }
+
+  $cart = NULL;
+  foreach ($products as $product) {
+    // This array should follow a specific pattern.
+    if (!isset($product['sku']) || !isset($product['quantity'])) {
+      continue;
+    }
+    // Try to load this product.
+    $variation = $entityTypeManager->getStorage('commerce_product_variation')->loadBySku($product['sku']);
+    if (!$variation) {
+      throw new NotFoundHttpException();
+    }
+    if (!$variation) {
+      continue;
+    }
+
+    $cart = $commerceUtils->getCart($variation);
+
+    if ($product_event_type == 0) {
+      $items_fill = 1;
+    } else {
+      $items_fill = $product['quantity'];
+    }
+    for ($i = 0; $i < $items_fill; $i++){
+      $order_item = $cartManager->createOrderItem($variation, ($product_event_type == 0) ? $product['quantity'] : 1);
+
+      foreach ($form_state->getValues() as $index => $value):
+        if ($order_item->hasField($index) && $form_state->hasValue($index) && $index != 'purchased_entity') {
+          $order_item->set($index, $form_state->getValue($index));
+        }
+      endforeach;
+
+      if($product_event_type == 2){
+        $seat = array_shift($seats[$product['sku']]);
+        $order_item->set('field_location', $seat);
+      }
+      else if ($product_event_type == 3){
+          $order_item->set('field_time_slot_id', $field_time_slot_id);
+      }
+
+      /*
+       * Products with name requirements
+       * */
+      if(!$commerce_product->get('field_required_name_tickets')->isEmpty() &&
+        $commerce_product->get('field_required_name_tickets')->getValue()[0]['value']){
+        $name = array_shift($names[$product['sku']]);
+        $order_item->set('field_name', $name);
+      }
+      $order_item->set('field_ticket_date', $dateTicket);
+
+      $cartManager->addOrderItem($cart, $order_item, ($product_event_type == 0) ? 1 : 0);
+    }
+  }
+}
+
+function selectStore(PurchasableEntityInterface $entity) {
+  $stores = $entity->getStores();
+  if (count($stores) === 1) {
+    $store = reset($stores);
+  }
+  elseif (count($stores) === 0) {
+    throw new \Exception('The given entity is not assigned to any store.');
+  }
+  else {
+    $store = Drupal::service('commerce_store.current_store')->getStore();
+    if (!in_array($store, $stores)) {
+      throw new \Exception("The given entity can't be purchased from the current store.");
+    }
+  }
+
+  return $store;
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for inputs.
+ */
+function cact_commerce_age_control_suggestions_input_alter(&$suggestions, array $variables) {
+  $element = $variables['element'];
+
+  // Set suggestion for inputs within nested paragraphs.
+  if (isset($element['#attributes']['data-paragraph-parent'])) {
+    array_splice($suggestions, 1, 0, 'input__' . $element['#type'] . '__' . 'paragraph__parent' . '__' . $element['#attributes']['data-paragraph-parent']);
+  }
+  // Set suggestion for inputs within paragraphs.
+  if (isset($element['#attributes']['data-paragraph'])) {
+    array_splice($suggestions, 1, 0, 'input__' . $element['#type'] . '__' . 'paragraph' . '__' . $element['#attributes']['data-paragraph']);
+  }
+}
+
+function cact_commerce_age_control_form_submit_add_to_nesletter($form, &$form_state) {
+  if($form_state->getValue('order_fields:checkout')['newsletter'] == 1) {
+
+    $subscription_manager = \Drupal::service('simplenews.subscription_manager');
+    $entityTypeManager = Drupal::service('entity_type.manager');
+    $newsletter_id = reset($entityTypeManager->getStorage('simplenews_newsletter')->loadMultiple())->id();
+
+    $languages = \Drupal::languageManager()->getLanguages();
+
+    foreach ($languages as $langcode => $language) {
+      $language_options[$langcode] = $language->getId();
+    }
+
+    if(isset($form_state->getValue('contact_information')['email'])){
+      $subscription_manager->subscribe($form_state->getValue('contact_information')['email'], $newsletter_id, NULL, 'website', $language_options[$langcode]);
+
+      $sent = $subscription_manager->sendConfirmations();
+    }
+
+  }
+}

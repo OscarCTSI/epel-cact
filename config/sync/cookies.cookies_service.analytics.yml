@@ -1,0 +1,17 @@
+uuid: 1db5dbe7-d88f-4412-95dc-7c35bc2e76b5
+langcode: es
+status: true
+dependencies:
+  enforced:
+    module:
+      - cookies_ga
+_core:
+  default_config_hash: ODJmHFJ1aDhBvONCGMJQXPHksF8wZRRthDwHuet7lZ0
+id: analytics
+label: 'Google Analytics'
+group: tracking
+info:
+  value: ''
+  format: full_html
+url: 'https://support.google.com/analytics/answer/6004245'
+consent: true

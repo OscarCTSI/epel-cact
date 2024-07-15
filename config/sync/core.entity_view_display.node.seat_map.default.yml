@@ -1,0 +1,36 @@
+uuid: f3055c0c-ee3c-4923-bc20-eda637a984d8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.seat_map.field_map
+    - node.type.seat_map
+  module:
+    - image
+    - user
+id: node.seat_map.default
+targetEntityType: node
+bundle: seat_map
+mode: default
+content:
+  field_map:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  entity_print_view_epub: true
+  entity_print_view_pdf: true
+  entity_print_view_word_docx: true
+  langcode: true

@@ -1,0 +1,20 @@
+uuid: 8cc71097-b25d-467d-a901-9dae747cc7af
+langcode: es
+status: true
+dependencies:
+  config:
+    - node.type.simplenews_issue
+  module:
+    - path
+id: node.simplenews_issue.path
+field_name: path
+entity_type: node
+bundle: simplenews_issue
+label: 'Alias de URL'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: path

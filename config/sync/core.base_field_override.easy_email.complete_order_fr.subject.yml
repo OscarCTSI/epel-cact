@@ -1,0 +1,20 @@
+uuid: fda65b1b-5f40-4663-a1be-9dd08b35762a
+langcode: es
+status: true
+dependencies:
+  config:
+    - easy_email.easy_email_type.complete_order_fr
+id: easy_email.complete_order_fr.subject
+field_name: subject
+entity_type: easy_email
+bundle: complete_order_fr
+label: Tema
+description: 'The Subject of the Email entity.'
+required: false
+translatable: false
+default_value:
+  -
+    value: ''
+default_value_callback: ''
+settings: {  }
+field_type: string

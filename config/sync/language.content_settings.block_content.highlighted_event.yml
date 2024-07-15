@@ -1,0 +1,18 @@
+uuid: 4d83798b-dc29-4b81-ad28-89546e3aedf0
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.highlighted_event
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: block_content.highlighted_event
+target_entity_type_id: block_content
+target_bundle: highlighted_event
+default_langcode: site_default
+language_alterable: true

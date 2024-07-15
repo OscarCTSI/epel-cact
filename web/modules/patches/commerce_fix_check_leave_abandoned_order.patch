@@ -1,0 +1,23 @@
+diff --git a/modules/checkout/src/Controller/CheckoutController.php b/modules/checkout/src/Controller/CheckoutController.php
+index 97869e4..fc845e5 100755
+--- a/modules/contrib/commerce/modules/checkout/src/Controller/CheckoutController.php
++++ b/modules/contrib/commerce/modules/checkout/src/Controller/CheckoutController.php
+@@ -140,7 +140,17 @@ class CheckoutController implements ContainerInjectionInterface {
+     $checkout_flow = $this->checkoutOrderManager->getCheckoutFlow($order);
+     $checkout_flow_plugin = $checkout_flow->getPlugin();
+
+-    return $this->formBuilder->getForm($checkout_flow_plugin, $step_id);
++    $cart_provider = \Drupal::service('commerce_cart.cart_provider');
++    $cart = $cart_provider->getCart('default');
++    // Now redirect to front page with error message.
++    if (isset($order) && ($order->getState()->getString() == 'leave' || $order->getState()->getString() == 'abandoned') && $step_id == "complete") {
++      $response = new RedirectResponse("/", 302);
++      $response->send();
++      \Drupal::messenger()->addError(t('Your purchase could not be completed because it has exceeded time limit. Try again.'));
++      exit;
++    } else {
++      return $this->formBuilder->getForm($checkout_flow_plugin, $step_id);
++    }
+   }
+
+   /**

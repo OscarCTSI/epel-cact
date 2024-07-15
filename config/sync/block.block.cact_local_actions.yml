@@ -1,0 +1,25 @@
+uuid: d74cb447-4397-4551-a023-912241b6cbf0
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+  theme:
+    - cact
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: w3NPCQHIa3lSnU4LKC7lsuI-hGBXeBzF-jpRDuuN2nc
+id: cact_local_actions
+theme: cact
+region: content
+weight: -5
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

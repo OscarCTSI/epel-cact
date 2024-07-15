@@ -1,0 +1,61 @@
+.view-product-terms
+  margin: 0 auto
+  max-width: calc-rem(1440px)
+
+  .view-header
+    h2
+      a
+        color: $black
+        font-weight: 700
+        line-height: calc-rem(50px)
+        max-width: calc-rem(646px)
+
+  .view-content
+    +breakpoint($x-small)
+      //align-items: center
+      display: flex
+      flex-flow: row wrap
+
+    .views-row
+      margin-bottom: calc-rem(16px)
+      +breakpoint($x-small)
+        width: 49%
+      +breakpoint($medium)
+        margin-bottom: calc-rem(40px)
+        width: 33%
+
+      &:not(:nth-child(2n))
+        +breakpoint($x-small)
+          margin-right: 1%
+        +breakpoint($medium)
+          margin-right: 0
+
+      &:not(:nth-child(3n))
+        +breakpoint($medium)
+          margin-right: .5%
+
+      .wrapper-info
+        background: #FFFFFF
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.07)
+        padding: calc-rem(19px) calc-rem(24px) calc-rem(42px) calc-rem(24px)
+
+        .views-field
+          &-title
+            h3
+              font-family: $montserrat
+              font-size: calc-rem(20px)
+              font-weight: 400
+              letter-spacing: .2px
+              line-height: 30px
+              margin: calc-rem(20px) 0 calc-rem(25px) 0
+
+          &-link
+            a
+              +icomoon-text($icon-arrow-right, 10px, $turquoise, right, center, 10px, transparent, 0, after)
+              color: $turquoise
+              font-family: $montserrat
+              font-size: calc-rem(14px)
+              font-weight: 700
+              letter-spacing: .2px
+              line-height: 24px
+              padding-right: calc-rem(14px)

@@ -1,0 +1,21 @@
+uuid: c27b8c41-296d-4824-b000-b7758d292ccf
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.ticket
+    - field.storage.commerce_product.field_event_type
+  module:
+    - options
+id: commerce_product.ticket.field_event_type
+field_name: field_event_type
+entity_type: commerce_product
+bundle: ticket
+label: 'Event type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

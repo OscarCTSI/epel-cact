@@ -1,0 +1,20 @@
+.site-breadcrumb
+  padding: calc-rem(50px) $container-padding 0 $container-padding
+
+  a
+    color: #468998
+    font-size: 13px
+    font-weight: 500
+    text-decoration: underline
+
+    &:active
+      color: $black
+      text-decoration: none
+
+.breadcrumb li:not(:first-child):before
+  color: $black
+  content: "/"
+  font-size: 13px
+
+.breadcrumb li:not(:first-child)
+  line-height: 13px

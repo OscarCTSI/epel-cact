@@ -1,0 +1,9 @@
+uuid: af3ffbdf-d2dc-49ee-9466-c53f996f4af9
+langcode: en
+status: true
+dependencies: {  }
+id: privacy_overview
+label: 'Privacy Overview'
+weight: 1
+title: 'Privacy Overview'
+details: 'This website uses cookies so that we can provide you with the best user experience possible. Cookie information is stored in your browser and performs functions such as recognising you when you return to our website and helping our team to understand which sections of the website you find most interesting and useful.'

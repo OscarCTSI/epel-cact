@@ -1,0 +1,26 @@
+uuid: 1ce7b91d-0ad1-41ce-8586-7740d06d1489
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - help
+  theme:
+    - cact
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: rK6h6ZOV6sBWACNQBn74v1qT2eizifJ0bzRYp0goqFg
+id: cact_help
+theme: cact
+region: content
+weight: -6
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

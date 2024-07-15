@@ -1,0 +1,17 @@
+<?php
+/**
+ * @file
+ * Contains cact_commerce_analytics.module.
+ *
+ */
+
+use Drupal\Core\Cache\CacheableMetadata;
+
+/**
+ * Pass module configuration to javascript.
+ * Implements hook_page_attachments().
+ */
+function cact_commerce_analytics_page_attachments(array &$page)
+{
+  $page['#attached']['library'][] = 'cact_commerce_analytics/enhanced_gtm';
+}

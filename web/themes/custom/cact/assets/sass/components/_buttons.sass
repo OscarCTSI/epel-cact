@@ -1,0 +1,19 @@
+.button
+  +button(primary)
+
+  &--secondary
+    +button(secondary)
+
+  &:disabled
+    background-color: $grey
+    color: $darker-grey
+    pointer-events: none
+
+  &:focus
+    outline: none
+
+  &.button--add-to-cart
+    border: 1px solid $primary-color
+    background-color: $white
+    color: $primary-color
+    //+icomoon($icon-cart, 20px, $primary-color)

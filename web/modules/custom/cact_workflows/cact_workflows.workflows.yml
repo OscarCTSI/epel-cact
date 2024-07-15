@@ -1,0 +1,38 @@
+cact_workflows_processing:
+  id: cact_workflows__processing
+  group: commerce_order
+  label: 'CACT workflow with Processing'
+  states:
+    draft:
+      label: Draft
+    abandoned:
+      label: Abandoned
+    pending:
+      label: Waiting for Payment
+    completed:
+      label: Completed
+    problem:
+      label: Problems
+    canceled:
+      label: Canceled
+  transitions:
+    leave:
+      label: 'Leave order'
+      from: [ draft ]
+      to: abandoned
+    place:
+      label: 'Place order'
+      from: [draft]
+      to: pending
+    process:
+      label: 'Process order'
+      from: [pending, problem]
+      to: completed
+    cancel:
+      label: 'Cancel order'
+      from: [draft, pending, completed, problem]
+      to: canceled
+    problem:
+      label: 'Openbravo problems'
+      from: [completed]
+      to: problem

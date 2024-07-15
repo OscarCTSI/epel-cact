@@ -1,0 +1,23 @@
+uuid: 132d9637-fe7f-4ddb-a272-95726d3edf02
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.ticket
+    - field.storage.commerce_product.field_required_name_tickets
+id: commerce_product.ticket.field_required_name_tickets
+field_name: field_required_name_tickets
+entity_type: commerce_product
+bundle: ticket
+label: 'Required name tickets'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

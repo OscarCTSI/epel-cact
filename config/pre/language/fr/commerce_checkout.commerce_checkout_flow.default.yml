@@ -1,0 +1,6 @@
+label: 'Par défaut'
+configuration:
+  panes:
+    completion_message:
+      message:
+        value: "<p>[current-date:long]</p>\r\n\r\n<p>Tu número de pedido es [commerce_order:order_number].</p>\r\n\r\n<p>[cact:complete_order_info_mail]</p>\r\n\r\n<p class=\"contact-data\">&nbsp;</p>\r\n\r\n<h4>Datos de contacto</h4>\r\n\r\n<p class=\"address\" translate=\"no\"><span class=\"given-name\">[commerce_order:field_first_name]</span> <span class=\"family-name\">[commerce_order:field_second_name]</span><br />\r\n<span class=\"country\">[commerce_order:field_country:value]</span><br />\r\n<span class=\"phone\">[commerce_order:field_phone]</span></p>\r\n\r\n<p>&nbsp;</p>\r\n"

@@ -1,0 +1,24 @@
+easy_email.easy_email_type.*.third_party.cact_general:
+  type: config_entity
+  label: 'Email template config type pay'
+  mapping:
+    message_product_pay:
+      type: mapping
+      label: 'HTML Body product pay'
+      mapping:
+        value:
+          type: string
+          label: 'Text Value'
+        format:
+          type: string
+          label: 'Text Format'
+    message_product_free:
+      type: mapping
+      label: 'HTML Body product free'
+      mapping:
+        value:
+          type: string
+          label: 'Text Value'
+        format:
+          type: string
+          label: 'Text Format'      

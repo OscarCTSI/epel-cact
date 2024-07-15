@@ -1,0 +1,10 @@
+uuid: e9334e76-40f9-4d3a-88f1-9b589ef1ba39
+langcode: es
+status: true
+dependencies: {  }
+id: ticket
+label: Ticket
+traits: {  }
+locked: false
+orderItemType: ticket
+generateTitle: false

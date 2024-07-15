@@ -1,0 +1,3 @@
+name: 'Standard Newsletter'
+description: 'Dies ist ein Beispiel für einen Newsletter. Das Beispiel sollte angepast werden.'
+subject: '[[simplenews-newsletter:name]] [node:title]'

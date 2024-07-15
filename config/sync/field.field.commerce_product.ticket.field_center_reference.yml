@@ -1,0 +1,34 @@
+uuid: ca9129d1-3428-446b-a3a4-af4daa26df98
+langcode: es
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.ticket
+    - field.storage.commerce_product.field_center_reference
+id: commerce_product.ticket.field_center_reference
+field_name: field_center_reference
+entity_type: commerce_product
+bundle: ticket
+label: Centro
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    filter:
+      type: role
+      role:
+        center: center
+        content_editor: '0'
+        administrator: '0'
+        customer_support: '0'
+    include_anonymous: true
+field_type: entity_reference

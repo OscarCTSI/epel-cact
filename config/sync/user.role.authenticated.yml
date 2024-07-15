@@ -1,0 +1,40 @@
+uuid: b2405e9d-39b1-4a25-8f17-66846bd33f59
+langcode: es
+status: true
+dependencies:
+  config:
+    - filter.format.basic_html
+  module:
+    - comment
+    - commerce_checkout
+    - commerce_order
+    - commerce_payment
+    - commerce_product
+    - contact
+    - filter
+    - media
+    - search
+    - shortcut
+    - simplenews
+    - system
+_core:
+  default_config_hash: I44QAB4es39lNzMQWiJLq2dfjX7VRSOzT_5KzAcUq_M
+id: authenticated
+label: 'Usuario autenticado'
+weight: 1
+is_admin: false
+permissions:
+  - 'access checkout'
+  - 'access comments'
+  - 'access content'
+  - 'access shortcuts'
+  - 'access site-wide contact form'
+  - 'manage own commerce_payment_method'
+  - 'post comments'
+  - 'search content'
+  - 'skip comment approval'
+  - 'subscribe to newsletters'
+  - 'use text format basic_html'
+  - 'view commerce_product'
+  - 'view media'
+  - 'view own commerce_order'

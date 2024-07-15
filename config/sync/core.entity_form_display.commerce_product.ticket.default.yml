@@ -1,0 +1,255 @@
+uuid: 303aed8d-9e6f-4f97-95eb-8093b835631b
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.ticket
+    - field.field.commerce_product.ticket.body
+    - field.field.commerce_product.ticket.field_categories
+    - field.field.commerce_product.ticket.field_center_reference
+    - field.field.commerce_product.ticket.field_comments_to_add_to_cart
+    - field.field.commerce_product.ticket.field_date
+    - field.field.commerce_product.ticket.field_event_type
+    - field.field.commerce_product.ticket.field_expiration_date_cart
+    - field.field.commerce_product.ticket.field_general_recommendations
+    - field.field.commerce_product.ticket.field_gratuitous
+    - field.field.commerce_product.ticket.field_image
+    - field.field.commerce_product.ticket.field_important_information
+    - field.field.commerce_product.ticket.field_phone
+    - field.field.commerce_product.ticket.field_place
+    - field.field.commerce_product.ticket.field_release
+    - field.field.commerce_product.ticket.field_required_name_tickets
+    - field.field.commerce_product.ticket.field_seat_map
+    - field.field.commerce_product.ticket.field_time
+    - field.field.commerce_product.ticket.field_title_copy
+    - field.field.commerce_product.ticket.field_title_header
+    - field.field.commerce_product.ticket.field_website
+    - field.field.commerce_product.ticket.field_weight
+  module:
+    - commerce
+    - datetime
+    - field_token_value
+    - link
+    - media_library
+    - path
+    - telephone
+    - text
+    - time_field
+id: commerce_product.ticket.default
+targetEntityType: commerce_product
+bundle: ticket
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 2
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  created:
+    type: datetime_timestamp
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_categories:
+    type: options_select
+    weight: 15
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_center_reference:
+    type: entity_reference_autocomplete
+    weight: 25
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_comments_to_add_to_cart:
+    type: string_textarea
+    weight: 23
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_date:
+    type: datetime_default
+    weight: 12
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_event_type:
+    type: options_select
+    weight: 16
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_expiration_date_cart:
+    type: datetime_default
+    weight: 20
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_general_recommendations:
+    type: string_textarea
+    weight: 18
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_gratuitous:
+    type: boolean_checkbox
+    weight: 27
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_image:
+    type: media_library_widget
+    weight: 21
+    region: content
+    settings:
+      media_types: {  }
+    third_party_settings: {  }
+  field_important_information:
+    type: string_textarea
+    weight: 19
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_phone:
+    type: telephone_default
+    weight: 9
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_place:
+    type: string_textfield
+    weight: 11
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_release:
+    type: number
+    weight: 17
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_required_name_tickets:
+    type: boolean_checkbox
+    weight: 26
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_seat_map:
+    type: options_select
+    weight: 14
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_time:
+    type: time_widget
+    weight: 13
+    region: content
+    settings:
+      enabled: false
+      step: 5
+    third_party_settings: {  }
+  field_title_copy:
+    type: field_token_value_default
+    weight: 22
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_title_header:
+    type: field_token_value_default
+    weight: 24
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_website:
+    type: link_default
+    weight: 10
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_weight:
+    type: number
+    weight: 28
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  langcode:
+    type: language_select
+    weight: 3
+    region: content
+    settings:
+      include_locked: true
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 8
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  stores:
+    type: commerce_entity_select
+    weight: 0
+    region: content
+    settings:
+      hide_single_entity: true
+      autocomplete_threshold: 7
+      autocomplete_size: 60
+      autocomplete_placeholder: ''
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  translation:
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 4
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  variations: true

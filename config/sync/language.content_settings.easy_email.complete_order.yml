@@ -1,0 +1,18 @@
+uuid: f81a08f7-8db4-481c-82a0-931058641a8d
+langcode: en
+status: true
+dependencies:
+  config:
+    - easy_email.easy_email_type.complete_order
+  module:
+    - content_translation
+third_party_settings:
+  content_translation:
+    enabled: true
+    bundle_settings:
+      untranslatable_fields_hide: '0'
+id: easy_email.complete_order
+target_entity_type_id: easy_email
+target_bundle: complete_order
+default_langcode: site_default
+language_alterable: true

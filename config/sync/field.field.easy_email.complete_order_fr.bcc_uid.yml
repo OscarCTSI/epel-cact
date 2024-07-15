@@ -1,0 +1,21 @@
+uuid: 50539d24-624a-4965-bf14-6919e117d134
+langcode: en
+status: true
+dependencies:
+  config:
+    - easy_email.easy_email_type.complete_order_fr
+    - field.storage.easy_email.bcc_uid
+id: easy_email.complete_order_fr.bcc_uid
+field_name: bcc_uid
+entity_type: easy_email
+bundle: complete_order_fr
+label: BCC
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: null
+settings:
+  handler: 'default:user'
+  handler_settings: {  }
+field_type: entity_reference

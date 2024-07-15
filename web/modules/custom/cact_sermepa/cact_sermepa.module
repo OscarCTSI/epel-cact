@@ -1,0 +1,20 @@
+<?php
+/**
+ * @file
+ * Contains cact_sermepa.module.
+ *
+ * @param array $info
+ */
+
+/**
+ * Implements hook_pcommerce_payment_gateway_info_alter().
+ *
+ * Use to customize commerce payment gateway plugins.
+ *
+ * @param array $info
+ */
+function cact_sermepa_commerce_payment_gateway_info_alter (array &$info) {
+  if (isset($info['commerce_sermepa'])) {
+    $info['commerce_sermepa']['forms']['offsite-payment'] = 'Drupal\cact_sermepa\PluginForm\OffsiteRedirect\CactSermepaForm';
+  }
+}

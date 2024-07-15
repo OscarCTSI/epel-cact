@@ -1,0 +1,14 @@
+uuid: ca63257c-1d24-4059-a4c5-7e27d278fd7c
+langcode: es
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 1ugFWGMb4w5lonJxzZMaiHuMnugR5U3uIASE9N513qk
+id: cookie_policy
+label: 'Cookie Policy'
+group: cookie_policy
+info:
+  value: ''
+  format: full_html
+url: null
+consent: true

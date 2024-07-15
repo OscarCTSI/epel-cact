@@ -1,0 +1,11 @@
+uuid: ab16e35b-fa3c-471f-869b-28fa0a8a369f
+langcode: es
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: _gYDe3qoEc6L5uYR6zhu5V-3ARLlyis9gl1diq7Tnf4
+id: tracking
+label: Tracking
+weight: 3
+title: '3rd Party Cookies'
+details: "This website uses Google Analytics to collect anonymous information such as the number of visitors to the site, and the most popular pages.\r\n\r\nKeeping this cookie enabled helps us to improve our website."

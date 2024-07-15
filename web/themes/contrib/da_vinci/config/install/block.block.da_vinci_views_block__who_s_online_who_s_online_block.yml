@@ -1,0 +1,24 @@
+uuid: 57f3c5f3-2f8b-4932-a671-9e86f61e6ce4
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.who_s_online
+  module:
+    - views
+  theme:
+    - da_vinci
+id: da_vinci_views_block__who_s_online_who_s_online_block
+theme: da_vinci
+region: sidebar_first
+weight: 1
+provider: null
+plugin: 'views_block:who_s_online-who_s_online_block'
+settings:
+  id: 'views_block:who_s_online-who_s_online_block'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility: {  }

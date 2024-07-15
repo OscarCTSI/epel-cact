@@ -1,0 +1,26 @@
+uuid: 956f549d-0564-458a-bebd-175bde32b7c8
+langcode: es
+status: true
+dependencies:
+  module:
+    - block_class
+    - user
+  theme:
+    - da_vinci
+third_party_settings:
+  block_class:
+    classes: null
+_core:
+  default_config_hash: SRUOsK2xzHI1KAGw_U0g9QrJprHsPoJHvsW3Jg2tq9w
+id: da_vinci_user_login
+theme: da_vinci
+region: sidebar_first
+weight: 0
+provider: null
+plugin: user_login_block
+settings:
+  id: user_login_block
+  label: 'User login'
+  label_display: visible
+  provider: user
+visibility: {  }

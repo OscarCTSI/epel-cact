@@ -1,0 +1,26 @@
+_core:
+  default_config_hash: r0JMDv27tTPrhzD4ypdLS0Jijl0-ccTUdlBkqvbAa8A
+langcode: es
+bannerText: "Estamos utilizando cookies para brindarle la mejor experiencia en nuestro sitio web.\r\n\r\nPuede obtener más información sobre qué cookies estamos utilizando o desactivarlas en la configuración."
+privacyPolicy: ''
+privacyUri: ''
+imprint: Imprimir
+imprintUri: ''
+cookieDocs: 'Politica de Cookies'
+cookieDocsUri: /cookies/documentation
+denyAll: Reflejar
+alwaysActive: 'Activar siempre'
+settings: 'Guardar ajustes'
+acceptAll: 'Accept all'
+allowAll: 'Accept all'
+requiredCookies: 'Cookies requeridas'
+cookieSettings: 'Guardar ajustes'
+close: Close
+officialWebsite: 'Ver la página oficial'
+readMore: 'Leer más'
+allowed: Permitido
+denied: Denegado
+settingsAllServices: ' Configuraciones para todos los servicios'
+saveSettings: 'Guardar ajustes'
+default_langcode: en
+credit: ''

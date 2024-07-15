@@ -1,0 +1,10 @@
+name: 'CACT Sermepa'
+type: module
+description: 'Customization to Sermepa payment gateway.'
+core: 8.x
+core_version_requirement: ^8 || ^9
+package: 'CACT'
+dependencies:
+  - commerce_sermepa
+
+project: 'cact'

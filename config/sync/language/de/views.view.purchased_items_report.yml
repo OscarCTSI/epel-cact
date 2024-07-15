@@ -1,0 +1,47 @@
+label: 'Bericht über gekaufte Artikel'
+display:
+  default:
+    display_title: Master
+    display_options:
+      exposed_form:
+        options:
+          submit_button: Anwenden
+          reset_button_label: Zurücksetzen
+          exposed_sorts_label: 'Sortieren nach'
+          sort_asc_label: Aufsteigend
+          sort_desc_label: Absteigend
+      pager:
+        options:
+          expose:
+            items_per_page_label: 'Elemente pro Seite'
+            items_per_page_options_all_label: '- Alle -'
+            offset_label: Versatz
+          tags:
+            previous: ‹‹
+            next: ››
+      fields:
+        title:
+          label: Titel
+          separator: ', '
+        title_1:
+          label: '# der Käufe'
+          separator: ', '
+        quantity:
+          label: 'Durchschnittliche Menge'
+          separator: ', '
+        total_price:
+          label: Gesamtsumme
+          separator: ', '
+        unit_price:
+          label: Einzelpreis
+          separator: ', '
+      sorts:
+        title_value:
+          expose:
+            label: '# der Käufe'
+      title: 'Bericht über gekaufte Artikel'
+  page_1:
+    display_title: Seite
+    display_options:
+      menu:
+        title: 'Bericht über gekaufte Artikel'

@@ -1,0 +1,12 @@
+uuid: 11a5b6b3-b492-40b7-9daf-127eec172f0e
+langcode: es
+status: true
+dependencies:
+  module:
+    - commerce_product
+_core:
+  default_config_hash: ry5RvX-mOnp2GQWzMqSYjPz-jKfP1nSo4Xo4kJCodlE
+id: commerce_product_attribute_value.add_to_cart
+label: 'Agregar al carrito de la compra'
+targetEntityType: commerce_product_attribute_value
+cache: true

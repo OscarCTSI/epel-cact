@@ -1,0 +1,22 @@
+uuid: 1caeb285-250a-44fd-bf54-33f9bef2fb69
+langcode: es
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 6wgXMbTWVfjhYZ3wFXLy3vAISxQeKEJz9SdNqt9SLMY
+name: 'Default newsletter'
+id: default
+description: 'CACT Lanzarote newsletter'
+format: html
+priority: 0
+receipt: true
+from_name: 'CACT - Lanzarote'
+subject: '[[simplenews-newsletter:name]] [node:title]'
+from_address: info@centrosturisticos.com
+hyperlinks: false
+allowed_handlers:
+  0: '0'
+  simplenews_all: '0'
+new_account: none
+access: default
+weight: 0

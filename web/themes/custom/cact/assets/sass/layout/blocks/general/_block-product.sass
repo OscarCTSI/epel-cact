@@ -1,0 +1,75 @@
+#block-views-block-product-categories-block-1
+  .view-product-categories
+    display: flex
+    margin-top: 36px
+
+  .view-content
+    margin: 0 auto
+    padding: 0 24px
+
+    ul
+      display: flex
+
+    .products-links-breadcrumb
+      align-items: center
+      display: flex
+      flex-direction: column
+      text-align: center
+      margin-right: 18px
+      padding-left: 0 !important
+      +breakpoint($large)
+        margin-right: 50px
+
+      a
+        color: $black
+        font-size: 12px
+        font-weight: 500
+        +breakpoint($large)
+          font-size: 16px
+          line-height: 28px
+
+    .tickets-and-vouchers
+      +icomoon-text($icon-museum, 23px, $black)
+
+      &::before
+        transform: inherit
+        margin-bottom: 12px
+        position: inherit
+        +breakpoint($large)
+          font-size: 36px
+
+    .events
+      +icomoon-text($icon-theater, 23px, $black)
+
+      &::before
+        transform: inherit
+        margin-bottom: 12px
+        position: inherit
+        +breakpoint($large)
+          font-size: 36px
+
+    .experiences
+      +icomoon-text($icon-holidays-vacation, 23px, $black)
+
+      &::before
+        transform: inherit
+        margin-bottom: 12px
+        position: inherit
+        +breakpoint($large)
+          font-size: 36px
+
+    .restoration
+      +icomoon-text($icon-restaurant, 23px, $black)
+      margin-right: 0
+
+      &::before
+        margin-bottom: 12px
+        position: inherit
+        transform: inherit
+        +breakpoint($large)
+          font-size: 36px
+
+    h3
+      &.taxonomy-categories-active
+        a
+          color: $primary-color

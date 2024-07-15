@@ -1,0 +1,20 @@
+uuid: 3642aaa8-dad7-41f1-92dd-533770bce19f
+langcode: es
+status: true
+dependencies:
+  config:
+    - easy_email.easy_email_type.complete_order_fr
+id: easy_email.complete_order_fr.creator_uid
+field_name: creator_uid
+entity_type: easy_email
+bundle: complete_order_fr
+label: Creador
+description: 'The user ID of creator of the Email entity.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: default
+  handler_settings: {  }
+field_type: entity_reference

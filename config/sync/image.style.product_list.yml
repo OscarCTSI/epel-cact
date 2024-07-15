@@ -1,0 +1,26 @@
+uuid: bccb2841-7549-4688-b481-333b8879d43f
+langcode: en
+status: true
+dependencies:
+  config:
+    - crop.type.list_13_10
+  module:
+    - crop
+name: product_list
+label: 'Product list'
+effects:
+  7d8eee20-6ada-4034-9de5-8e0a92a463cb:
+    uuid: 7d8eee20-6ada-4034-9de5-8e0a92a463cb
+    id: crop_crop
+    weight: 1
+    data:
+      crop_type: list_13_10
+      automatic_crop_provider: null
+  8506da38-f696-4617-b5a1-77150c455961:
+    uuid: 8506da38-f696-4617-b5a1-77150c455961
+    id: image_scale_and_crop
+    weight: 2
+    data:
+      width: 480
+      height: 369
+      anchor: center-center

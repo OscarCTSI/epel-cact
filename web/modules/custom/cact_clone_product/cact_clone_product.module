@@ -1,0 +1,23 @@
+<?php
+/**
+ * @file
+ * Contains cact_clone_product.module.
+ */
+
+use Drupal\Core\Url;
+
+
+/**
+ * Implements hook_entity_operation().
+ */
+function cact_clone_product_entity_operation(\Drupal\Core\Entity\EntityInterface $entity) {
+  if($entity->getEntityType()->id() == 'commerce_product') {
+    $operations = [];
+    $operations['clone'] = array(
+      'title' => t('Clone product'),
+      'url' => Url::fromRoute('cact_clone_product.clone_product',["product" => $entity->id()]),
+      'weight' => 150,
+    );
+    return $operations;
+  }
+}

@@ -1,0 +1,6 @@
+_core:
+  default_config_hash: DS_Fi0eMyfLcS8VctYnMtCyPPQfvzI9v3aF1Nv6xr8Q
+langcode: es
+logo:
+  path: themes/da_vinci/logo.png
+  use_default: true

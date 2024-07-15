@@ -1,0 +1,24 @@
+uuid: d93b7c02-dd12-4da4-ab08-b0bc26bfb07e
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - cookies
+  theme:
+    - da_vinci
+third_party_settings:
+  block_class:
+    classes: null
+id: cookiesui
+theme: da_vinci
+region: top_bar
+weight: -8
+provider: null
+plugin: cookies_ui_block
+settings:
+  id: cookies_ui_block
+  label: 'Cookies UI'
+  label_display: visible
+  provider: cookies
+visibility: {  }

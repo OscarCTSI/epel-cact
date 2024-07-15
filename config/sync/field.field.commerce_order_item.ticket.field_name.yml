@@ -1,0 +1,19 @@
+uuid: 2e0b8e06-5fde-46cc-8359-f1d634f57c41
+langcode: es
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_item_type.ticket
+    - field.storage.commerce_order_item.field_name
+id: commerce_order_item.ticket.field_name
+field_name: field_name
+entity_type: commerce_order_item
+bundle: ticket
+label: Name
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

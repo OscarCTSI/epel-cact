@@ -1,0 +1,10 @@
+langcode: en
+status: true
+id: privacy_overview
+label: 'Privacy overview'
+group: privacy_overview
+info:
+  format: 'full_html'
+  value: ''
+url: 'privacy'
+consent: true

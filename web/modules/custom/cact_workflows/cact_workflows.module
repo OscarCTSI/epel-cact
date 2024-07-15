@@ -1,0 +1,58 @@
+<?php
+
+use Drupal\commerce\Interval;
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Render\BubbleableMetadata;
+
+/**
+ * @file
+ * Contains cact_workflows.module.
+ */
+function cact_workflows_cron(){
+  $config = \Drupal::config('cact_workflows.settings');
+
+  $current_date = new DrupalDateTime('now');
+  if($config->get('number') > 0) {
+    $interval = new Interval($config->get('number'), $config->get('unit'));
+    $expiration_date = $interval->subtract($current_date);
+    $expiration_timestamp = $expiration_date->getTimestamp();
+
+    $select = \Drupal::database()->select('commerce_order', 'o');
+    $select->addField('o', 'order_id');
+    $select->condition('o.state ', 'draft')
+      ->condition('o.changed', $expiration_timestamp, '<=')
+      ->orderBy('o.changed', 'ASC');
+
+    $result = $select->execute();
+
+    $row_count = $select->countQuery()->execute()->fetchField();
+
+    if ($row_count > 0) {
+      foreach ($result as $record):
+        // Get order.
+        $order = \Drupal::entityTypeManager()
+          ->getStorage('commerce_order')
+          ->load($record->order_id);
+
+        if ($order->getState()->getId() == 'draft') {
+          $order->getState()->applyTransitionById('leave');
+          // Set leave state and lock order
+          $order->set('state', 'leave');
+          $order->set('locked', 1);
+          $order->save();
+        }
+      endforeach;
+    }
+  }
+}
+
+/**
+ * Implements hook_theme
+ */
+function cact_workflows_theme($existing, $type, $theme, $path) {
+  return [
+    'order_tickets' => [
+      'variables' => ['tickets' => NULL],
+    ],
+  ];
+}

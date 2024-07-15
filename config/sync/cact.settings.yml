@@ -1,0 +1,16 @@
+features:
+  node_user_picture: 1
+  comment_user_picture: 1
+  comment_user_verification: 1
+  favicon: 1
+logo:
+  use_default: 0
+  path: themes/custom/cact/logo.png
+favicon:
+  use_default: 1
+body-font: ''
+header-font: ''
+search-placeholder: 0
+responsive-project: 0
+styling: 0
+styling_code: ''

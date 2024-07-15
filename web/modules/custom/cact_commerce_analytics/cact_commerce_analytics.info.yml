@@ -1,0 +1,10 @@
+name: 'CACT Commerce Analytics'
+type: module
+description: 'Post enhanced ecommerce events to Google Tag Manager.'
+core: 8.x
+core_version_requirement: ^8 || ^9
+package: 'CACT'
+dependencies:
+  - drupal:commerce_google_tag_manager
+
+project: 'cact'

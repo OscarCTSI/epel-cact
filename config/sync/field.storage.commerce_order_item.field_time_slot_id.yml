@@ -1,0 +1,21 @@
+uuid: c211baa0-7279-46cc-9a62-7673fde347e2
+langcode: es
+status: true
+dependencies:
+  module:
+    - commerce_order
+id: commerce_order_item.field_time_slot_id
+field_name: field_time_slot_id
+entity_type: commerce_order_item
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

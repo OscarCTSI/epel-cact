@@ -1,0 +1,9 @@
+name: My theme
+description: mytheme_description
+base theme: da_vinci
+
+libraries:
+  - mytheme/global-css
+  - mytheme/global-js
+
+regions:

@@ -1,0 +1,6 @@
+subscription:
+  confirm_combined_subject: 'Bestätigung für [site:name]'
+  confirm_combined_body: "Wir haben eine Abonnement-Anfrage für [simplenews-subscriber:mail] auf [site:url] erhalten. Bitte bestätigen Sie diese Anfrage mit dem folgenden Link.\r\n\r\n[simplenews-subscriber:combined-url]"
+  confirm_combined_body_unchanged: 'Wir haben eine Anfrage für ein Abonnement von [simplenews-subscriber:mail] auf [site:url] erhalten. Eine Bestätigung ist nicht notwendig, da Sie bereits Abonnent sind.'
+  validate_subject: 'Newsletter-Abonnements von [site:name] verwalten'
+  validate_body: "Wir haben eine Anfrage erhalten, die Abonnements für [simplenews-subscriber:mail] auf [site:url] zu verwalten. Um fortzufahren benutzen Sie bitte den folgenden Link.\r\n\r\n[simplenews-subscriber:manage-url]"
